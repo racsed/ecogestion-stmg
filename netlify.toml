@@ -2,8 +2,4 @@
   command = "npm run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"]}
+# Pretty URLs are handled by Astro's default trailing slash behavior
