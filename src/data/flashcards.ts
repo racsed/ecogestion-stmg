@@ -18,6 +18,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Charge de la preuve', definition: "En matiere civile, c'est au demandeur de prouver ce qu'il avance (art. 1353 Code civil)." },
       { term: 'Jurisprudence', definition: "Ensemble des decisions de justice qui interpretent et completent la loi. Source du droit." },
       { term: 'Constitution', definition: "Norme supreme de l'Etat. En France, la Constitution du 4 octobre 1958 fonde la Ve Republique." },
+      { term: 'Qualification juridique', definition: "Operation intellectuelle consistant a rattacher une situation de fait a une categorie juridique pour determiner la regle de droit applicable.", example: "Un pieton renverse par une voiture : on qualifie la situation en 'fait juridique' (accident) engageant la responsabilite civile du conducteur." },
+      { term: 'Fonctions du droit', definition: "Le droit remplit deux fonctions principales : organiser la vie en societe (fixer un cadre de regles) et pacifier les relations sociales (resoudre les conflits sans violence)." },
+      { term: 'Valeurs de la Republique', definition: "Le droit francais est fonde sur les valeurs de liberte, egalite, solidarite (fraternite) et laicite, inscrites dans la Constitution et la devise republicaine." },
     ],
   },
   'les-sources-du-droit': {
@@ -29,6 +32,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Hierarchie des normes', definition: "Principe selon lequel chaque norme juridique doit etre conforme a la norme qui lui est superieure, formant une pyramide (Kelsen).", example: "Une loi contraire a la Constitution peut etre censuree par le Conseil constitutionnel" },
       { term: 'Traites internationaux', definition: "Accords conclus entre Etats ou avec des organisations internationales. Ils ont une valeur superieure aux lois nationales.", example: "Les traites europeens s'imposent aux lois francaises" },
       { term: 'Coutume', definition: "Usage ancien, repete et considere comme obligatoire par une communaute. C'est une source complementaire du droit.", example: "En droit commercial, certains usages font office de regles" },
+      { term: 'Question Prioritaire de Constitutionnalite (QPC)', definition: "Mecanisme permettant a tout justiciable de contester, au cours d'un proces, la conformite d'une loi aux droits et libertes garantis par la Constitution. Introduite par la reforme de 2008.", example: "Un prevenu conteste la constitutionnalite d'une loi penale qui restreint sa liberte d'expression." },
+      { term: 'Reglement europeen vs Directive', definition: "Le reglement europeen est directement applicable dans tous les Etats membres sans transposition. La directive fixe des objectifs a atteindre que chaque Etat doit transposer dans son droit national.", example: "Le RGPD est un reglement europeen, applique uniformement dans toute l'UE." },
     ],
   },
   'la-preuve-des-droits': {
@@ -40,6 +45,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Preuve par ecrit', definition: "Moyen de preuve le plus fiable, obligatoire pour les actes juridiques depassant 1 500 euros. Inclut l'acte authentique et l'acte sous seing prive.", example: "Un acte notarie pour la vente d'un bien immobilier" },
       { term: 'Presomption', definition: "Raisonnement par lequel on deduit un fait inconnu d'un fait connu. Elle peut etre simple (refutable) ou irrefragable.", example: "Le possesseur d'un bien meuble est presume proprietaire (art. 2276)" },
       { term: 'Temoignage', definition: "Declaration d'une personne qui rapporte ce qu'elle a vu ou entendu. Admis librement pour prouver un fait juridique.", example: "Un temoin d'un accident de la route temoigne devant le tribunal" },
+      { term: 'Commissaire de justice (ex-huissier)', definition: "Officier ministeriel charge de dresser des constats a force probante renforcee, de signifier les actes de procedure et de proceder a l'execution forcee des decisions de justice.", example: "Un commissaire de justice constate les degats dans un appartement pour servir de preuve au tribunal." },
+      { term: 'Preuve libre vs Preuve legale', definition: "La preuve libre (faits juridiques) admet tous les modes de preuve. La preuve legale (actes juridiques > 1 500 euros) exige en principe un ecrit.", example: "Un accident se prouve par tous moyens (preuve libre). Un contrat de vente de 5 000 euros exige un ecrit (preuve legale)." },
     ],
   },
   'le-litige-et-le-recours-au-juge': {
@@ -51,6 +58,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Mediation', definition: "Mode amiable ou un tiers neutre (le mediateur) aide les parties a trouver elles-memes une solution a leur conflit." },
       { term: 'Conciliation', definition: "Mode amiable ou un tiers (le conciliateur) propose une solution aux parties. Gratuite et souvent obligatoire avant certains proces." },
       { term: 'Arbitrage', definition: "Mode alternatif ou les parties confient la resolution de leur litige a un ou plusieurs arbitres prives. Leur decision (sentence) s'impose.", example: "Frequemment utilise dans le commerce international" },
+      { term: 'Principe du contradictoire', definition: "Principe fondamental du proces selon lequel chaque partie doit pouvoir prendre connaissance des arguments et preuves de l'autre partie et y repondre avant que le juge ne statue." },
+      { term: 'Avantages des MARD', definition: "Les modes alternatifs de reglement des differends offrent quatre avantages principaux : rapidite, confidentialite, cout moindre et preservation des relations entre les parties.", example: "Une mediation commerciale permet de resoudre un litige en quelques semaines au lieu de plusieurs mois de procedure." },
     ],
   },
   'lorganisation-judiciaire': {
@@ -62,6 +71,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Conseil d\'Etat', definition: "Plus haute juridiction de l'ordre administratif. Il juge les litiges en dernier ressort et conseille le gouvernement sur les projets de loi." },
       { term: 'Tribunal des conflits', definition: "Juridiction paritaire chargee de trancher les conflits de competence entre l'ordre judiciaire et l'ordre administratif." },
       { term: 'Competence d\'attribution', definition: "Regle qui determine quelle juridiction est competente en fonction de la nature du litige (civil, penal, commercial, etc.).", example: "Le conseil de prud'hommes est competent pour les litiges du travail" },
+      { term: 'Tribunal correctionnel', definition: "Juridiction penale competente pour juger les delits (infractions de gravite intermediaire). Les peines encourues vont jusqu'a 10 ans d'emprisonnement.", example: "Le vol, l'escroquerie, la conduite en etat d'ivresse sont juges par le tribunal correctionnel." },
+      { term: 'Cour d\'assises', definition: "Juridiction penale competente pour juger les crimes (infractions les plus graves). Elle est composee de magistrats professionnels et d'un jury populaire (citoyens tires au sort).", example: "Le meurtre, le viol, les actes de terrorisme sont juges par la cour d'assises." },
     ],
   },
   'la-personne-juridique': {
@@ -72,6 +83,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Capacite juridique', definition: "Aptitude d'une personne a avoir des droits (capacite de jouissance) et a les exercer seule (capacite d'exercice).", example: "Un mineur a une capacite d'exercice limitee : il ne peut pas signer seul un contrat" },
       { term: 'Nom et domicile', definition: "Elements d'identification de la personne juridique. Le nom est obligatoire et le domicile determine la competence des tribunaux." },
       { term: 'Patrimoine', definition: "Ensemble des droits et obligations d'une personne, evaluables en argent. Toute personne a un patrimoine et un seul.", example: "L'actif (biens, creances) et le passif (dettes) d'une personne" },
+      { term: 'Infans conceptus', definition: "Regle selon laquelle l'enfant simplement concu est considere comme ne chaque fois qu'il y va de son interet, a condition qu'il naisse vivant et viable.", example: "Si un pere decede pendant la grossesse, l'enfant concu peut heriter de lui." },
+      { term: 'Tutelle, curatelle, sauvegarde de justice', definition: "Trois regimes de protection des majeurs vulnerables. La sauvegarde de justice est la mesure la plus legere (temporaire). La curatelle est intermediaire (assistance). La tutelle est la plus protectrice (representation).", example: "Une personne agee atteinte de la maladie d'Alzheimer peut etre placee sous tutelle par le juge des tutelles." },
+      { term: 'Personne morale de droit public vs droit prive', definition: "Les personnes morales de droit public (Etat, communes, hopitaux publics) poursuivent l'interet general. Les personnes morales de droit prive (societes, associations, syndicats) sont creees par des personnes privees." },
     ],
   },
   'les-droits-extrapatrimoniaux': {
@@ -83,6 +97,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Donnees personnelles', definition: "Toute information se rapportant a une personne physique identifiee ou identifiable, directement ou indirectement.", example: "Nom, adresse email, adresse IP, photo, numero de telephone" },
       { term: 'Droit a l\'oubli', definition: "Droit de demander la suppression de donnees personnelles en ligne lorsqu'elles ne sont plus necessaires ou pertinentes.", example: "Demander a un moteur de recherche de dereferencier un ancien article" },
       { term: 'Caracteres des droits extrapatrimoniaux', definition: "Ces droits sont hors du patrimoine : ils sont incessibles (ne se vendent pas), intransmissibles (ne se transmettent pas aux heritiers) et insaisissables." },
+      { term: 'Droit a la dignite humaine', definition: "Droit fondamental a valeur constitutionnelle interdisant tout traitement degradant, inhumain ou humiliant. Le corps humain est inviolable et ne peut faire l'objet d'un droit patrimonial (art. 16 Code civil)." },
+      { term: 'Les 6 principes du RGPD', definition: "Liceite et transparence, limitation des finalites, minimisation des donnees, exactitude, limitation de la conservation, integrite et confidentialite. Tout traitement de donnees personnelles doit respecter ces six principes." },
+      { term: 'CNIL', definition: "Commission nationale de l'informatique et des libertes. Autorite administrative independante chargee de veiller au respect de la protection des donnees personnelles. Elle informe, controle, sanctionne et recoit les plaintes.", example: "La CNIL peut infliger des amendes allant jusqu'a 20 millions d'euros ou 4 % du chiffre d'affaires mondial." },
     ],
   },
   'les-droits-patrimoniaux': {
@@ -93,6 +110,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Droit de propriete', definition: "Droit reel le plus complet. Il confere trois attributs : usus (droit d'utiliser), fructus (droit de percevoir les fruits), abusus (droit de disposer).", example: "Un proprietaire peut habiter sa maison, la louer et la vendre" },
       { term: 'Propriete intellectuelle', definition: "Ensemble des droits portant sur les creations de l'esprit : propriete industrielle (brevets, marques) et propriete litteraire et artistique (droit d'auteur).", example: "Un brevet protege une invention pendant 20 ans" },
       { term: 'Caracteres des droits patrimoniaux', definition: "Ces droits sont dans le patrimoine : ils sont cessibles (se vendent), transmissibles (se transmettent aux heritiers), saisissables et prescriptibles." },
+      { term: 'Meubles et immeubles', definition: "Les biens se classent en immeubles (qui ne peuvent etre deplaces : sol, batiments) et en meubles (qui peuvent etre deplaces : voiture, ordinateur, ou incorporels : creances, parts sociales).", example: "Un appartement est un immeuble par nature. Une voiture est un meuble corporel. Un fonds de commerce est un meuble incorporel." },
+      { term: 'Brevet', definition: "Titre de propriete industrielle protégeant une invention technique nouvelle pendant 20 ans. Il confere a son titulaire un monopole d'exploitation. Le depot se fait aupres de l'INPI.", example: "Un laboratoire pharmaceutique depose un brevet pour proteger une nouvelle molecule medicamenteuse." },
+      { term: 'Droit d\'auteur', definition: "Droit de propriete litteraire et artistique protégeant les oeuvres de l'esprit des leur creation, sans formalite. Les droits patrimoniaux durent 70 ans apres le deces de l'auteur. Le droit moral est perpetuel.", example: "Un photographe possede des droits d'auteur sur ses cliches des leur prise de vue." },
     ],
   },
   'le-contrat': {
