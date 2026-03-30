@@ -1,0 +1,181 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'droit-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'les-libertes-individuelles-et-collectives')!;
+const questions = allQCM['les-libertes-individuelles-et-collectives'] || [];
+const flashcardSet = flashcards['les-libertes-individuelles-et-collectives'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/droit" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Le droit de grève</h3>
+          <p>Le <strong>droit de grève</strong> est un droit constitutionnel reconnu à tout salarié (Préambule de la Constitution de 1946). La grève se définit comme une <strong>cessation collective et concertée du travail</strong> en vue d'appuyer des revendications professionnelles.</p>
+          <p>Conditions de licéité de la grève :</p>
+          <ul>
+            <li>Cessation totale du travail (pas de grève perlée ou du zèle).</li>
+            <li>Mouvement collectif (au moins deux salariés, sauf si le salarié est seul dans l'entreprise).</li>
+            <li>Revendications professionnelles (salaires, conditions de travail).</li>
+          </ul>
+          <p>Pendant la grève, le contrat de travail est <strong>suspendu</strong> (pas rompu). L'employeur ne verse pas le salaire, mais ne peut pas licencier un gréviste sauf en cas de faute lourde.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les syndicats et la représentation du personnel</h3>
+          <p>Les <strong>syndicats</strong> sont des organisations professionnelles qui défendent les intérêts des salariés. La liberté syndicale est un principe fondamental : tout salarié est libre d'adhérer ou non à un syndicat.</p>
+          <p>Les principales instances de représentation du personnel :</p>
+          <ul>
+            <li><strong>Le CSE (Comité Social et Économique)</strong> : obligatoire dans les entreprises d'au moins 11 salariés. Il fusionne les anciens délégués du personnel, comité d'entreprise et CHSCT. Il est consulté sur les décisions économiques, les conditions de travail et la santé-sécurité.</li>
+            <li><strong>Les délégués syndicaux</strong> : désignés par les syndicats représentatifs dans les entreprises d'au moins 50 salariés, ils négocient les accords collectifs avec l'employeur.</li>
+          </ul>
+          <p>Les représentants du personnel bénéficient d'une <strong>protection spéciale</strong> contre le licenciement (autorisation préalable de l'inspecteur du travail nécessaire).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La négociation collective et les conventions collectives</h3>
+          <p>La <strong>négociation collective</strong> est le dialogue entre les organisations syndicales de salariés et les employeurs (ou leurs organisations) en vue de conclure des accords collectifs.</p>
+          <p>Les <strong>conventions collectives</strong> sont des accords écrits qui fixent les conditions d'emploi, de travail et les garanties sociales applicables aux salariés d'une branche professionnelle ou d'une entreprise. Elles complètent et améliorent le Code du travail.</p>
+          <p>La hiérarchie des normes en droit du travail :</p>
+          <ol>
+            <li>Le Code du travail (lois et règlements).</li>
+            <li>Les conventions et accords de branche.</li>
+            <li>Les accords d'entreprise.</li>
+            <li>Le contrat de travail.</li>
+          </ol>
+          <p>Depuis les ordonnances Macron de 2017, l'accord d'entreprise peut, dans certains domaines, déroger à l'accord de branche, même de manière moins favorable au salarié (principe de subsidiarité).</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Retenez les trois conditions de licéité de la grève et que le contrat est suspendu (non rompu) pendant la grève. Le CSE est l'instance unique de représentation du personnel depuis 2020. Les conventions collectives sont un sujet classique du bac STMG.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/droit/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/droit/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

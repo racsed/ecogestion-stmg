@@ -1,0 +1,186 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-chomage')!;
+const questions = allQCM['le-chomage'] || [];
+const flashcardSet = flashcards['le-chomage'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Comment definir et mesurer le chomage ?</h3>
+          <p>Le <strong>chomage</strong> designe la situation d'une personne sans emploi, disponible pour travailler et qui recherche activement un emploi. Il existe deux definitions principales :</p>
+          <ul>
+            <li><strong>La definition du BIT (Bureau International du Travail)</strong> : est chomeur toute personne en age de travailler (15 ans et plus) qui remplit simultanement trois criteres : etre sans emploi, etre disponible pour travailler dans les 15 jours et avoir effectue des demarches actives de recherche d'emploi au cours des 4 dernieres semaines. En France, c'est l'<strong>INSEE</strong> qui mesure le chomage au sens du BIT via l'enquete Emploi.</li>
+            <li><strong>La definition de Pole emploi (France Travail)</strong> : sont comptabilisees les personnes inscrites a France Travail dans differentes categories (A, B, C, D, E). Les <strong>demandeurs d'emploi de categorie A</strong> (sans aucune activite) sont les plus souvent cites dans les medias.</li>
+          </ul>
+          <p>Le <strong>taux de chomage</strong> se calcule ainsi : <strong>Taux de chomage = (Nombre de chomeurs / Population active) x 100</strong>. La <strong>population active</strong> regroupe l'ensemble des personnes en emploi et des chomeurs.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les differentes formes de chomage</h3>
+          <p>On distingue principalement deux types de chomage :</p>
+          <ul>
+            <li><strong>Le chomage conjoncturel</strong> : il est lie a un ralentissement temporaire de l'activite economique. Lorsque la demande globale diminue (crise economique, baisse de la consommation), les entreprises reduisent leur production et licencient. Ce chomage est reversible : il diminue lorsque la croissance repart.</li>
+            <li><strong>Le chomage structurel</strong> : il resulte de desequilibres profonds et durables du marche du travail. Il peut etre cause par l'<strong>inadequation entre l'offre et la demande de travail</strong> (manque de qualifications, mutations technologiques), la rigidite du marche du travail (reglementations, cout du travail) ou les transformations sectorielles (desindustrialisation).</li>
+          </ul>
+          <p>On parle aussi de <strong>chomage frictionnel</strong> (ou transitionnel), qui correspond au temps necessaire entre deux emplois. Ce chomage est normal et incompressible dans toute economie.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les politiques de l'emploi</h3>
+          <p>Les pouvoirs publics mettent en oeuvre des <strong>politiques de l'emploi</strong> pour lutter contre le chomage. On distingue deux grandes categories :</p>
+          <ul>
+            <li><strong>Les politiques actives</strong> : elles visent a creer des emplois ou a faciliter le retour a l'emploi. Exemples :
+              <ul>
+                <li>La <strong>formation professionnelle</strong> pour adapter les competences des chomeurs aux besoins du marche.</li>
+                <li>Les <strong>aides a l'embauche</strong> (allegements de charges sociales, contrats aides, prime a l'emploi).</li>
+                <li>L'<strong>accompagnement personnalise</strong> des demandeurs d'emploi (France Travail).</li>
+                <li>Le soutien a la <strong>creation d'entreprise</strong>.</li>
+              </ul>
+            </li>
+            <li><strong>Les politiques passives</strong> : elles visent a indemniser les chomeurs et a attenuer les consequences sociales du chomage. Exemples :
+              <ul>
+                <li>L'<strong>assurance chomage</strong> (allocations versees par l'Unedic/France Travail aux demandeurs d'emploi).</li>
+                <li>Les <strong>minima sociaux</strong> (RSA - Revenu de Solidarite Active) pour les personnes sans ressources.</li>
+                <li>Les dispositifs de <strong>preretraite</strong> ou de <strong>reduction du temps de travail</strong> pour partager l'emploi.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Connaissez les deux definitions du chomage (BIT et Pole emploi) et la formule du taux de chomage. Distinguez clairement chomage conjoncturel (lie a la croissance) et structurel (lie aux transformations du marche du travail). Sachez donner des exemples concrets de politiques actives et passives de l'emploi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

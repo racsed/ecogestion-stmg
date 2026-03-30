@@ -1,0 +1,178 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'droit-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-droit-du-travail')!;
+const questions = allQCM['le-droit-du-travail'] || [];
+const flashcardSet = flashcards['le-droit-du-travail'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/droit" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Le contrat de travail et le lien de subordination</h3>
+          <p>Le <strong>contrat de travail</strong> est une convention par laquelle une personne (le salarié) s'engage à travailler pour le compte et sous la direction d'une autre personne (l'employeur), en échange d'une rémunération. L'élément essentiel qui le caractérise est le <strong>lien de subordination juridique</strong> : l'employeur a le pouvoir de donner des ordres, d'en contrôler l'exécution et de sanctionner les manquements.</p>
+          <p>Ce lien de subordination distingue le salarié du travailleur indépendant. C'est le juge qui, en cas de litige, détermine l'existence de ce lien en se fondant sur les conditions réelles de travail (et non sur la qualification donnée par les parties).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. CDI et CDD : deux types de contrats</h3>
+          <p>Le droit du travail prévoit deux grandes formes de contrat :</p>
+          <ul>
+            <li><strong>Le CDI (Contrat à Durée Indéterminée)</strong> : c'est la forme normale et générale du contrat de travail. Il peut être rompu par l'une ou l'autre des parties (licenciement, démission, rupture conventionnelle).</li>
+            <li><strong>Le CDD (Contrat à Durée Déterminée)</strong> : il ne peut être conclu que pour un motif précis prévu par la loi (remplacement d'un salarié absent, accroissement temporaire d'activité, emploi saisonnier). Sa durée maximale est en principe de 18 mois, renouvellement compris.</li>
+          </ul>
+          <p>Le recours abusif au CDD (ex. : pour pourvoir un emploi permanent) expose l'employeur à la <strong>requalification en CDI</strong> par le conseil de prud'hommes.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Droits et obligations des parties</h3>
+          <p>Le contrat de travail crée des obligations réciproques :</p>
+          <ul>
+            <li><strong>Obligations de l'employeur</strong> : fournir le travail convenu, verser la rémunération, respecter le Code du travail et la convention collective, assurer la sécurité et la santé des salariés.</li>
+            <li><strong>Obligations du salarié</strong> : exécuter le travail avec soin, respecter les horaires et le règlement intérieur, obligation de loyauté et de discrétion.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La période d'essai et les clauses particulières</h3>
+          <p>La <strong>période d'essai</strong> permet à l'employeur d'évaluer les compétences du salarié et au salarié d'apprécier les conditions de travail. Elle n'est pas obligatoire mais doit être expressément prévue dans le contrat. Sa durée varie selon la catégorie du salarié (2 mois pour les ouvriers/employés, 3 mois pour les agents de maîtrise, 4 mois pour les cadres).</p>
+          <p>Certaines clauses peuvent être insérées dans le contrat :</p>
+          <ul>
+            <li><strong>Clause de non-concurrence</strong> : interdit au salarié d'exercer une activité concurrente après la rupture du contrat (doit être limitée dans le temps, l'espace et prévoir une contrepartie financière).</li>
+            <li><strong>Clause de mobilité</strong> : prévoit que le salarié accepte par avance un changement de lieu de travail.</li>
+            <li><strong>Clause de confidentialité</strong> : interdit au salarié de divulguer certaines informations.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Le lien de subordination est le critère déterminant du contrat de travail. Retenez que le CDI est la forme normale du contrat et que le CDD ne peut être utilisé que pour des motifs limitativement énumérés par la loi. La requalification en CDI est la sanction d'un CDD abusif.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/droit/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/droit/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

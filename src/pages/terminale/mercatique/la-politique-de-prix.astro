@@ -1,0 +1,186 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'mercatique-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-politique-de-prix')!;
+const questions = allQCM['la-politique-de-prix'] || [];
+const flashcardSet = flashcards['la-politique-de-prix'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/mercatique" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les méthodes de fixation du prix</h3>
+          <p>Le prix est une variable stratégique du plan de marchéage. Sa fixation repose sur trois approches complémentaires :</p>
+          <ul>
+            <li><strong>Par les coûts</strong> : le prix est calculé à partir du coût de revient auquel on ajoute une marge. Prix de vente = Coût de revient + Marge. Cette méthode garantit la rentabilité mais ne tient pas compte du marché.</li>
+            <li><strong>Par la demande</strong> : le prix est fixé en fonction de ce que le consommateur est prêt à payer. On utilise notamment la méthode du <strong>prix psychologique</strong> (ou prix d'acceptabilité).</li>
+            <li><strong>Par la concurrence</strong> : le prix est fixé par rapport aux prix pratiqués par les concurrents. L'entreprise peut se positionner au-dessus, au-dessous ou au même niveau.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le prix psychologique</h3>
+          <p>Le <strong>prix psychologique</strong> (ou prix d'acceptabilité) est le prix que le plus grand nombre de consommateurs est prêt à payer pour un produit. Il est déterminé par une enquête posant deux questions :</p>
+          <ul>
+            <li>"Au-dessus de quel prix n'achèteriez-vous pas ce produit car vous le jugez trop cher ?"</li>
+            <li>"En dessous de quel prix n'achèteriez-vous pas ce produit car vous douteriez de sa qualité ?"</li>
+          </ul>
+          <p>Le prix psychologique correspond au prix pour lequel le pourcentage d'acheteurs potentiels est le plus élevé (zone d'acceptabilité maximale). Il traduit la perception de valeur par le consommateur.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les stratégies de prix</h3>
+          <p>L'entreprise dispose de trois grandes stratégies de prix :</p>
+          <ul>
+            <li><strong>Stratégie d'écrémage</strong> : fixer un prix élevé pour cibler un segment restreint à fort pouvoir d'achat. Objectif : maximiser la marge unitaire, renforcer l'image haut de gamme. Exemple : Apple lors du lancement de l'iPhone.</li>
+            <li><strong>Stratégie de pénétration</strong> : fixer un prix bas pour conquérir rapidement une large part de marché. Objectif : décourager la concurrence, générer du volume. Exemple : Free lors de son entrée sur le marché mobile.</li>
+            <li><strong>Stratégie d'alignement</strong> : fixer un prix similaire à celui des concurrents. L'entreprise se différencie alors sur d'autres éléments du mix (qualité, service, communication).</li>
+          </ul>
+          <p>D'autres pratiques tarifaires existent : le <strong>prix d'appel</strong> (prix très bas sur un produit pour attirer les clients en magasin), le <strong>yield management</strong> (prix variable selon le moment : transport aérien, hôtellerie), et les <strong>prix promotionnels</strong> (réductions temporaires).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. L'élasticité de la demande par rapport au prix</h3>
+          <p>L'<strong>élasticité-prix</strong> mesure la sensibilité de la demande à une variation de prix. Elle se calcule ainsi :</p>
+          <p><strong>e = (Variation de la demande en %) / (Variation du prix en %)</strong></p>
+          <p>Interprétation :</p>
+          <ul>
+            <li><strong>e &lt; -1</strong> : demande très élastique. Une hausse de prix entraîne une forte baisse de la demande. C'est le cas des produits substituables et peu différenciés.</li>
+            <li><strong>-1 &lt; e &lt; 0</strong> : demande peu élastique. La demande réagit faiblement aux variations de prix. C'est le cas des produits de première nécessité ou à forte image de marque.</li>
+            <li><strong>e = 0</strong> : demande parfaitement inélastique. La demande ne varie pas quelle que soit l'évolution du prix (cas rare, produits indispensables sans substitut).</li>
+            <li><strong>e &gt; 0</strong> : effet de snobisme (Veblen). Une hausse de prix augmente la demande (produits de luxe, effet de prestige).</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Sachez calculer et interpréter l'élasticité-prix : c'est un exercice classique au bac. Maîtrisez les trois stratégies de prix (écrémage, pénétration, alignement) et sachez les associer à un contexte concret. Le prix psychologique est souvent demandé sous forme de tableau à analyser.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/mercatique/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/mercatique/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

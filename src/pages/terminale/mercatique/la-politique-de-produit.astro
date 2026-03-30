@@ -1,0 +1,190 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'mercatique-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-politique-de-produit')!;
+const questions = allQCM['la-politique-de-produit'] || [];
+const flashcardSet = flashcards['la-politique-de-produit'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/mercatique" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La gamme de produits</h3>
+          <p>Une <strong>gamme</strong> est un ensemble de produits proposés par une entreprise, qui répondent à un même type de besoin. Elle se caractérise par :</p>
+          <ul>
+            <li><strong>La largeur</strong> : le nombre de lignes de produits (familles de produits différentes). Exemple : chez L'Oréal, les soins capillaires, le maquillage, les parfums sont autant de lignes.</li>
+            <li><strong>La profondeur</strong> : le nombre de produits au sein d'une même ligne. Exemple : dans la ligne "shampoings", on trouve le shampoing classique, antipelliculaire, pour cheveux colorés, etc.</li>
+            <li><strong>La longueur</strong> : le nombre total de produits de la gamme (largeur x profondeur).</li>
+          </ul>
+          <p>La gamme se structure en trois niveaux : le <strong>bas de gamme</strong> (prix attractif, volume), le <strong>milieu de gamme</strong> (rapport qualité-prix) et le <strong>haut de gamme</strong> (qualité supérieure, image premium).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le cycle de vie du produit</h3>
+          <p>Tout produit traverse quatre phases au cours de son existence sur le marché :</p>
+          <ol>
+            <li><strong>Lancement</strong> : mise sur le marché, ventes faibles, coûts élevés (R&D, communication), rentabilité négative. L'objectif est de faire connaître le produit.</li>
+            <li><strong>Croissance</strong> : les ventes augmentent rapidement, les premiers bénéfices apparaissent, la concurrence s'intensifie. L'entreprise élargit la distribution.</li>
+            <li><strong>Maturité</strong> : les ventes atteignent leur maximum puis stagnent, la concurrence est forte, les marges diminuent. L'entreprise cherche à fidéliser et à se différencier.</li>
+            <li><strong>Déclin</strong> : les ventes diminuent, le produit devient obsolète. L'entreprise doit décider de le relancer (innovation), le maintenir (niche) ou le retirer du marché.</li>
+          </ol>
+          <p>L'entreprise doit gérer un <strong>portefeuille de produits</strong> équilibré, avec des produits à différents stades du cycle de vie, pour assurer une rentabilité continue.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. L'innovation et le packaging</h3>
+          <p>L'<strong>innovation</strong> est un levier essentiel de la politique de produit. On distingue :</p>
+          <ul>
+            <li><strong>L'innovation incrémentale</strong> : amélioration d'un produit existant (nouvelle formule, nouvelle fonctionnalité).</li>
+            <li><strong>L'innovation de rupture</strong> : création d'un produit radicalement nouveau qui transforme le marché (exemple : le smartphone).</li>
+          </ul>
+          <p>Le <strong>packaging</strong> (conditionnement et emballage) remplit plusieurs fonctions :</p>
+          <ul>
+            <li><strong>Fonctions techniques</strong> : protéger le produit, faciliter le transport et le stockage, permettre l'utilisation.</li>
+            <li><strong>Fonctions commerciales</strong> : attirer l'attention (impact visuel), informer le consommateur (étiquetage), positionner le produit (image de marque), déclencher l'achat.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La marque</h3>
+          <p>La <strong>marque</strong> est un signe distinctif (nom, logo, symbole) qui permet d'identifier un produit et de le différencier de la concurrence. Elle constitue un actif immatériel majeur pour l'entreprise.</p>
+          <p>La marque se caractérise par :</p>
+          <ul>
+            <li><strong>La notoriété</strong> : le degré de connaissance de la marque par les consommateurs. On distingue la notoriété spontanée (citée de mémoire) et la notoriété assistée (reconnue dans une liste).</li>
+            <li><strong>L'image de marque</strong> : l'ensemble des représentations mentales associées à la marque par le consommateur (qualité, innovation, prestige, accessibilité...).</li>
+          </ul>
+          <p>Les stratégies de marque principales sont : la <strong>marque produit</strong> (un nom par produit : Ariel, Dash chez Procter & Gamble), la <strong>marque ombrelle</strong> (un même nom pour des produits différents : Samsung), et la <strong>marque caution</strong> (une marque mère qui garantit des sous-marques : Danone avec Activia, Danette).</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Les notions de largeur, profondeur et longueur de gamme tombent très souvent au bac. Sachez schématiser le cycle de vie d'un produit et associer chaque phase à une stratégie mercatique adaptée. Distinguez bien notoriété (on connaît la marque) et image de marque (ce qu'on pense de la marque).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/mercatique/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/mercatique/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

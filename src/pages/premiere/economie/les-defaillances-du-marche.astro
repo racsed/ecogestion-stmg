@@ -1,0 +1,183 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'les-defaillances-du-marche')!;
+const questions = allQCM['les-defaillances-du-marche'] || [];
+const flashcardSet = flashcards['les-defaillances-du-marche'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les externalités</h3>
+          <p>Une <strong>externalité</strong> (ou effet externe) se produit lorsque l'activité d'un agent économique a des conséquences -- positives ou négatives -- sur d'autres agents, sans que cela passe par le marché (sans compensation financière).</p>
+          <ul>
+            <li><strong>Externalité négative</strong> : une usine pollue une rivière, ce qui nuit aux pêcheurs et aux riverains sans qu'elle les indemnise. La pollution automobile dégrade la qualité de l'air pour tous.</li>
+            <li><strong>Externalité positive</strong> : un apiculteur installe des ruches à côté d'un verger ; les abeilles pollinisent les arbres fruitiers gratuitement. L'éducation profite à l'ensemble de la société, pas seulement à l'individu formé.</li>
+          </ul>
+          <p>Le marché seul ne prend pas en compte ces effets externes, ce qui conduit à une allocation non optimale des ressources : trop de production pour les activités à externalités négatives, pas assez pour celles à externalités positives.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les biens collectifs</h3>
+          <p>Un <strong>bien collectif</strong> (ou bien public) possède deux caractéristiques :</p>
+          <ul>
+            <li><strong>Non-rivalité</strong> : la consommation du bien par une personne ne réduit pas la quantité disponible pour les autres (ex. : l'éclairage public, la défense nationale).</li>
+            <li><strong>Non-exclusion</strong> : il est impossible (ou trop coûteux) d'empêcher quiconque de consommer le bien, même sans payer.</li>
+          </ul>
+          <p>Ces caractéristiques créent le problème du <strong>passager clandestin</strong> (free rider) : chacun espère bénéficier du bien sans contribuer à son financement. Le marché ne peut donc pas produire efficacement ces biens, ce qui justifie l'intervention de l'État pour les financer par l'impôt.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. L'asymétrie d'information et le pouvoir de marché</h3>
+          <p>L'<strong>asymétrie d'information</strong> survient lorsqu'un des acteurs de l'échange dispose de plus d'informations que l'autre. Par exemple, le vendeur d'une voiture d'occasion connaît mieux l'état du véhicule que l'acheteur. Cette situation peut conduire à :</p>
+          <ul>
+            <li>La <strong>sélection adverse</strong> : les mauvais produits chassent les bons du marché (marché des « lemons » d'Akerlof).</li>
+            <li>L'<strong>aléa moral</strong> : une personne assurée prend plus de risques car elle sait qu'elle sera indemnisée.</li>
+          </ul>
+          <p>Le <strong>pouvoir de marché</strong> apparaît quand un acteur (monopole, oligopole) peut influencer les prix à son avantage. En situation de monopole, l'entreprise fixe un prix supérieur au prix de concurrence, ce qui réduit le bien-être des consommateurs.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. L'intervention de l'État pour corriger les défaillances</h3>
+          <p>Face à ces défaillances, l'État dispose de plusieurs outils :</p>
+          <ul>
+            <li><strong>La réglementation</strong> : normes antipollution, obligations d'information (étiquetage), lois antitrust pour lutter contre les monopoles.</li>
+            <li><strong>La taxation</strong> : taxe carbone sur les émissions polluantes (principe du pollueur-payeur), pour internaliser les externalités négatives.</li>
+            <li><strong>Les subventions</strong> : aides à la recherche, à l'éducation, aux énergies renouvelables, pour encourager les externalités positives.</li>
+            <li><strong>La production publique</strong> : l'État produit lui-même les biens collectifs (défense, éclairage, routes).</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Distinguez bien externalité positive et négative avec des exemples précis. Pour les biens collectifs, pensez aux deux critères (non-rivalité + non-exclusion). L'intervention de l'État se justifie toujours par une défaillance du marché identifiée.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

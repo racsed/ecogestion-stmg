@@ -1,0 +1,174 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'droit-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'les-droits-patrimoniaux')!;
+const questions = allQCM['les-droits-patrimoniaux'] || [];
+const flashcardSet = flashcards['les-droits-patrimoniaux'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/droit" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La notion de patrimoine</h3>
+          <p>Le <strong>patrimoine</strong> est l'ensemble des droits et obligations d'une personne, évaluables en argent. Il comprend un <strong>actif</strong> (biens, créances) et un <strong>passif</strong> (dettes). Toute personne juridique possède un patrimoine, même s'il est vide ou négatif. Le patrimoine est une <strong>universalité de droit</strong> : l'actif répond du passif, ce qui signifie que les créanciers peuvent saisir les biens du débiteur pour obtenir le paiement de leurs créances.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les droits réels</h3>
+          <p>Les <strong>droits réels</strong> sont des droits qui portent directement sur une chose (du latin « res », la chose). On distingue :</p>
+          <ul>
+            <li><strong>Le droit de propriété</strong> : droit réel principal et le plus complet. Il confère trois prérogatives : l'<strong>usus</strong> (droit d'utiliser la chose), le <strong>fructus</strong> (droit d'en percevoir les fruits, ex. : loyers) et l'<strong>abusus</strong> (droit d'en disposer, ex. : vendre, donner, détruire).</li>
+            <li><strong>L'usufruit</strong> : droit réel qui confère l'usus et le fructus, mais pas l'abusus. L'usufruitier peut utiliser le bien et en percevoir les revenus, mais ne peut pas le vendre. Le nu-propriétaire conserve l'abusus.</li>
+            <li><strong>Les servitudes</strong> : charges imposées à un immeuble (le fonds servant) au profit d'un autre immeuble (le fonds dominant). Ex. : droit de passage.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les droits personnels (droits de créance)</h3>
+          <p>Les <strong>droits personnels</strong> (ou <strong>droits de créance</strong>) sont des droits qu'une personne (le <strong>créancier</strong>) détient contre une autre personne (le <strong>débiteur</strong>) et qui permettent d'exiger une prestation : donner quelque chose, faire quelque chose ou ne pas faire quelque chose. Contrairement aux droits réels, ils ne portent pas sur une chose mais créent un lien entre deux personnes. Ex. : le droit du bailleur de percevoir un loyer, le droit du prêteur de se faire rembourser.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Les droits intellectuels et les caractères des droits patrimoniaux</h3>
+          <p>Les <strong>droits intellectuels</strong> portent sur des créations de l'esprit : brevets, marques, droits d'auteur, dessins et modèles. Ils confèrent à leur titulaire un monopole d'exploitation temporaire (ex. : 70 ans après le décès de l'auteur pour le droit d'auteur).</p>
+          <p>Tous les droits patrimoniaux partagent des <strong>caractères communs</strong> qui les opposent aux droits extrapatrimoniaux :</p>
+          <ul>
+            <li><strong>Cessibles</strong> : ils peuvent être vendus ou cédés (ex. : vente d'un bien immobilier, cession de créance).</li>
+            <li><strong>Saisissables</strong> : les créanciers peuvent les saisir pour obtenir le paiement de ce qui leur est dû.</li>
+            <li><strong>Transmissibles</strong> : ils passent aux héritiers au décès de leur titulaire (succession).</li>
+            <li><strong>Prescriptibles</strong> : ils peuvent s'acquérir ou se perdre par l'écoulement du temps (prescription acquisitive ou extinctive).</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Maitrisez le tableau comparatif droits patrimoniaux / droits extrapatrimoniaux avec leurs caractères respectifs. Sachez aussi décomposer le droit de propriété en ses trois attributs (usus, fructus, abusus) et distinguer droits réels et droits personnels.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/droit/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/droit/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

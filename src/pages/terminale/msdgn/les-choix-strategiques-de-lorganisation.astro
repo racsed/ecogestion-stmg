@@ -1,0 +1,171 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'msdgn-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'les-choix-strategiques-de-lorganisation')!;
+const questions = allQCM['les-choix-strategiques-de-lorganisation'] || [];
+const flashcardSet = flashcards['les-choix-strategiques-de-lorganisation'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/msdgn" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La stratégie globale de l'entreprise</h3>
+          <p>La <strong>stratégie globale</strong> (ou corporate strategy) définit les orientations générales de l'organisation. Elle répond à la question : "Dans quels domaines d'activité l'entreprise doit-elle être présente ?" Le dirigeant doit réaliser un <strong>diagnostic stratégique</strong> (analyse SWOT : forces, faiblesses, opportunités, menaces) avant de faire ses choix.</p>
+          <p>On distingue la stratégie globale de la <strong>stratégie de domaine</strong> (ou business strategy), qui concerne la manière dont l'entreprise se positionne sur chacun de ses marchés (domination par les coûts, différenciation, focalisation selon M. Porter).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Spécialisation vs diversification</h3>
+          <p>La <strong>spécialisation</strong> consiste à concentrer les ressources de l'entreprise sur un seul domaine d'activité stratégique (DAS). Elle permet de développer un <strong>avantage concurrentiel</strong> solide et une expertise reconnue. C'est une stratégie adaptée aux PME ou aux entreprises en phase de croissance.</p>
+          <p>La <strong>diversification</strong> consiste à s'engager dans de nouveaux domaines d'activité, différents du métier de base. Elle peut être <strong>liée</strong> (activités complémentaires au métier d'origine) ou <strong>conglomérale</strong> (activités sans lien entre elles). La diversification permet de répartir les risques mais exige des ressources importantes.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Intégration verticale et externalisation</h3>
+          <p>L'<strong>intégration verticale</strong> consiste à prendre en charge des activités situées en amont (vers les fournisseurs) ou en aval (vers la distribution) de la chaîne de valeur. Par exemple, un fabricant qui ouvre ses propres magasins pratique une intégration verticale en aval. Cela permet un meilleur contrôle de la qualité et des coûts.</p>
+          <p>À l'inverse, l'<strong>externalisation</strong> (ou outsourcing) consiste à confier à un prestataire extérieur des activités que l'entreprise réalisait en interne. L'entreprise se recentre alors sur son <strong>coeur de métier</strong>. L'externalisation réduit les coûts fixes mais crée une dépendance vis-à-vis du prestataire.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Les alliances et les partenariats stratégiques</h3>
+          <p>Pour se développer sans supporter seule tous les risques, une entreprise peut nouer des <strong>alliances stratégiques</strong>. On distingue :</p>
+          <ul>
+            <li><strong>Les alliances complémentaires</strong> : chaque partenaire apporte des compétences différentes (ex. : un industriel et un distributeur).</li>
+            <li><strong>Les alliances additives</strong> (ou de co-intégration) : les partenaires mettent en commun des ressources similaires pour atteindre une taille critique (ex. : deux constructeurs automobiles développant un moteur commun).</li>
+            <li><strong>Les joint-ventures</strong> : création d'une entité juridique commune pour un projet spécifique.</li>
+          </ul>
+          <p>Les alliances peuvent aussi concerner des concurrents directs : on parle alors de <strong>coopétition</strong> (coopération + compétition).</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Les sujets de bac demandent souvent d'identifier la stratégie d'une entreprise à partir d'un cas concret. Apprenez à distinguer spécialisation/diversification et intégration/externalisation en vous appuyant sur des exemples précis tirés du document.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/msdgn/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/msdgn/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

@@ -1,0 +1,190 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'droit-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-numerique-et-le-droit')!;
+const questions = allQCM['le-numerique-et-le-droit'] || [];
+const flashcardSet = flashcards['le-numerique-et-le-droit'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/droit" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Le RGPD et la protection des données personnelles</h3>
+          <p>Le <strong>RGPD (Règlement Général sur la Protection des Données)</strong>, entré en vigueur le 25 mai 2018, est le texte européen de référence en matière de protection des données personnelles. Il s'applique à toute organisation (entreprise, association, administration) qui traite des données de résidents européens.</p>
+          <p>Une <strong>donnée personnelle</strong> est toute information se rapportant à une personne physique identifiée ou identifiable : nom, adresse, email, numéro de téléphone, adresse IP, données de géolocalisation, données biométriques, etc.</p>
+          <p>Les principes fondamentaux du RGPD :</p>
+          <ul>
+            <li><strong>Licéité et loyauté</strong> : le traitement doit avoir une base légale (consentement, contrat, obligation légale, intérêt légitime).</li>
+            <li><strong>Finalité</strong> : les données doivent être collectées pour un objectif précis et légitime.</li>
+            <li><strong>Minimisation</strong> : seules les données strictement nécessaires doivent être collectées.</li>
+            <li><strong>Exactitude</strong> : les données doivent être tenues à jour.</li>
+            <li><strong>Limitation de conservation</strong> : les données ne peuvent être conservées indéfiniment.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les droits numériques des personnes</h3>
+          <p>Le RGPD confère aux personnes un ensemble de droits sur leurs données :</p>
+          <ul>
+            <li><strong>Droit d'accès</strong> : savoir quelles données sont collectées et comment elles sont traitées.</li>
+            <li><strong>Droit de rectification</strong> : corriger des données inexactes.</li>
+            <li><strong>Droit à l'effacement (droit à l'oubli)</strong> : obtenir la suppression de ses données dans certains cas.</li>
+            <li><strong>Droit à la portabilité</strong> : récupérer ses données dans un format exploitable pour les transférer à un autre service.</li>
+            <li><strong>Droit d'opposition</strong> : s'opposer au traitement de ses données, notamment à des fins de prospection commerciale.</li>
+          </ul>
+          <p>En France, la <strong>CNIL (Commission Nationale de l'Informatique et des Libertés)</strong> est l'autorité chargée de veiller au respect du RGPD. Elle peut prononcer des sanctions allant jusqu'à 20 millions d'euros ou 4 % du chiffre d'affaires mondial.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La propriété intellectuelle à l'ère numérique</h3>
+          <p>Le numérique pose des défis majeurs en matière de <strong>propriété intellectuelle</strong> :</p>
+          <ul>
+            <li><strong>Le droit d'auteur</strong> : protège les oeuvres de l'esprit (textes, musiques, logiciels, photographies). La reproduction ou la diffusion sans autorisation constitue une contrefaçon.</li>
+            <li><strong>Les licences Creative Commons</strong> : permettent aux auteurs de partager leurs oeuvres sous certaines conditions (attribution, non-commercial, partage dans les mêmes conditions).</li>
+            <li><strong>Les brevets</strong> : protègent les inventions techniques. En Europe, les logiciels « en tant que tels » ne sont pas brevetables.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Le commerce électronique et le droit</h3>
+          <p>Le <strong>e-commerce</strong> est encadré par des règles protectrices du consommateur :</p>
+          <ul>
+            <li><strong>Obligation d'information</strong> : le vendeur en ligne doit fournir des informations claires sur son identité, le prix, les caractéristiques du produit et les conditions de vente.</li>
+            <li><strong>Droit de rétractation</strong> : le consommateur dispose de <strong>14 jours</strong> pour se rétracter d'un achat en ligne, sans avoir à se justifier.</li>
+            <li><strong>Garantie légale de conformité</strong> : le produit livré doit correspondre à la description faite en ligne.</li>
+            <li><strong>Signature électronique</strong> : elle a la même valeur juridique qu'une signature manuscrite lorsqu'elle est qualifiée.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Le RGPD est un sujet incontournable. Retenez les 5 principes fondamentaux et les principaux droits des personnes (accès, rectification, effacement, portabilité, opposition). N'oubliez pas le délai de rétractation de 14 jours pour le e-commerce et le rôle de la CNIL.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/droit/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/droit/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

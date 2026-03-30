@@ -1,0 +1,180 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'quest-ce-quune-organisation')!;
+const questions = allQCM['quest-ce-quune-organisation'] || [];
+const flashcardSet = flashcards['quest-ce-quune-organisation'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Qu'est-ce qu'une organisation ?</h3>
+          <p>Une <strong>organisation</strong> est un groupe de personnes qui se rassemblent pour atteindre un objectif commun, en coordonnant leurs actions et en mobilisant des ressources. Toute organisation possède une <strong>finalité</strong> (sa raison d'être), une <strong>structure</strong> (la manière dont elle est organisée) et des <strong>ressources</strong> qu'elle mobilise.</p>
+          <p>On distingue les organisations des simples groupes informels par l'existence de règles, d'une répartition des taches et d'une certaine permanence dans le temps.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les différents types d'organisations</h3>
+          <p>Il existe trois grands types d'organisations :</p>
+          <ul>
+            <li><strong>Les entreprises</strong> : organisations à but lucratif dont la finalité est de réaliser des bénéfices en produisant des biens ou des services marchands. Exemples : Renault, une boulangerie, un cabinet d'architecte.</li>
+            <li><strong>Les organisations publiques</strong> : elles produisent des services publics et sont financées principalement par des prélèvements obligatoires (impots, taxes). Leur finalité est de satisfaire l'intérêt général. Exemples : un hopital public, une mairie, un lycée.</li>
+            <li><strong>Les associations</strong> (et autres organisations de la société civile) : organisations à but non lucratif dont la finalité est de satisfaire les intérêts de leurs membres ou de défendre une cause. Exemples : une association sportive, Médecins Sans Frontières, un syndicat.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La finalité des organisations</h3>
+          <p>La <strong>finalité</strong> est la raison d'être de l'organisation, ce qui justifie son existence. Elle oriente les décisions et les actions de l'ensemble de ses membres :</p>
+          <ul>
+            <li><strong>Entreprise</strong> : réaliser un profit en créant de la valeur pour le client.</li>
+            <li><strong>Organisation publique</strong> : assurer le service public et l'intérêt général.</li>
+            <li><strong>Association</strong> : poursuivre un objectif social, culturel, humanitaire ou sportif sans recherche de profit.</li>
+          </ul>
+          <p>Attention : une association peut générer des excédents financiers, mais elle ne peut pas les redistribuer à ses membres (contrairement aux dividendes d'une entreprise).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Les ressources mobilisées</h3>
+          <p>Pour fonctionner et atteindre ses objectifs, toute organisation mobilise différentes catégories de <strong>ressources</strong> :</p>
+          <ul>
+            <li><strong>Ressources humaines</strong> : les salariés, bénévoles, fonctionnaires, dirigeants.</li>
+            <li><strong>Ressources matérielles</strong> : les locaux, machines, véhicules, équipements.</li>
+            <li><strong>Ressources immatérielles</strong> : les brevets, la marque, le savoir-faire, la réputation.</li>
+            <li><strong>Ressources financières</strong> : le capital, les emprunts, les subventions, les cotisations.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Le critère principal qui différencie les trois types d'organisations est la <strong>finalité</strong> : lucrative (entreprise), intérêt général (organisation publique), non lucrative (association). C'est la base de toute analyse en management STMG.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

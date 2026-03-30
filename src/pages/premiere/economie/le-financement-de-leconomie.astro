@@ -1,0 +1,171 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-financement-de-leconomie')!;
+const questions = allQCM['le-financement-de-leconomie'] || [];
+const flashcardSet = flashcards['le-financement-de-leconomie'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. L'autofinancement</h3>
+          <p>L'<strong>autofinancement</strong> est la capacité d'un agent économique à financer ses investissements par ses propres ressources, sans recourir à un financement externe. Pour une entreprise, il s'agit de la part des bénéfices non distribuée aux actionnaires, mise en réserve pour financer de nouveaux projets.</p>
+          <p>L'autofinancement est mesuré par le <strong>taux d'autofinancement</strong> = (épargne brute / investissement) x 100. Un taux supérieur à 100 % signifie que l'entreprise dispose de ressources suffisantes pour financer ses investissements et même dégager un excédent. C'est le mode de financement le moins coûteux car il n'entraîne ni intérêts à payer ni dilution du capital.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le financement externe indirect (intermédié)</h3>
+          <p>Lorsque l'autofinancement ne suffit pas, l'agent économique doit trouver des ressources à l'extérieur. Le <strong>financement indirect</strong> passe par un intermédiaire financier, principalement les <strong>banques</strong>.</p>
+          <p>Les banques collectent l'épargne des agents en capacité de financement (principalement les ménages) et accordent des <strong>crédits</strong> aux agents en besoin de financement (entreprises, ménages emprunteurs, État). La banque joue un rôle de transformation : elle transforme des dépôts à court terme en prêts à long terme.</p>
+          <p>Le coût du crédit dépend du <strong>taux d'intérêt</strong>, qui représente le prix de l'argent emprunté. Plus le risque de non-remboursement est élevé, plus le taux d'intérêt demandé est important.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Le financement externe direct (désintermédié)</h3>
+          <p>Le <strong>financement direct</strong> met en relation directe les agents en besoin de financement et les agents en capacité de financement, sur le <strong>marché financier</strong>. Les entreprises et l'État émettent des titres financiers :</p>
+          <ul>
+            <li><strong>Les actions</strong> : titres de propriété qui représentent une part du capital de l'entreprise. L'actionnaire perçoit des dividendes et dispose d'un droit de vote en assemblée générale. Le risque est élevé (le cours peut baisser) mais le rendement potentiel est important.</li>
+            <li><strong>Les obligations</strong> : titres de créance par lesquels l'émetteur s'engage à rembourser le capital emprunté à une date fixée et à verser des intérêts réguliers (coupons). Le risque est plus faible que pour les actions, mais le rendement aussi.</li>
+          </ul>
+          <p>Le marché primaire est celui de l'émission des nouveaux titres (introduction en Bourse). Le marché secondaire permet la revente des titres déjà émis (la Bourse au quotidien).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Agents en capacité et en besoin de financement</h3>
+          <p>Un agent est en <strong>capacité de financement</strong> lorsque son épargne est supérieure à ses investissements : il dispose d'un excédent qu'il peut prêter ou placer. En France, les ménages sont structurellement en capacité de financement.</p>
+          <p>Un agent est en <strong>besoin de financement</strong> lorsque ses investissements dépassent son épargne : il doit emprunter. Les entreprises et les administrations publiques sont généralement en besoin de financement. Le système financier a pour rôle de canaliser l'épargne des premiers vers les seconds, assurant ainsi le financement de l'économie.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Distinguez clairement financement interne (autofinancement), financement externe indirect (crédit bancaire) et financement externe direct (marché financier). Sachez comparer actions et obligations sur les critères : nature du titre, rémunération, risque.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

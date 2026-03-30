@@ -1,0 +1,186 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-redistribution')!;
+const questions = allQCM['la-redistribution'] || [];
+const flashcardSet = flashcards['la-redistribution'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les revenus primaires</h3>
+          <p>Les <strong>revenus primaires</strong> sont les revenus issus directement de la participation à l'activité économique, avant toute intervention de l'État. On distingue trois catégories :</p>
+          <ul>
+            <li><strong>Les revenus du travail</strong> : salaires, traitements des fonctionnaires, honoraires des professions libérales. Ils rémunèrent la contribution du facteur travail à la production.</li>
+            <li><strong>Les revenus du capital</strong> (ou revenus de la propriété) : loyers perçus par les propriétaires, intérêts des placements financiers, dividendes des actions. Ils rémunèrent la mise à disposition du capital.</li>
+            <li><strong>Les revenus mixtes</strong> : revenus des entrepreneurs individuels (artisans, commerçants, agriculteurs) qui rémunèrent à la fois leur travail et leur capital investi.</li>
+          </ul>
+          <p>La répartition des revenus primaires est inégalitaire : elle dépend de la dotation en facteurs de production de chaque individu (qualification, patrimoine).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les prélèvements obligatoires</h3>
+          <p>Les <strong>prélèvements obligatoires</strong> regroupent l'ensemble des impôts et cotisations sociales perçus par les administrations publiques. Ils représentent environ 45 % du PIB en France, l'un des taux les plus élevés au monde.</p>
+          <ul>
+            <li><strong>Les impôts</strong> : impôt sur le revenu (progressif, avec des tranches), TVA (proportionnel, sur la consommation), impôt sur les sociétés, taxe foncière, etc.</li>
+            <li><strong>Les cotisations sociales</strong> : versées par les employeurs et les salariés, elles financent la protection sociale (maladie, retraite, chômage, famille).</li>
+          </ul>
+          <p>On distingue les prélèvements <strong>proportionnels</strong> (même taux pour tous, comme la TVA) et les prélèvements <strong>progressifs</strong> (taux qui augmente avec le revenu, comme l'impôt sur le revenu).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les revenus de transfert et la protection sociale</h3>
+          <p>Les <strong>revenus de transfert</strong> (ou prestations sociales) sont des revenus versés par les administrations publiques aux ménages, sans contrepartie directe de travail. Ils visent à protéger les individus contre les risques sociaux :</p>
+          <ul>
+            <li><strong>Maladie</strong> : remboursement des soins par l'Assurance maladie.</li>
+            <li><strong>Vieillesse</strong> : pensions de retraite.</li>
+            <li><strong>Famille</strong> : allocations familiales, allocation de rentrée scolaire.</li>
+            <li><strong>Chômage</strong> : allocations chômage (ARE).</li>
+            <li><strong>Pauvreté/exclusion</strong> : RSA (Revenu de Solidarité Active), prime d'activité.</li>
+          </ul>
+          <p>Le <strong>revenu disponible</strong> d'un ménage se calcule ainsi : Revenus primaires - Prélèvements obligatoires + Revenus de transfert. C'est le revenu dont le ménage dispose réellement pour consommer et épargner.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Redistribution verticale et horizontale</h3>
+          <p>La <strong>redistribution</strong> est le mécanisme par lequel l'État modifie la répartition des revenus primaires. Elle prend deux formes :</p>
+          <ul>
+            <li><strong>Redistribution verticale</strong> : elle vise à réduire les inégalités de revenus en prélevant davantage sur les plus aisés pour redistribuer aux plus modestes. L'impôt progressif sur le revenu et le RSA en sont des exemples. L'objectif est la justice sociale.</li>
+            <li><strong>Redistribution horizontale</strong> : elle vise à couvrir certains risques sociaux indépendamment du niveau de revenu. Les bien-portants financent les soins des malades, les actifs financent les retraites, les personnes sans enfants contribuent aux allocations familiales. L'objectif est la solidarité face aux aléas de la vie.</li>
+          </ul>
+          <p>En France, la redistribution réduit significativement les inégalités : le rapport entre les revenus des 20 % les plus riches et des 20 % les plus pauvres passe de 8 avant redistribution à environ 4 après redistribution.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Maîtrisez la formule du revenu disponible (revenus primaires - prélèvements + transferts). Distinguez bien redistribution verticale (réduire les inégalités) et horizontale (couvrir les risques). Connaissez les principaux risques sociaux et les prestations associées.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

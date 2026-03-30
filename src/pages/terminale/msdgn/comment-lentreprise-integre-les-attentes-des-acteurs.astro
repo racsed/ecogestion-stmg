@@ -1,0 +1,171 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'msdgn-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'comment-lentreprise-integre-les-attentes-des-acteurs')!;
+const questions = allQCM['comment-lentreprise-integre-les-attentes-des-acteurs'] || [];
+const flashcardSet = flashcards['comment-lentreprise-integre-les-attentes-des-acteurs'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/msdgn" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les parties prenantes de l'entreprise</h3>
+          <p>Toute organisation évolue dans un environnement composé d'acteurs qui influencent ses décisions. On distingue les <strong>parties prenantes internes</strong> (salariés, dirigeants, actionnaires) des <strong>parties prenantes externes</strong> (clients, fournisseurs, collectivités, associations, État). Chacune de ces parties a des attentes spécifiques, parfois convergentes, parfois contradictoires.</p>
+          <p>Les <strong>salariés</strong> recherchent la sécurité de l'emploi et de bonnes conditions de travail. Les <strong>actionnaires</strong> attendent une rentabilité financière. Les <strong>clients</strong> veulent des produits de qualité à prix compétitif. L'entreprise doit arbitrer entre ces attentes pour assurer sa pérennité.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les finalités de l'entreprise</h3>
+          <p>L'entreprise poursuit plusieurs <strong>finalités</strong> qui dépassent la simple recherche de profit :</p>
+          <ul>
+            <li><strong>Finalité économique</strong> : réaliser des bénéfices, assurer la rentabilité et la croissance de l'activité.</li>
+            <li><strong>Finalité sociale</strong> : garantir l'emploi, améliorer les conditions de travail, favoriser le développement des compétences des salariés.</li>
+            <li><strong>Finalité sociétale</strong> : contribuer au bien-être de la société, respecter l'environnement, participer au développement local.</li>
+          </ul>
+          <p>Ces finalités ne sont pas opposées : une entreprise performante économiquement peut aussi être socialement responsable.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La responsabilité sociétale de l'entreprise (RSE)</h3>
+          <p>La <strong>RSE</strong> désigne l'intégration volontaire des préoccupations sociales et environnementales dans les activités de l'entreprise. Elle repose sur trois piliers : <strong>économique</strong> (performance durable), <strong>social</strong> (bien-être des salariés, diversité, égalité) et <strong>environnemental</strong> (réduction de l'empreinte carbone, économie circulaire).</p>
+          <p>La RSE n'est pas seulement une contrainte : elle peut devenir un <strong>avantage concurrentiel</strong>. Les consommateurs sont de plus en plus sensibles aux engagements des marques, et les investisseurs intègrent des critères ESG (Environnement, Social, Gouvernance) dans leurs décisions.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La gouvernance d'entreprise</h3>
+          <p>La <strong>gouvernance d'entreprise</strong> désigne l'ensemble des mécanismes qui encadrent les décisions des dirigeants et assurent la prise en compte des intérêts des différentes parties prenantes. Elle repose sur des organes de contrôle (conseil d'administration, assemblée générale) et des principes de transparence.</p>
+          <p>Une bonne gouvernance implique un <strong>équilibre des pouvoirs</strong> entre dirigeants et actionnaires, la mise en place de <strong>contre-pouvoirs</strong> (administrateurs indépendants, comités spécialisés) et une communication financière fiable.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Sachez distinguer les trois finalités (économique, sociale, sociétale) et les trois piliers de la RSE. On vous demandera souvent de montrer comment une entreprise concilie des attentes contradictoires entre ses parties prenantes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/msdgn/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/msdgn/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

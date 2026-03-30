@@ -1,0 +1,177 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-croissance-economique')!;
+const questions = allQCM['la-croissance-economique'] || [];
+const flashcardSet = flashcards['la-croissance-economique'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Qu'est-ce que la croissance economique ?</h3>
+          <p>La <strong>croissance economique</strong> designe l'augmentation soutenue, sur une longue periode, de la production de biens et de services d'un pays. Elle se mesure principalement par le taux de variation du <strong>Produit Interieur Brut (PIB)</strong>, qui represente la valeur de l'ensemble des biens et services produits sur le territoire national au cours d'une annee.</p>
+          <p>Il faut distinguer le <strong>PIB nominal</strong> (calcule aux prix courants, c'est-a-dire aux prix de l'annee en cours) du <strong>PIB reel</strong> (calcule aux prix constants, c'est-a-dire corrige de l'inflation). Seul le PIB reel permet de mesurer l'evolution reelle de la production, car il neutralise l'effet de la hausse des prix.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les sources de la croissance</h3>
+          <p>La croissance economique repose sur la combinaison de plusieurs facteurs :</p>
+          <ul>
+            <li><strong>Le facteur travail</strong> : l'augmentation de la quantite de travail (population active, duree du travail) contribue a produire davantage. La qualite du travail, liee au <strong>capital humain</strong> (formation, competences, experience), est egalement determinante.</li>
+            <li><strong>Le facteur capital</strong> : l'accumulation de <strong>capital physique</strong> (machines, equipements, infrastructures) par l'investissement permet d'accroitre les capacites de production.</li>
+            <li><strong>Le progres technique</strong> : il designe l'ensemble des innovations (de produit, de procede, organisationnelles) qui ameliorent l'efficacite de la production. Le progres technique est a l'origine de la <strong>productivite globale des facteurs (PGF)</strong>, c'est-a-dire la part de la croissance qui n'est pas expliquee par la seule augmentation des facteurs travail et capital.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Croissance et developpement durable</h3>
+          <p>La croissance economique ne se confond pas avec le <strong>developpement</strong>, qui designe l'amelioration des conditions de vie d'une population (sante, education, libertes). L'<strong>IDH (Indice de Developpement Humain)</strong>, cree par le PNUD, combine le PIB par habitant, l'esperance de vie et le niveau d'education pour mesurer le developpement.</p>
+          <p>Le <strong>developpement durable</strong> vise a repondre aux besoins du present sans compromettre la capacite des generations futures a satisfaire les leurs. Il repose sur trois piliers : economique (croissance), social (equite) et environnemental (preservation des ressources).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Les limites du PIB comme indicateur</h3>
+          <p>Le PIB presente plusieurs limites en tant qu'indicateur de richesse et de bien-etre :</p>
+          <ul>
+            <li>Il ne comptabilise pas le <strong>travail domestique</strong> ni le <strong>benevolat</strong> (production non marchande informelle).</li>
+            <li>Il ne tient pas compte de l'<strong>economie souterraine</strong> (travail au noir, activites illegales).</li>
+            <li>Il ignore les <strong>externalites negatives</strong> : pollution, epuisement des ressources naturelles, degradation de l'environnement.</li>
+            <li>Il ne mesure pas les <strong>inegalites de repartition</strong> des richesses au sein de la population.</li>
+            <li>Il ne prend pas en compte le <strong>bien-etre</strong> subjectif des individus (qualite de vie, loisirs, sante mentale).</li>
+          </ul>
+          <p>Des indicateurs alternatifs existent : l'<strong>IDH</strong>, l'<strong>empreinte ecologique</strong>, le <strong>BIB (Bonheur Interieur Brut)</strong> ou encore l'<strong>indice de Gini</strong> pour mesurer les inegalites.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Distinguez toujours croissance (quantitatif, PIB) et developpement (qualitatif, IDH). Pensez a citer les trois sources de la croissance (travail, capital, progres technique) et au moins deux limites du PIB. La notion de developpement durable et ses trois piliers est un classique du bac STMG.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

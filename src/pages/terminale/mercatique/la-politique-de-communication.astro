@@ -1,0 +1,190 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'mercatique-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-politique-de-communication')!;
+const questions = allQCM['la-politique-de-communication'] || [];
+const flashcardSet = flashcards['la-politique-de-communication'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/mercatique" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La communication média</h3>
+          <p>La <strong>communication média</strong> (ou publicité) utilise les grands médias de masse pour diffuser un message commercial à une large audience. Les principaux médias sont :</p>
+          <ul>
+            <li><strong>La télévision</strong> : forte audience, impact visuel et émotionnel puissant, coût élevé (production du spot + achat d'espace). Adapté aux produits de grande consommation.</li>
+            <li><strong>La presse</strong> : quotidienne (actualité, réactivité), magazine (ciblage par centres d'intérêt), gratuite (large diffusion). Permet un message détaillé et un ciblage précis.</li>
+            <li><strong>La radio</strong> : bonne couverture géographique, coût accessible, fréquence de répétition élevée. Adaptée au commerce local et aux promotions.</li>
+            <li><strong>L'affichage</strong> : impact visuel, présence urbaine, répétition. Adapté à la notoriété de marque et aux lancements.</li>
+            <li><strong>Le cinéma</strong> : audience captive, qualité de réception exceptionnelle, ciblage par type de film. Coût élevé mais fort impact mémoriel.</li>
+            <li><strong>Le digital</strong> : bannières, vidéos, search (SEA), display, native advertising. Ciblage très précis (comportemental, géographique, démographique), mesurabilité en temps réel.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. La communication hors média</h3>
+          <p>La <strong>communication hors média</strong> regroupe toutes les actions de communication qui n'utilisent pas les grands médias de masse :</p>
+          <ul>
+            <li><strong>La promotion des ventes</strong> : actions ponctuelles visant à stimuler les ventes à court terme. Outils : réductions de prix, bons de réduction, ventes flash, lots, échantillons, jeux-concours, offres de remboursement.</li>
+            <li><strong>Les relations publiques (RP)</strong> : actions visant à créer et entretenir une image positive de l'entreprise auprès de ses publics (médias, clients, institutionnels). Outils : communiqués de presse, événements, journées portes ouvertes, mécénat.</li>
+            <li><strong>Le sponsoring (parrainage)</strong> : association de la marque à un événement sportif, culturel ou social pour bénéficier de sa visibilité et de ses valeurs. Exemple : Red Bull sponsorise des événements sportifs extrêmes.</li>
+            <li><strong>Le marketing direct</strong> : communication personnalisée et interactive avec le consommateur. Outils : emailing, SMS marketing, courrier postal (mailing), phoning.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Le marketing digital et les réseaux sociaux</h3>
+          <p>Le <strong>marketing digital</strong> est devenu incontournable dans la stratégie de communication des entreprises. Il regroupe :</p>
+          <ul>
+            <li><strong>Le référencement</strong> : SEO (référencement naturel, optimisation pour les moteurs de recherche) et SEA (référencement payant, achat de mots-clés sur Google Ads).</li>
+            <li><strong>Le content marketing</strong> : création de contenus à valeur ajoutée (articles de blog, vidéos, infographies, podcasts) pour attirer et fidéliser une audience.</li>
+            <li><strong>Le marketing d'influence</strong> : collaboration avec des influenceurs (personnalités des réseaux sociaux) pour promouvoir un produit auprès de leur communauté.</li>
+            <li><strong>Le community management</strong> : animation et gestion des réseaux sociaux de la marque (Instagram, TikTok, X, LinkedIn, Facebook). Objectif : créer une communauté engagée, gérer l'e-réputation.</li>
+          </ul>
+          <p>Les <strong>réseaux sociaux</strong> permettent une communication bidirectionnelle : le consommateur n'est plus passif, il commente, partage, recommande ou critique. L'entreprise doit gérer son <strong>e-réputation</strong> (image perçue en ligne) et maîtriser le <strong>buzz</strong> (bouche-à-oreille numérique, viral).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Élaborer une stratégie de communication</h3>
+          <p>Une stratégie de communication efficace suit un plan structuré :</p>
+          <ol>
+            <li><strong>Définir les objectifs</strong> : cognitifs (faire connaître), affectifs (faire aimer) ou conatifs (faire agir/acheter).</li>
+            <li><strong>Identifier la cible</strong> : à qui s'adresse le message ? (coeur de cible, cible principale, cible secondaire).</li>
+            <li><strong>Formuler le message</strong> : la promesse (bénéfice principal), la preuve (justification), le ton (humoristique, informatif, émotionnel).</li>
+            <li><strong>Choisir les moyens</strong> : média et/ou hors média, en fonction du budget, de la cible et des objectifs.</li>
+            <li><strong>Mesurer les résultats</strong> : indicateurs de performance (taux de mémorisation, taux de clic, taux de conversion, ROI).</li>
+          </ol>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Distinguez bien communication média (grands médias de masse) et hors média (promotion, RP, sponsoring, marketing direct). Les objectifs cognitif / affectif / conatif sont un classique du bac. Sachez identifier les outils de communication digitale et expliquer en quoi les réseaux sociaux ont transformé la relation marque-consommateur.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/mercatique/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/mercatique/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

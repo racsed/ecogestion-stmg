@@ -1,0 +1,185 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'msdgn-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'linnovation-et-la-creation-de-valeur')!;
+const questions = allQCM['linnovation-et-la-creation-de-valeur'] || [];
+const flashcardSet = flashcards['linnovation-et-la-creation-de-valeur'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/msdgn" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les types d'innovation</h3>
+          <p>L'<strong>innovation</strong> est l'application réussie d'une invention sur un marché. On distingue plusieurs types d'innovation :</p>
+          <ul>
+            <li><strong>Innovation de produit</strong> : création d'un bien ou service nouveau ou significativement amélioré (ex. : smartphone à écran pliable).</li>
+            <li><strong>Innovation de procédé</strong> : nouvelle méthode de production ou de distribution qui améliore l'efficacité (ex. : impression 3D, livraison par drone).</li>
+            <li><strong>Innovation organisationnelle</strong> : nouvelle méthode d'organisation du travail ou des relations externes (ex. : méthode agile, entreprise libérée).</li>
+            <li><strong>Innovation de marketing</strong> : nouvelle stratégie commerciale (ex. : modèle freemium, abonnement).</li>
+          </ul>
+          <p>On distingue aussi l'<strong>innovation incrémentale</strong> (amélioration progressive d'un produit existant) de l'<strong>innovation de rupture</strong> (ou disruptive), qui bouleverse un marché en rendant obsolètes les solutions existantes.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. La veille stratégique</h3>
+          <p>La <strong>veille stratégique</strong> est un processus de collecte, d'analyse et de diffusion d'informations sur l'environnement de l'entreprise. Elle permet d'anticiper les évolutions du marché et de détecter les opportunités d'innovation. On distingue plusieurs types de veille :</p>
+          <ul>
+            <li><strong>Veille technologique</strong> : suivi des avancées techniques et des brevets.</li>
+            <li><strong>Veille concurrentielle</strong> : analyse des stratégies des concurrents.</li>
+            <li><strong>Veille commerciale</strong> : observation des attentes et comportements des clients.</li>
+            <li><strong>Veille juridique</strong> : suivi des évolutions réglementaires.</li>
+          </ul>
+          <p>La veille s'appuie sur des outils numériques : alertes Google, bases de données sectorielles, réseaux sociaux, salons professionnels.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La création de valeur</h3>
+          <p>L'innovation vise à créer de la <strong>valeur</strong> pour l'ensemble des parties prenantes. La notion de valeur est multidimensionnelle :</p>
+          <ul>
+            <li><strong>Valeur financière</strong> : chiffre d'affaires, marge, rentabilité pour les actionnaires.</li>
+            <li><strong>Valeur perçue par le client</strong> : rapport entre les bénéfices perçus (qualité, image, praticité) et les sacrifices consentis (prix, temps, effort).</li>
+            <li><strong>Valeur sociale</strong> : emplois créés, bien-être des salariés, développement des compétences.</li>
+            <li><strong>Valeur sociétale</strong> : impact positif sur l'environnement et la société.</li>
+          </ul>
+          <p>La <strong>chaine de valeur</strong> (Michael Porter) décompose les activités de l'entreprise en activités principales (logistique, production, commercialisation, services) et activités de soutien (infrastructure, GRH, R&D, approvisionnement) pour identifier les sources d'avantage concurrentiel.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Le business model et la disruption</h3>
+          <p>Le <strong>business model</strong> (ou modèle économique) décrit la manière dont une entreprise crée, délivre et capture de la valeur. Il repose sur plusieurs éléments : la <strong>proposition de valeur</strong> (ce que l'entreprise offre), les <strong>segments de clientèle</strong>, les <strong>canaux de distribution</strong>, les <strong>sources de revenus</strong> et la <strong>structure de coûts</strong>.</p>
+          <p>L'outil le plus utilisé pour formaliser un business model est le <strong>Business Model Canvas</strong> (Alexander Osterwalder), qui présente les 9 composantes clés sur une seule page.</p>
+          <p>La <strong>disruption</strong> désigne un phénomène par lequel une innovation de rupture transforme radicalement un secteur d'activité, souvent en proposant une offre plus accessible ou plus simple. Exemples : Netflix a disrupté la location de vidéos, Airbnb l'hôtellerie, Uber les taxis. Les entreprises établies doivent constamment innover pour ne pas être "disruptées".</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Sachez classifier une innovation (produit/procédé/organisationnelle, incrémentale/de rupture) à partir d'un cas concret. La chaine de valeur de Porter et le Business Model Canvas sont des outils fréquemment demandés. Illustrez toujours avec des exemples d'entreprises réelles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/msdgn/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/msdgn/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

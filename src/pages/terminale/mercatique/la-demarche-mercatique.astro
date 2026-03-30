@@ -1,0 +1,187 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'mercatique-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-demarche-mercatique')!;
+const questions = allQCM['la-demarche-mercatique'] || [];
+const flashcardSet = flashcards['la-demarche-mercatique'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/mercatique" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Qu'est-ce que la mercatique ?</h3>
+          <p>La <strong>mercatique</strong> (ou marketing) est l'ensemble des actions qui, dans une économie de marché, ont pour objectif de prévoir, constater, stimuler ou renouveler les besoins des consommateurs. Elle adapte en conséquence la production et la commercialisation de biens et de services.</p>
+          <p>La démarche mercatique repose sur une logique fondamentale : <strong>partir du marché</strong> (les besoins des consommateurs) pour y revenir (avec une offre adaptée). C'est l'opposé de la logique de production qui consiste à fabriquer d'abord puis à chercher des clients.</p>
+          <p>Les étapes de la démarche mercatique sont :</p>
+          <ol>
+            <li><strong>Analyser</strong> le marché et son environnement</li>
+            <li><strong>Définir</strong> une stratégie mercatique (segmentation, ciblage, positionnement)</li>
+            <li><strong>Mettre en oeuvre</strong> le plan de marchéage (les 4P : Produit, Prix, Place, Promotion)</li>
+            <li><strong>Contrôler</strong> les résultats et ajuster</li>
+          </ol>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le marché : offre et demande</h3>
+          <p>Le <strong>marché</strong> est le lieu de rencontre entre l'offre et la demande d'un bien ou d'un service. Il peut être analysé sous plusieurs angles :</p>
+          <ul>
+            <li><strong>L'offre</strong> : l'ensemble des producteurs et distributeurs qui proposent un bien ou un service. On distingue la concurrence directe (produits similaires) et la concurrence indirecte (produits de substitution).</li>
+            <li><strong>La demande</strong> : l'ensemble des acheteurs actuels et potentiels. Elle comprend les clients actuels, les non-consommateurs relatifs (qui pourraient acheter) et les non-consommateurs absolus (qui ne pourront jamais acheter).</li>
+            <li><strong>L'environnement</strong> : les facteurs externes qui influencent le marché (PESTEL : Politique, Économique, Socioculturel, Technologique, Écologique, Légal).</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Le système d'information mercatique (SIM)</h3>
+          <p>Le <strong>SIM</strong> est un ensemble organisé de ressources (humaines, matérielles, logicielles) permettant de collecter, traiter, stocker et diffuser l'information nécessaire aux décisions mercatiques.</p>
+          <p>Il repose sur trois types de sources :</p>
+          <ul>
+            <li><strong>Sources internes</strong> : données issues de l'entreprise (chiffre d'affaires, fichier clients, réclamations, rapports commerciaux).</li>
+            <li><strong>Sources externes secondaires</strong> : données déjà existantes (études INSEE, panels, presse spécialisée, bases de données sectorielles).</li>
+            <li><strong>Sources externes primaires</strong> : données collectées spécifiquement par l'entreprise (enquêtes, sondages, entretiens, observations terrain).</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La veille mercatique et l'étude de marché</h3>
+          <p>La <strong>veille mercatique</strong> est une surveillance permanente et organisée de l'environnement commercial de l'entreprise. Elle porte sur la concurrence (veille concurrentielle), les innovations (veille technologique), la réglementation (veille juridique) et les tendances de consommation (veille sociétale).</p>
+          <p>L'<strong>étude de marché</strong> est une démarche ponctuelle et structurée qui vise à collecter et analyser des informations sur un marché. On distingue :</p>
+          <ul>
+            <li><strong>Les études quantitatives</strong> : sondages, panels, questionnaires administrés à un large échantillon. Elles mesurent des comportements (combien ? à quelle fréquence ?).</li>
+            <li><strong>Les études qualitatives</strong> : entretiens individuels, réunions de groupe (focus groups), observations. Elles explorent les motivations profondes (pourquoi ? comment ?).</li>
+            <li><strong>Les études documentaires</strong> : exploitation de données secondaires déjà existantes.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">La démarche mercatique part toujours du marché pour y revenir. Sachez distinguer les études quantitatives (chiffres, volumes, fréquences) des études qualitatives (motivations, perceptions, attitudes). Le SIM est un outil permanent, l'étude de marché est ponctuelle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/mercatique/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/mercatique/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

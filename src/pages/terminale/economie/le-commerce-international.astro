@@ -1,0 +1,182 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-commerce-international')!;
+const questions = allQCM['le-commerce-international'] || [];
+const flashcardSet = flashcards['le-commerce-international'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Libre-echange et protectionnisme</h3>
+          <p>Le <strong>libre-echange</strong> est une doctrine economique qui preconise la suppression des obstacles aux echanges internationaux (droits de douane, quotas, normes). Il repose sur l'idee que la specialisation et le commerce entre nations profitent a tous les partenaires.</p>
+          <p>A l'inverse, le <strong>protectionnisme</strong> vise a proteger la production nationale de la concurrence etrangere. Il peut prendre plusieurs formes :</p>
+          <ul>
+            <li><strong>Les droits de douane</strong> (protectionnisme tarifaire) : taxes imposees sur les produits importes, rencherissant leur prix.</li>
+            <li><strong>Les quotas</strong> : limitations quantitatives des importations.</li>
+            <li><strong>Les barrieres non tarifaires</strong> : normes techniques, sanitaires ou environnementales qui limitent l'acces au marche national.</li>
+            <li><strong>Les subventions aux exportations</strong> : aides financieres accordees aux producteurs nationaux pour renforcer leur competitivite a l'etranger.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. La theorie de l'avantage comparatif</h3>
+          <p>La theorie de l'<strong>avantage comparatif</strong>, formulee par <strong>David Ricardo</strong> (1817), est le fondement theorique du libre-echange. Selon Ricardo, chaque pays a interet a se specialiser dans la production pour laquelle il dispose d'un <strong>avantage relatif</strong>, c'est-a-dire la production pour laquelle son desavantage est le plus faible (ou son avantage le plus grand) par rapport aux autres pays.</p>
+          <p>Meme si un pays est moins efficace que ses partenaires dans toutes les productions, il a quand meme interet a echanger en se specialisant la ou son desavantage est le moindre. Le commerce international permet alors une <strong>augmentation globale de la production</strong> et une amelioration du bien-etre de tous les pays.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. L'Organisation Mondiale du Commerce (OMC)</h3>
+          <p>L'<strong>OMC</strong>, creee en 1995 (succedant au GATT), est l'organisation internationale qui regule le commerce mondial. Ses missions principales sont :</p>
+          <ul>
+            <li><strong>Favoriser le libre-echange</strong> en negociant la reduction des barrieres commerciales (cycles de negociations multilaterales).</li>
+            <li><strong>Regler les differends commerciaux</strong> entre les Etats membres grace a l'Organe de Reglement des Differends (ORD).</li>
+            <li><strong>Garantir la transparence</strong> des politiques commerciales des pays membres.</li>
+          </ul>
+          <p>L'OMC repose sur des principes fondamentaux : la <strong>clause de la nation la plus favorisee</strong> (un avantage accorde a un pays doit etre etendu a tous les membres) et le <strong>traitement national</strong> (un produit importe doit etre traite comme un produit national).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La balance commerciale et la mondialisation</h3>
+          <p>La <strong>balance commerciale</strong> mesure la difference entre la valeur des <strong>exportations</strong> et celle des <strong>importations</strong> de biens d'un pays. Si les exportations sont superieures aux importations, le solde est <strong>excedentaire</strong> ; dans le cas contraire, il est <strong>deficitaire</strong>.</p>
+          <p>La <strong>mondialisation</strong> designe le processus d'intensification des echanges de biens, de services, de capitaux et d'informations a l'echelle planetaire. Elle se traduit par :</p>
+          <ul>
+            <li>L'essor des <strong>firmes multinationales (FMN)</strong> qui organisent leur production a l'echelle mondiale.</li>
+            <li>La <strong>division internationale du travail (DIT)</strong> : chaque pays se specialise selon ses avantages.</li>
+            <li>L'interdependance croissante des economies, qui amplifie la transmission des crises.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Maitrisez la theorie de Ricardo (avantage comparatif) : elle est souvent au coeur des sujets de bac. Sachez opposer libre-echange et protectionnisme avec des arguments precis. N'oubliez pas de citer le role de l'OMC et la difference entre balance commerciale excedentaire et deficitaire.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

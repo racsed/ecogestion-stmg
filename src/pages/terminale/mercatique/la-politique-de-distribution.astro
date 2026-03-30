@@ -1,0 +1,182 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'mercatique-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-politique-de-distribution')!;
+const questions = allQCM['la-politique-de-distribution'] || [];
+const flashcardSet = flashcards['la-politique-de-distribution'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/mercatique" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Canal, circuit et réseau de distribution</h3>
+          <p>La <strong>distribution</strong> regroupe l'ensemble des opérations qui permettent d'acheminer un produit du lieu de production jusqu'au consommateur final. Trois notions fondamentales la structurent :</p>
+          <ul>
+            <li><strong>Le canal de distribution</strong> : le chemin parcouru par le produit entre le producteur et le consommateur. On distingue trois types :
+              <ul>
+                <li><strong>Canal direct</strong> : Producteur → Consommateur (vente directe, e-commerce propre, magasin d'usine).</li>
+                <li><strong>Canal court</strong> : Producteur → Détaillant → Consommateur (un seul intermédiaire).</li>
+                <li><strong>Canal long</strong> : Producteur → Grossiste → Détaillant → Consommateur (deux intermédiaires ou plus).</li>
+              </ul>
+            </li>
+            <li><strong>Le circuit de distribution</strong> : l'ensemble des canaux utilisés par une entreprise pour distribuer un produit.</li>
+            <li><strong>Le réseau de distribution</strong> : l'ensemble des acteurs (personnes physiques et morales) qui interviennent dans la distribution d'un produit (franchisés, succursales, agents commerciaux...).</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les stratégies de distribution</h3>
+          <p>L'entreprise choisit une stratégie de distribution en fonction de son positionnement, de son produit et de ses objectifs :</p>
+          <ul>
+            <li><strong>Distribution intensive</strong> : le produit est présent dans le plus grand nombre de points de vente possible. Objectif : maximiser la couverture du marché. Adapté aux produits de grande consommation (Coca-Cola, BN). Avantage : forte visibilité. Inconvénient : image de marque moins maîtrisée.</li>
+            <li><strong>Distribution sélective</strong> : le produit est distribué dans un nombre limité de points de vente sélectionnés selon des critères précis (compétence du vendeur, image du magasin). Adapté aux produits techniques ou de moyen/haut de gamme (cosmétiques, électroménager). Avantage : meilleur contrôle de l'image.</li>
+            <li><strong>Distribution exclusive</strong> : le produit n'est distribué que dans un seul point de vente par zone géographique (concession, franchise exclusive). Adapté au luxe et à l'automobile. Avantage : image premium, relation privilégiée. Inconvénient : couverture géographique limitée.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Le e-commerce et l'omnicanal</h3>
+          <p>Le <strong>e-commerce</strong> (commerce électronique) désigne l'ensemble des transactions commerciales réalisées via Internet. Il a profondément transformé la distribution :</p>
+          <ul>
+            <li>Suppression des intermédiaires (désintermédiation) : le producteur vend directement en ligne.</li>
+            <li>Nouveaux intermédiaires numériques : marketplaces (Amazon, Cdiscount), comparateurs de prix, influenceurs.</li>
+            <li>Nouvelles formes de commerce : drive, click & collect, abonnements, livraison express.</li>
+          </ul>
+          <p>L'<strong>omnicanal</strong> est une stratégie qui consiste à offrir au client une expérience d'achat fluide et cohérente sur tous les canaux (magasin physique, site web, application mobile, réseaux sociaux, téléphone). Le client peut commencer son parcours sur un canal et le terminer sur un autre (ex. : repérer en ligne, essayer en magasin, commander sur l'appli).</p>
+          <p>À ne pas confondre avec le <strong>multicanal</strong> (plusieurs canaux indépendants) et le <strong>cross-canal</strong> (les canaux sont complémentaires mais pas totalement intégrés).</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Sachez différencier canal, circuit et réseau de distribution. Les trois stratégies (intensive, sélective, exclusive) doivent être illustrées avec des exemples concrets. La distinction multicanal / cross-canal / omnicanal est fréquemment demandée : retenez que l'omnicanal offre une expérience totalement intégrée entre tous les canaux.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/mercatique/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/mercatique/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

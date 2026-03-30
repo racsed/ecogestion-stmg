@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { subjects, getSubjectsByLevel, getTotalChapters, getTotalQCM } from '../data/subjects';
+
+const premiereSubjects = getSubjectsByLevel('premiere').filter(s => s.available);
+const terminaleSubjects = getSubjectsByLevel('terminale').filter(s => s.available);
+const totalChapters = getTotalChapters();
+const totalQCM = getTotalQCM();
+---
+
+<Layout title="Accueil">
+  
+  <!-- ═══ HERO ═══ -->
+  <section class="relative overflow-hidden">
+    <!-- Decorative blobs -->
+    <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-droit-200/40 to-mercatique-200/40 blur-3xl animate-float"></div>
+    <div class="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-eco-200/40 to-management-200/40 blur-3xl animate-float" style="animation-delay: -3s;"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28 relative">
+      <div class="text-center max-w-4xl mx-auto stagger">
+        <!-- Badge -->
+        <div>
+          <span class="badge bg-droit-100 text-droit-700 shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-droit-500 animate-pulse"></span>
+            Première & Terminale STMG
+          </span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="mt-6 font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.1]">
+          Réussis ton 
+          <span class="gradient-text">bac STMG</span>
+          <br />avec des vrais cours
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="mt-6 text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed font-body">
+          Cours complets, QCM interactifs, fiches de révision et sujets de bac corrigés — 
+          <strong class="text-ink">100% gratuit</strong>, créé par des profs d'Éco-Gestion.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#matieres" class="btn-primary bg-gradient-to-r from-droit-600 to-mercatique-600 text-base px-8 py-4 shadow-lg shadow-droit-500/25">
+            Commencer à réviser
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          </a>
+          <a href="/outils" class="btn-primary bg-white text-ink border-2 border-gray-200 text-base hover:border-gray-300">
+            🧰 Voir les outils
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          <div class="glass rounded-2xl p-4">
+            <div class="font-display font-extrabold text-3xl gradient-text">{subjects.filter(s => s.available).length}</div>
+            <div class="text-xs text-gray-500 mt-1 font-medium">matières</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="font-display font-extrabold text-3xl text-eco-600">{totalChapters}</div>
+            <div class="text-xs text-gray-500 mt-1 font-medium">chapitres</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="font-display font-extrabold text-3xl text-mercatique-600">{totalQCM}</div>
+            <div class="text-xs text-gray-500 mt-1 font-medium">QCM disponibles</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="font-display font-extrabold text-3xl text-management-600">0€</div>
+            <div class="text-xs text-gray-500 mt-1 font-medium">toujours gratuit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MATIÈRES ═══ -->
+  <section id="matieres" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    
+    <!-- Première -->
+    <div class="mb-20">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center shadow-lg">
+          <span class="text-xl">📘</span>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl">Première STMG</h2>
+          <p class="text-gray-500 text-sm">Droit · Économie · Management · SDGN</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger">
+        {premiereSubjects.map((subject) => (
+          <a href={`/premiere/${subject.shortName.toLowerCase().replace('éco', 'economie').replace('mgt', 'management')}`} 
+             class="subject-card text-white group"
+             style={`background: linear-gradient(135deg, ${subject.gradientFrom}, ${subject.gradientTo});`}>
+            <div class="flex items-start justify-between mb-8">
+              <span class="text-4xl filter drop-shadow-md">{subject.emoji}</span>
+              <svg class="w-5 h-5 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-1">{subject.name}</h3>
+            <p class="text-white/75 text-sm leading-relaxed">{subject.description}</p>
+            <div class="mt-4 flex items-center gap-2 text-xs text-white/60">
+              <span class="bg-white/20 rounded-full px-2.5 py-0.5">{subject.chapters.length} chapitres</span>
+              <span class="bg-white/20 rounded-full px-2.5 py-0.5">{subject.chapters.filter(c => c.hasQCM).length} QCM</span>
+            </div>
+          </a>
+        ))}
+        
+        <!-- SDGN Coming Soon -->
+        <div class="subject-card border-2 border-dashed border-gray-200 bg-white/40 cursor-default">
+          <div class="flex items-start justify-between mb-8">
+            <span class="text-4xl opacity-40">💻</span>
+            <span class="badge bg-gray-100 text-gray-500 text-[10px]">Phase 2</span>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-1 text-gray-400">SDGN</h3>
+          <p class="text-gray-400 text-sm">Sciences de Gestion et Numérique — Bientôt disponible !</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminale -->
+    <div>
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center shadow-lg">
+          <span class="text-xl">🎓</span>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl">Terminale STMG</h2>
+          <p class="text-gray-500 text-sm">Droit · Économie · Mercatique · MSDGN</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger">
+        {terminaleSubjects.map((subject) => (
+          <a href={`/terminale/${subject.shortName.toLowerCase().replace('éco', 'economie')}`} 
+             class="subject-card text-white group"
+             style={`background: linear-gradient(135deg, ${subject.gradientFrom}, ${subject.gradientTo});`}>
+            <div class="flex items-start justify-between mb-8">
+              <span class="text-4xl filter drop-shadow-md">{subject.emoji}</span>
+              <svg class="w-5 h-5 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-1">{subject.name}</h3>
+            <p class="text-white/75 text-sm leading-relaxed">{subject.description}</p>
+            <div class="mt-4 flex items-center gap-2 text-xs text-white/60">
+              <span class="bg-white/20 rounded-full px-2.5 py-0.5">{subject.chapters.length} chapitres</span>
+              <span class="bg-white/20 rounded-full px-2.5 py-0.5">{subject.chapters.filter(c => c.hasQCM).length} QCM</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl">Tout ce qu'il te faut pour réussir</h2>
+      <p class="text-gray-500 mt-3 max-w-lg mx-auto">Des outils pensés par des profs, pour des élèves qui veulent aller droit au but.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
+      <div class="chapter-card hover:border-droit-200">
+        <div class="w-12 h-12 rounded-2xl bg-droit-50 flex items-center justify-center mb-4">
+          <span class="text-2xl">📝</span>
+        </div>
+        <h3 class="font-display font-bold text-lg">Fiches de synthèse</h3>
+        <p class="text-gray-500 text-sm mt-2 leading-relaxed">Le cours condensé, organisé par notions-clés. L'essentiel en un coup d'œil pour chaque chapitre.</p>
+      </div>
+
+      <div class="chapter-card hover:border-eco-200">
+        <div class="w-12 h-12 rounded-2xl bg-eco-50 flex items-center justify-center mb-4">
+          <span class="text-2xl">🎯</span>
+        </div>
+        <h3 class="font-display font-bold text-lg">QCM interactifs</h3>
+        <p class="text-gray-500 text-sm mt-2 leading-relaxed">Teste tes connaissances avec des QCM corrigés et expliqués. Score immédiat et révision ciblée.</p>
+      </div>
+
+      <div class="chapter-card hover:border-mercatique-200">
+        <div class="w-12 h-12 rounded-2xl bg-mercatique-50 flex items-center justify-center mb-4">
+          <span class="text-2xl">📄</span>
+        </div>
+        <h3 class="font-display font-bold text-lg">Sujets de bac corrigés</h3>
+        <p class="text-gray-500 text-sm mt-2 leading-relaxed">Entraîne-toi dans les conditions réelles avec des sujets types et leurs corrigés détaillés.</p>
+      </div>
+
+      <div class="chapter-card hover:border-management-200">
+        <div class="w-12 h-12 rounded-2xl bg-management-50 flex items-center justify-center mb-4">
+          <span class="text-2xl">⬇️</span>
+        </div>
+        <h3 class="font-display font-bold text-lg">Ressources téléchargeables</h3>
+        <p class="text-gray-500 text-sm mt-2 leading-relaxed">PDF et documents Word à télécharger pour réviser hors ligne ou imprimer.</p>
+      </div>
+
+      <div class="chapter-card hover:border-msdgn-200">
+        <div class="w-12 h-12 rounded-2xl bg-msdgn-50 flex items-center justify-center mb-4">
+          <span class="text-2xl">🗣️</span>
+        </div>
+        <h3 class="font-display font-bold text-lg">Prépa Grand Oral</h3>
+        <p class="text-gray-500 text-sm mt-2 leading-relaxed">Un outil dédié pour structurer et préparer ton Grand Oral en Mercatique et MSDGN.</p>
+      </div>
+
+      <div class="chapter-card hover:border-sdgn-200">
+        <div class="w-12 h-12 rounded-2xl bg-sdgn-50 flex items-center justify-center mb-4">
+          <span class="text-2xl">📊</span>
+        </div>
+        <h3 class="font-display font-bold text-lg">Simulateur de note</h3>
+        <p class="text-gray-500 text-sm mt-2 leading-relaxed">Calcule ta note estimée au bac en entrant tes résultats par matière et coefficient.</p>
+        <a href="/outils/simulateur" class="inline-flex items-center gap-1 text-xs text-sdgn-600 mt-3 font-semibold">Essayer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-8 sm:px-16 py-16 text-center">
+      <!-- Decorative -->
+      <div class="absolute top-0 left-0 w-full h-full">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-droit-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-mercatique-600/20 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="relative">
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl">Prêt à viser la mention ?</h2>
+        <p class="text-gray-400 mt-4 max-w-lg mx-auto text-lg">
+          Commence par la matière qui te pose le plus de difficultés. 
+          On est là pour t'aider. 💪
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href="/premiere/droit" class="btn-primary bg-droit-600 hover:bg-droit-700">⚖️ Droit</a>
+          <a href="/premiere/economie" class="btn-primary bg-eco-600 hover:bg-eco-700">📊 Économie</a>
+          <a href="/premiere/management" class="btn-primary bg-management-600 hover:bg-management-700">🎯 Management</a>
+          <a href="/terminale/mercatique" class="btn-primary bg-mercatique-600 hover:bg-mercatique-700">🎨 Mercatique</a>
+          <a href="/terminale/msdgn" class="btn-primary bg-msdgn-600 hover:bg-msdgn-700">🧩 MSDGN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

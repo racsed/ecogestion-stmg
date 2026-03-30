@@ -1,0 +1,184 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'linflation')!;
+const questions = allQCM['linflation'] || [];
+const flashcardSet = flashcards['linflation'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Qu'est-ce que l'inflation ?</h3>
+          <p>L'<strong>inflation</strong> designe la hausse generale et durable du niveau des prix dans une economie. Il ne s'agit pas de la hausse du prix d'un seul produit, mais d'un mouvement d'ensemble qui affecte la majorite des biens et services. A l'inverse, la <strong>deflation</strong> correspond a une baisse generale et durable des prix.</p>
+          <p>L'inflation se mesure principalement par l'<strong>Indice des Prix a la Consommation (IPC)</strong>, calcule chaque mois par l'INSEE en France. L'IPC suit l'evolution des prix d'un <strong>panier de biens et services</strong> representatif de la consommation des menages. Le <strong>taux d'inflation</strong> correspond au pourcentage de variation de l'IPC sur un an.</p>
+          <p>Il faut aussi distinguer la <strong>desinflation</strong> (ralentissement de la hausse des prix, le taux d'inflation diminue mais reste positif) de la deflation (les prix baissent effectivement).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les causes de l'inflation</h3>
+          <p>Plusieurs mecanismes peuvent provoquer l'inflation :</p>
+          <ul>
+            <li><strong>L'inflation par la demande</strong> : lorsque la demande globale de biens et services excede l'offre disponible, les prix augmentent. Cela peut resulter d'une hausse des revenus, d'une politique budgetaire expansionniste ou d'un acces au credit facilite.</li>
+            <li><strong>L'inflation par les couts</strong> : lorsque les couts de production augmentent (hausse des matieres premieres, hausse des salaires, hausse du prix de l'energie), les entreprises repercutent cette hausse sur leurs prix de vente. L'exemple classique est le <strong>choc petrolier</strong>.</li>
+            <li><strong>L'inflation monetaire</strong> : selon la theorie monetariste de <strong>Milton Friedman</strong>, l'inflation est toujours un phenomene monetaire. Une creation excessive de monnaie par rapport a la production reelle entraine une hausse des prix (« trop de monnaie en circulation par rapport aux biens disponibles »).</li>
+            <li><strong>L'inflation importee</strong> : la hausse des prix des produits importes (due a la depreciation de la monnaie nationale ou a la hausse des prix mondiaux) se repercute sur les prix interieurs.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les consequences de l'inflation</h3>
+          <p>L'inflation a de multiples effets sur l'economie :</p>
+          <ul>
+            <li><strong>Perte de pouvoir d'achat</strong> : si les prix augmentent plus vite que les revenus, les menages peuvent acheter moins de biens et services.</li>
+            <li><strong>Effets sur l'epargne</strong> : l'inflation erode la valeur reelle de l'epargne. Les epargnants sont penalises tandis que les emprunteurs sont avantages (ils remboursent en monnaie depreciee).</li>
+            <li><strong>Perte de competitivite</strong> : si l'inflation est plus forte dans un pays que chez ses partenaires commerciaux, les produits nationaux deviennent plus chers a l'exportation.</li>
+            <li><strong>Incertitude economique</strong> : une inflation elevee et imprevisible freine l'investissement et la consommation.</li>
+          </ul>
+          <p>La <strong>deflation</strong> est egalement dangereuse : la baisse des prix pousse les consommateurs a reporter leurs achats (anticipation de prix encore plus bas), ce qui reduit la demande et peut entrainer une <strong>spirale deflationniste</strong> (baisse de la production, hausse du chomage, nouvelle baisse des prix).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La politique monetaire et le role de la BCE</h3>
+          <p>La <strong>politique monetaire</strong> est conduite dans la zone euro par la <strong>Banque Centrale Europeenne (BCE)</strong>. Son objectif principal est la <strong>stabilite des prix</strong>, definie comme un taux d'inflation proche de 2 % a moyen terme.</p>
+          <p>La BCE dispose de plusieurs instruments :</p>
+          <ul>
+            <li><strong>Les taux directeurs</strong> : en augmentant ses taux, la BCE rend le credit plus couteux, ce qui freine la demande et l'inflation. En les baissant, elle stimule le credit et l'activite economique.</li>
+            <li><strong>Les operations d'open market</strong> : achat ou vente de titres sur les marches financiers pour injecter ou retirer de la liquidite.</li>
+            <li><strong>Les reserves obligatoires</strong> : la BCE impose aux banques commerciales de conserver un pourcentage de leurs depots aupres d'elle, limitant ainsi leur capacite a creer de la monnaie.</li>
+          </ul>
+          <p>La BCE est <strong>independante</strong> des gouvernements des Etats membres, ce qui garantit la credibilite de sa politique monetaire.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Distinguez clairement inflation, desinflation et deflation. Connaissez les trois causes principales de l'inflation (demande, couts, monetaire) et le role de la BCE avec son objectif de 2 %. Sachez expliquer pourquoi la deflation est aussi dangereuse que l'inflation avec la spirale deflationniste.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

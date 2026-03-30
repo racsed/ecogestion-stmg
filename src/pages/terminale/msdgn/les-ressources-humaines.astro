@@ -1,0 +1,171 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'msdgn-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'les-ressources-humaines')!;
+const questions = allQCM['les-ressources-humaines'] || [];
+const flashcardSet = flashcards['les-ressources-humaines'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/msdgn" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La gestion prévisionnelle des emplois et des compétences (GPEC)</h3>
+          <p>La <strong>GPEC</strong> est une démarche qui vise à anticiper les besoins en ressources humaines de l'organisation en fonction de sa stratégie et de l'évolution de son environnement. Elle consiste à comparer les <strong>ressources disponibles</strong> (effectifs, compétences actuelles) aux <strong>besoins futurs</strong> pour identifier les écarts et mettre en place des actions correctives.</p>
+          <p>Les outils de la GPEC comprennent la <strong>cartographie des métiers</strong>, les <strong>référentiels de compétences</strong>, les <strong>entretiens annuels d'évaluation</strong> et les <strong>plans de mobilité interne</strong>. La GPEC est obligatoire dans les entreprises de plus de 300 salariés (négociation triennale).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le recrutement</h3>
+          <p>Le <strong>processus de recrutement</strong> se décompose en plusieurs étapes : identification du besoin, rédaction de la fiche de poste, diffusion de l'offre, tri des candidatures, entretiens, sélection et intégration du candidat retenu.</p>
+          <p>On distingue le <strong>recrutement interne</strong> (promotion, mutation) du <strong>recrutement externe</strong> (annonces, cabinets, réseaux sociaux professionnels). Le recrutement interne favorise la motivation et réduit les coûts, tandis que le recrutement externe apporte des compétences nouvelles et un regard extérieur.</p>
+          <p>Les outils de sélection incluent le <strong>CV</strong>, la <strong>lettre de motivation</strong>, les <strong>tests de compétences</strong>, les <strong>mises en situation</strong> et les <strong>entretiens</strong> (individuels ou collectifs). Le recrutement doit respecter le principe de <strong>non-discrimination</strong> (article L1132-1 du Code du travail).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La formation professionnelle</h3>
+          <p>La formation est un levier essentiel de la GRH. Le <strong>plan de développement des compétences</strong> (ex-plan de formation) regroupe les actions de formation décidées par l'employeur pour adapter les salariés à leur poste ou développer leurs compétences.</p>
+          <p>Le <strong>Compte Personnel de Formation (CPF)</strong> permet à chaque actif d'accumuler des droits à la formation tout au long de sa carrière (500 euros par an, plafond de 5 000 euros). La formation peut aussi passer par l'<strong>alternance</strong> (contrat d'apprentissage, contrat de professionnalisation) ou la <strong>VAE</strong> (Validation des Acquis de l'Expérience).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La motivation et la rémunération</h3>
+          <p>La <strong>motivation</strong> des salariés est un enjeu central du management. Deux théories sont incontournables au bac :</p>
+          <ul>
+            <li><strong>Abraham Maslow</strong> : la pyramide des besoins hiérarchise cinq niveaux (physiologiques, sécurité, appartenance, estime, accomplissement). Un besoin satisfait ne motive plus.</li>
+            <li><strong>Frederick Herzberg</strong> : la théorie bi-factorielle distingue les <strong>facteurs d'hygiène</strong> (salaire, conditions de travail) qui évitent l'insatisfaction, et les <strong>facteurs de motivation</strong> (reconnaissance, responsabilités, autonomie) qui génèrent la satisfaction.</li>
+          </ul>
+          <p>La <strong>rémunération</strong> est un outil de motivation qui comprend une part <strong>fixe</strong> (salaire de base) et une part <strong>variable</strong> (primes, commissions, intéressement, participation). S'y ajoutent les <strong>avantages en nature</strong> (voiture de fonction, tickets restaurant) et l'<strong>épargne salariale</strong> (PEE, PERCO).</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Maslow et Herzberg sont des auteurs classiques du bac STMG. Vous devez connaitre leurs théories par coeur et savoir les appliquer à un cas concret. Attention : chez Herzberg, un bon salaire ne motive pas, il empêche simplement l'insatisfaction.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/msdgn/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/msdgn/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

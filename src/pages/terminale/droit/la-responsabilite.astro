@@ -1,0 +1,181 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'droit-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-responsabilite')!;
+const questions = allQCM['la-responsabilite'] || [];
+const flashcardSet = flashcards['la-responsabilite'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/droit" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Responsabilité civile et responsabilité pénale</h3>
+          <p>La <strong>responsabilité</strong> est l'obligation de répondre de ses actes. Le droit distingue deux grands types de responsabilité :</p>
+          <ul>
+            <li><strong>La responsabilité civile</strong> : elle vise à <strong>réparer le dommage</strong> causé à autrui par le versement de dommages et intérêts. Son objectif est indemnitaire.</li>
+            <li><strong>La responsabilité pénale</strong> : elle vise à <strong>sanctionner un comportement</strong> interdit par la loi (infraction). L'auteur encourt une peine (amende, emprisonnement). Son objectif est répressif.</li>
+          </ul>
+          <p>Ces deux responsabilités peuvent se cumuler : un même fait peut donner lieu à des poursuites pénales ET à une action en réparation civile (ex. : un accident de la route causé par un conducteur en état d'ivresse).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Responsabilité civile contractuelle et délictuelle</h3>
+          <p>La responsabilité civile se divise en deux régimes :</p>
+          <ul>
+            <li><strong>Responsabilité contractuelle</strong> : elle est engagée lorsqu'une partie n'exécute pas ou exécute mal ses obligations contractuelles. Il faut prouver : une faute (inexécution), un dommage et un lien de causalité.</li>
+            <li><strong>Responsabilité délictuelle (extracontractuelle)</strong> : elle est engagée en dehors de tout contrat, lorsqu'une personne cause un dommage à autrui par son fait personnel (article 1240 du Code civil), par le fait d'une chose dont elle a la garde, ou par le fait d'une personne dont elle répond.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les conditions de la responsabilité civile</h3>
+          <p>Trois conditions cumulatives doivent être réunies pour engager la responsabilité civile :</p>
+          <ol>
+            <li><strong>Un dommage (ou préjudice)</strong> : il peut être corporel (atteinte à l'intégrité physique), matériel (perte financière, dégradation de biens) ou moral (souffrance psychologique, atteinte à la réputation).</li>
+            <li><strong>Un fait générateur</strong> : une faute, le fait d'une chose ou le fait d'autrui.</li>
+            <li><strong>Un lien de causalité</strong> : le dommage doit être la conséquence directe et certaine du fait générateur.</li>
+          </ol>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La réparation du dommage</h3>
+          <p>Le principe fondamental est la <strong>réparation intégrale</strong> : la victime doit être replacée dans la situation où elle se serait trouvée si le dommage ne s'était pas produit. La réparation peut prendre deux formes :</p>
+          <ul>
+            <li><strong>Réparation en nature</strong> : remplacement du bien endommagé, remise en état.</li>
+            <li><strong>Réparation par équivalent</strong> : versement de dommages et intérêts (la forme la plus courante).</li>
+          </ul>
+          <p>En matière de responsabilité pénale, les sanctions dépendent de la gravité de l'infraction : contravention (amende), délit (amende et/ou emprisonnement jusqu'à 10 ans) ou crime (réclusion criminelle).</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Maîtrisez la distinction entre responsabilité civile (réparer) et pénale (punir). Retenez les trois conditions cumulatives de la responsabilité civile : dommage + fait générateur + lien de causalité. C'est un sujet très fréquent au bac STMG.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/droit/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/droit/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

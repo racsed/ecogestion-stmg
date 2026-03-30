@@ -1,0 +1,202 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'mercatique-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-fidelisation')!;
+const questions = allQCM['la-fidelisation'] || [];
+const flashcardSet = flashcards['la-fidelisation'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/mercatique" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les enjeux de la fidélisation</h3>
+          <p>La <strong>fidélisation</strong> consiste à créer et entretenir une relation durable entre l'entreprise et ses clients, afin de les inciter à renouveler leurs achats. C'est un enjeu stratégique majeur car :</p>
+          <ul>
+            <li><strong>Conquérir un nouveau client coûte 5 à 7 fois plus cher</strong> que de fidéliser un client existant (coûts de prospection, publicité, promotion).</li>
+            <li>Un client fidèle <strong>achète plus</strong> (panier moyen supérieur), <strong>plus souvent</strong> (fréquence d'achat élevée) et <strong>recommande</strong> la marque à son entourage (bouche-à-oreille positif).</li>
+            <li>La fidélisation permet de <strong>stabiliser le chiffre d'affaires</strong> et d'améliorer la rentabilité à long terme.</li>
+            <li>Dans un marché saturé et concurrentiel, la fidélisation est un <strong>avantage concurrentiel décisif</strong>.</li>
+          </ul>
+          <p>On distingue la <strong>fidélité comportementale</strong> (le client rachète par habitude ou par commodité) de la <strong>fidélité attitudinale</strong> (le client rachète par attachement réel à la marque, par conviction). L'objectif de l'entreprise est de développer une fidélité attitudinale, plus solide et durable.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. La satisfaction client et le NPS</h3>
+          <p>La <strong>satisfaction</strong> est le sentiment résultant de la comparaison entre les attentes du client et la performance perçue du produit ou du service. Trois situations sont possibles :</p>
+          <ul>
+            <li><strong>Performance &lt; Attentes</strong> : insatisfaction. Le client est déçu, il risque de ne pas revenir et de diffuser un avis négatif.</li>
+            <li><strong>Performance = Attentes</strong> : satisfaction. Le client est content mais pas nécessairement fidèle (il peut être tenté par la concurrence).</li>
+            <li><strong>Performance &gt; Attentes</strong> : enchantement. Le client est agréablement surpris, il devient un ambassadeur de la marque.</li>
+          </ul>
+          <p>Le <strong>NPS (Net Promoter Score)</strong> est un indicateur de mesure de la satisfaction et de la recommandation client. Il repose sur une question unique : "Sur une échelle de 0 à 10, quelle est la probabilité que vous recommandiez notre marque à un proche ?"</p>
+          <ul>
+            <li><strong>Promoteurs</strong> (notes 9-10) : clients enthousiastes qui recommandent activement.</li>
+            <li><strong>Passifs</strong> (notes 7-8) : clients satisfaits mais vulnérables à la concurrence.</li>
+            <li><strong>Détracteurs</strong> (notes 0-6) : clients insatisfaits qui peuvent nuire à la réputation.</li>
+          </ul>
+          <p><strong>NPS = % Promoteurs - % Détracteurs</strong>. Un NPS positif est bon, un NPS supérieur à 50 est excellent.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Le CRM et les programmes de fidélité</h3>
+          <p>Le <strong>CRM (Customer Relationship Management)</strong>, ou gestion de la relation client, est une stratégie et un ensemble d'outils qui permettent de centraliser, analyser et exploiter les données clients pour personnaliser la relation et améliorer la fidélisation.</p>
+          <p>Le CRM permet de :</p>
+          <ul>
+            <li>Constituer une <strong>base de données clients</strong> (historique d'achats, préférences, réclamations, données sociodémographiques).</li>
+            <li><strong>Segmenter</strong> la clientèle (clients VIP, clients occasionnels, clients inactifs) pour adapter les actions.</li>
+            <li><strong>Personnaliser</strong> les offres et la communication (emails ciblés, promotions sur mesure).</li>
+            <li><strong>Automatiser</strong> certaines actions (relance automatique, email d'anniversaire, alerte de réachat).</li>
+          </ul>
+          <p>Les <strong>programmes de fidélité</strong> sont des dispositifs concrets mis en place pour récompenser les clients réguliers :</p>
+          <ul>
+            <li><strong>Carte de fidélité à points</strong> : cumul de points convertibles en réductions ou cadeaux (carte Leclerc, carte Sephora).</li>
+            <li><strong>Programme à paliers</strong> : avantages croissants selon le niveau de fidélité (Silver, Gold, Platinum chez les compagnies aériennes).</li>
+            <li><strong>Cashback</strong> : remboursement d'un pourcentage du montant des achats.</li>
+            <li><strong>Avantages exclusifs</strong> : ventes privées, avant-premières, services premium, accès VIP.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Le marketing relationnel</h3>
+          <p>Le <strong>marketing relationnel</strong> vise à construire une relation de long terme avec le client, au-delà de la simple transaction commerciale. Il s'oppose au marketing transactionnel (centré sur l'acte d'achat ponctuel).</p>
+          <p>Les leviers du marketing relationnel sont :</p>
+          <ul>
+            <li><strong>La personnalisation</strong> : adapter l'offre, le message et le service à chaque client grâce aux données du CRM.</li>
+            <li><strong>L'expérience client</strong> : offrir un parcours d'achat fluide, agréable et mémorable à chaque point de contact (magasin, site web, SAV, réseaux sociaux).</li>
+            <li><strong>La communauté de marque</strong> : créer un sentiment d'appartenance autour de la marque (forums, groupes sociaux, événements).</li>
+            <li><strong>Le service après-vente (SAV)</strong> : traiter rapidement et efficacement les réclamations. Un problème bien résolu renforce paradoxalement la fidélité (paradoxe de la récupération de service).</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Le calcul et l'interprétation du NPS sont fréquemment demandés au bac. Retenez que fidéliser coûte moins cher que conquérir. Sachez expliquer le rôle du CRM dans la personnalisation de la relation client. Distinguez fidélité comportementale (habitude) et fidélité attitudinale (attachement réel) : c'est une distinction classique.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/mercatique/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/mercatique/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

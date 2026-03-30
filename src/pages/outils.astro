@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="🧰 Outils interactifs">
+  
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-10">
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl">🧰 Outils interactifs</h1>
+      <p class="text-gray-500 mt-3 text-lg">Des outils gratuits pour préparer le bac STMG autrement.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Grand Oral -->
+      <a href="https://grand-oral-mercatique.netlify.app/" target="_blank" rel="noopener"
+         class="chapter-card group hover:border-mercatique-200">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-mercatique-500 to-mercatique-600 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow">
+            <span class="text-2xl text-white">🗣️</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-display font-bold text-lg">Grand Oral Mercatique</h3>
+              <span class="badge bg-mercatique-50 text-mercatique-600 text-[10px]">En ligne</span>
+            </div>
+            <p class="text-gray-500 text-sm mt-1 leading-relaxed">
+              Prépare et structure ton Grand Oral avec des sujets types, des plans détaillés et des conseils personnalisés.
+            </p>
+            <span class="inline-flex items-center gap-1 text-xs text-mercatique-600 mt-3 font-semibold group-hover:gap-2 transition-all">
+              Ouvrir l'outil
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Simulateur de note -->
+      <a href="/outils/simulateur" class="chapter-card group hover:border-eco-200">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-eco-500 to-eco-600 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow">
+            <span class="text-2xl text-white">📊</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-display font-bold text-lg">Simulateur de note au bac</h3>
+              <span class="badge bg-eco-50 text-eco-600 text-[10px]">Nouveau</span>
+            </div>
+            <p class="text-gray-500 text-sm mt-1 leading-relaxed">
+              Calcule ta note estimée au bac en entrant tes résultats par matière avec les coefficients officiels.
+            </p>
+            <span class="inline-flex items-center gap-1 text-xs text-eco-600 mt-3 font-semibold group-hover:gap-2 transition-all">
+              Ouvrir le simulateur →
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Fiches Flash -->
+      <div class="chapter-card opacity-60 cursor-default">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-management-500 to-management-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+            <span class="text-2xl text-white">⚡</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-display font-bold text-lg">Fiches Flash</h3>
+              <span class="badge bg-gray-100 text-gray-500 text-[10px]">Bientôt</span>
+            </div>
+            <p class="text-gray-500 text-sm mt-1 leading-relaxed">
+              Révise les notions-clés chapitre par chapitre avec des fiches recto-verso interactives.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glossaire -->
+      <div class="chapter-card opacity-60 cursor-default">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-droit-500 to-droit-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+            <span class="text-2xl text-white">📖</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-display font-bold text-lg">Glossaire STMG</h3>
+              <span class="badge bg-gray-100 text-gray-500 text-[10px]">Bientôt</span>
+            </div>
+            <p class="text-gray-500 text-sm mt-1 leading-relaxed">
+              Toutes les définitions du programme, classées par matière et par thème, avec barre de recherche.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

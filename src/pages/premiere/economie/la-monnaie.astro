@@ -1,0 +1,179 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-monnaie')!;
+const questions = allQCM['la-monnaie'] || [];
+const flashcardSet = flashcards['la-monnaie'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les trois fonctions de la monnaie</h3>
+          <p>La <strong>monnaie</strong> est un instrument d'échange accepté par tous au sein d'une communauté de paiement. Elle remplit trois fonctions essentielles :</p>
+          <ul>
+            <li><strong>Intermédiaire des échanges</strong> : la monnaie facilite les transactions en évitant le troc (qui suppose une double coïncidence des besoins). Elle est acceptée par tous comme moyen de paiement.</li>
+            <li><strong>Unité de compte</strong> : la monnaie sert d'étalon de mesure pour exprimer le prix de tous les biens et services dans une même unité. Elle permet de comparer la valeur de biens différents (1 kg de pain = 3 euros, 1 livre = 15 euros).</li>
+            <li><strong>Réserve de valeur</strong> : la monnaie permet de conserver du pouvoir d'achat dans le temps. On peut la garder pour l'utiliser plus tard. Cette fonction est cependant menacée par l'inflation, qui érode la valeur de la monnaie.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les formes de la monnaie</h3>
+          <p>La monnaie a évolué au cours de l'histoire, passant de formes matérielles à des formes de plus en plus dématérialisées :</p>
+          <ul>
+            <li><strong>La monnaie fiduciaire</strong> : les billets de banque et les pièces. Le terme « fiduciaire » vient du latin <em>fiducia</em> (confiance) : leur valeur repose sur la confiance qu'on leur accorde, pas sur leur valeur intrinsèque.</li>
+            <li><strong>La monnaie scripturale</strong> : c'est la monnaie inscrite sur les comptes bancaires. Elle circule par jeux d'écriture (virements, prélèvements, chèques, cartes bancaires). Elle représente aujourd'hui plus de 90 % de la masse monétaire.</li>
+            <li><strong>La monnaie électronique</strong> : stockée sur un support électronique (carte prépayée, portefeuille numérique). Son usage se développe avec le paiement sans contact et les applications mobiles.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La création monétaire</h3>
+          <p>Contrairement à une idée reçue, ce ne sont pas les banques centrales qui créent l'essentiel de la monnaie. La <strong>création monétaire</strong> est principalement le fait des <strong>banques commerciales</strong>, lorsqu'elles accordent des crédits.</p>
+          <p>Le mécanisme est résumé par la formule : <strong>« les crédits font les dépôts »</strong>. Quand une banque accorde un prêt de 10 000 euros à un client, elle crédite son compte de 10 000 euros : elle crée de la monnaie scripturale à partir de rien. Inversement, quand le crédit est remboursé, la monnaie est détruite.</p>
+          <p>La masse monétaire (quantité totale de monnaie en circulation) augmente lorsque les crédits accordés dépassent les remboursements, et diminue dans le cas contraire.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Le rôle de la Banque Centrale Européenne (BCE)</h3>
+          <p>La <strong>BCE</strong> est l'institution qui pilote la politique monétaire de la zone euro. Son objectif principal est la <strong>stabilité des prix</strong> (maintenir l'inflation proche de 2 %). Pour cela, elle dispose de plusieurs outils :</p>
+          <ul>
+            <li><strong>Le taux directeur</strong> : c'est le taux auquel les banques commerciales empruntent à la BCE. S'il augmente, le crédit devient plus cher, ce qui freine la création monétaire et l'inflation. S'il baisse, le crédit est facilité, ce qui stimule l'activité.</li>
+            <li><strong>Les réserves obligatoires</strong> : les banques doivent conserver un pourcentage de leurs dépôts à la BCE, ce qui limite leur capacité à créer de la monnaie.</li>
+            <li><strong>Les opérations d'open market</strong> : la BCE achète ou vend des titres sur le marché pour injecter ou retirer des liquidités.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Connaissez les trois fonctions de la monnaie par coeur et sachez les illustrer. Comprenez le mécanisme « les crédits font les dépôts » : c'est la clé de la création monétaire. N'oubliez pas que la BCE agit principalement via son taux directeur.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

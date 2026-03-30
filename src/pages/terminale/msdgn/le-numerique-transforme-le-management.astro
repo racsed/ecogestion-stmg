@@ -1,0 +1,167 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'msdgn-terminale')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-numerique-transforme-le-management')!;
+const questions = allQCM['le-numerique-transforme-le-management'] || [];
+const flashcardSet = flashcards['le-numerique-transforme-le-management'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Terminale`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Terminale</a>
+      <span>/</span>
+      <a href="/terminale/msdgn" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La transformation digitale des organisations</h3>
+          <p>La <strong>transformation digitale</strong> (ou numérique) désigne l'intégration des technologies numériques dans l'ensemble des activités d'une organisation. Elle modifie en profondeur les processus internes, la relation client et le modèle économique. Ce n'est pas seulement une question d'outils : c'est un changement de culture et de méthodes de travail.</p>
+          <p>Les principaux leviers de la transformation digitale sont : la <strong>dématérialisation</strong> des documents et processus, l'utilisation du <strong>cloud computing</strong> pour le stockage et le traitement des données, et le déploiement de <strong>plateformes collaboratives</strong> (Teams, Slack, Notion) qui fluidifient la communication interne.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. L'intelligence artificielle et le big data en entreprise</h3>
+          <p>Le <strong>big data</strong> désigne les volumes massifs de données générées par les activités numériques (achats en ligne, réseaux sociaux, objets connectés). Ces données sont caractérisées par les "3V" : <strong>Volume</strong> (quantité), <strong>Vélocité</strong> (vitesse de production), <strong>Variété</strong> (types de données).</p>
+          <p>L'<strong>intelligence artificielle (IA)</strong> permet d'analyser ces données pour en extraire des informations utiles à la prise de décision. Les applications en entreprise sont nombreuses : <strong>chatbots</strong> pour le service client, <strong>algorithmes prédictifs</strong> pour anticiper la demande, <strong>maintenance prédictive</strong> pour les équipements industriels, ou encore <strong>personnalisation</strong> de l'offre commerciale.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Le télétravail et le management à distance</h3>
+          <p>Le <strong>télétravail</strong> s'est imposé comme une forme d'organisation du travail à part entière. Il offre des avantages pour le salarié (flexibilité, gain de temps de transport, meilleur équilibre vie pro/vie perso) et pour l'entreprise (réduction des coûts immobiliers, élargissement du bassin de recrutement).</p>
+          <p>Le <strong>management à distance</strong> nécessite de nouvelles compétences : fixer des objectifs clairs, maintenir la cohésion d'équipe par des rituels réguliers (visioconférences, points individuels), faire confiance et évaluer les résultats plutôt que le présentéisme. Les risques incluent l'<strong>isolement</strong> des salariés, la <strong>surconnexion</strong> et la difficulté à séparer vie professionnelle et personnelle.</p>
+          <p>L'<strong>automatisation</strong> des tâches répétitives (RPA - Robotic Process Automation) libère du temps pour des activités à plus forte valeur ajoutée, mais soulève la question de l'évolution des métiers et de la nécessité de former les salariés aux nouvelles compétences.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La cybersécurité, un enjeu stratégique</h3>
+          <p>La <strong>cybersécurité</strong> regroupe l'ensemble des moyens techniques, organisationnels et juridiques mis en oeuvre pour protéger les systèmes d'information contre les menaces numériques. Les principales menaces sont : le <strong>phishing</strong> (hameçonnage), les <strong>ransomwares</strong> (rançongiciels), le <strong>vol de données</strong> et les <strong>attaques DDoS</strong>.</p>
+          <p>Pour se protéger, les entreprises doivent adopter une véritable <strong>politique de sécurité informatique</strong> : sensibilisation des collaborateurs, mise à jour régulière des systèmes, sauvegardes fréquentes, chiffrement des données et respect du <strong>RGPD</strong> (Règlement Général sur la Protection des Données) pour la gestion des données personnelles.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Le numérique est un thème transversal qui peut apparaitre dans tout sujet de MSDGN. Pensez à montrer les opportunités ET les limites de chaque outil numérique. Le RGPD et la cybersécurité sont des notions de plus en plus présentes dans les sujets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/terminale/msdgn/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/terminale/msdgn/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

@@ -1,0 +1,178 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-fonctionnement-du-marche')!;
+const questions = allQCM['le-fonctionnement-du-marche'] || [];
+const flashcardSet = flashcards['le-fonctionnement-du-marche'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. L'offre et la demande</h3>
+          <p>Le marché est le lieu (réel ou virtuel) où se rencontrent l'<strong>offre</strong> (quantité de biens que les vendeurs souhaitent vendre à un prix donné) et la <strong>demande</strong> (quantité de biens que les acheteurs souhaitent acheter à un prix donné).</p>
+          <p>La <strong>loi de la demande</strong> stipule que, toutes choses égales par ailleurs, lorsque le prix d'un bien augmente, la quantité demandée diminue (et inversement). La <strong>loi de l'offre</strong> indique que lorsque le prix augmente, la quantité offerte augmente, car les producteurs sont incités à produire davantage pour réaliser plus de profit.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le prix d'équilibre</h3>
+          <p>Le <strong>prix d'équilibre</strong> est le prix auquel la quantité offerte est égale à la quantité demandée. À ce prix, le marché est « en équilibre » : il n'y a ni surplus (excès d'offre) ni pénurie (excès de demande).</p>
+          <p>Si le prix est <strong>supérieur</strong> au prix d'équilibre, l'offre dépasse la demande : il y a un <strong>surplus</strong>. Les vendeurs, ne parvenant pas à écouler leurs stocks, baissent les prix. Si le prix est <strong>inférieur</strong> au prix d'équilibre, la demande dépasse l'offre : il y a une <strong>pénurie</strong>. Les acheteurs, prêts à payer plus, font monter les prix. Le marché tend donc naturellement vers l'équilibre.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. L'élasticité-prix de la demande</h3>
+          <p>L'<strong>élasticité-prix de la demande</strong> mesure la sensibilité de la demande aux variations de prix. Elle se calcule ainsi :</p>
+          <p><strong>Élasticité = (variation de la demande en %) / (variation du prix en %)</strong></p>
+          <ul>
+            <li>Si l'élasticité est <strong>supérieure à 1</strong> (en valeur absolue) : la demande est élastique. Une hausse de prix entraîne une forte baisse des achats (ex. : produits de luxe, loisirs).</li>
+            <li>Si l'élasticité est <strong>inférieure à 1</strong> : la demande est inélastique. Les consommateurs continuent d'acheter malgré la hausse (ex. : essence, médicaments).</li>
+            <li>Si l'élasticité est <strong>nulle</strong> : la demande est parfaitement rigide, le prix n'a aucun effet sur la quantité achetée.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Le modèle de concurrence pure et parfaite (CPP)</h3>
+          <p>Le modèle de la <strong>concurrence pure et parfaite</strong> est un cadre théorique qui suppose cinq conditions :</p>
+          <ol>
+            <li><strong>Atomicité</strong> : de nombreux acheteurs et vendeurs, aucun ne peut influencer le prix.</li>
+            <li><strong>Homogénéité des produits</strong> : les biens offerts sont identiques.</li>
+            <li><strong>Libre entrée et sortie</strong> : tout agent peut entrer sur le marché ou en sortir librement.</li>
+            <li><strong>Transparence</strong> : tous les acteurs disposent de la même information sur les prix et les produits.</li>
+            <li><strong>Mobilité des facteurs</strong> : le travail et le capital se déplacent librement entre les secteurs.</li>
+          </ol>
+          <p>En réalité, ces conditions sont rarement réunies. Ce modèle sert de référence pour analyser les écarts entre la théorie et le fonctionnement réel des marchés.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Maîtrisez le graphique offre/demande avec le prix d'équilibre. Sachez calculer une élasticité-prix et interpréter le résultat. Les cinq conditions de la CPP sont un classique des questions de cours.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

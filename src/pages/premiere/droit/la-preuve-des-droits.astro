@@ -1,0 +1,177 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'droit-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-preuve-des-droits')!;
+const questions = allQCM['la-preuve-des-droits'] || [];
+const flashcardSet = flashcards['la-preuve-des-droits'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/droit" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La charge de la preuve</h3>
+          <p>En droit, <strong>« celui qui réclame l'exécution d'une obligation doit la prouver »</strong> (article 1353 du Code civil). C'est le principe de la <strong>charge de la preuve</strong> : c'est au demandeur de prouver ce qu'il avance. Par exception, dans certains cas, la charge de la preuve est renversée (ex. : en matière de discrimination, c'est à l'employeur de prouver qu'il n'a pas discriminé).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Acte juridique et fait juridique</h3>
+          <p>La distinction entre <strong>acte juridique</strong> et <strong>fait juridique</strong> est fondamentale car elle détermine le régime de la preuve :</p>
+          <ul>
+            <li><strong>L'acte juridique</strong> est une manifestation de volonté destinée à produire des effets de droit (ex. : contrat de vente, testament, donation). Sa preuve obéit au système de la <strong>preuve légale</strong> : un écrit est exigé au-delà de 1 500 euros.</li>
+            <li><strong>Le fait juridique</strong> est un événement volontaire ou involontaire qui produit des effets de droit sans que ceux-ci aient été recherchés (ex. : accident, naissance, décès). Sa preuve est <strong>libre</strong> : tous les moyens sont admis.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les modes de preuve</h3>
+          <p>Le droit français reconnait cinq grands <strong>modes de preuve</strong> :</p>
+          <ul>
+            <li><strong>La preuve écrite (littérale)</strong> : acte authentique (rédigé par un officier public, ex. : notaire) ou acte sous signature privée. C'est le mode de preuve le plus fiable.</li>
+            <li><strong>Le témoignage</strong> : déclaration d'un tiers qui rapporte ce qu'il a vu ou entendu. Il est admis librement pour les faits juridiques.</li>
+            <li><strong>La présomption</strong> : raisonnement par lequel on déduit un fait inconnu d'un fait connu. Elle peut être légale (prévue par la loi) ou du fait de l'homme (laissée à l'appréciation du juge).</li>
+            <li><strong>L'aveu</strong> : déclaration par laquelle une personne reconnait un fait qui lui est défavorable. L'aveu judiciaire (devant le juge) est irrévocable.</li>
+            <li><strong>Le serment</strong> : affirmation solennelle de la véracité d'un fait. Il peut être décisoire (une partie le défère à l'autre) ou supplétoire (le juge le demande).</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Preuve libre et preuve légale</h3>
+          <p>Le droit français combine deux systèmes :</p>
+          <ul>
+            <li><strong>La preuve libre</strong> (faits juridiques) : tous les modes de preuve sont admis, le juge les apprécie librement.</li>
+            <li><strong>La preuve légale</strong> (actes juridiques de plus de 1 500 euros) : la loi impose un écrit. Les autres modes de preuve ne sont admis que par exception (commencement de preuve par écrit, impossibilité de se procurer un écrit).</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Maitrisez la distinction acte juridique / fait juridique : elle conditionne le régime de preuve applicable. C'est un classique du bac STMG. Pensez aussi à retenir les 5 modes de preuve et leurs caractéristiques.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/droit/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/droit/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

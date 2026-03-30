@@ -1,0 +1,181 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'economie-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-production-de-richesses')!;
+const questions = allQCM['la-production-de-richesses'] || [];
+const flashcardSet = flashcards['la-production-de-richesses'];
+
+// Find previous and next chapters
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/economie" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La production et la valeur ajoutée</h3>
+          <p>La <strong>production</strong> est l'activité qui consiste à créer des biens et des services destinés à satisfaire des besoins. On distingue la production marchande (vendue à un prix couvrant au moins les coûts) de la production non marchande (services publics, fournis gratuitement ou quasi gratuitement).</p>
+          <p>Pour produire, une entreprise utilise des <strong>consommations intermédiaires</strong> : ce sont les biens et services détruits ou transformés au cours du processus de production (matières premières, énergie, fournitures). La <strong>valeur ajoutée</strong> (VA) mesure la richesse réellement créée par l'entreprise :</p>
+          <p><strong>Valeur ajoutée = Chiffre d'affaires - Consommations intermédiaires</strong></p>
+          <p>C'est la VA qui sert à rémunérer les salariés, payer les impôts, verser des dividendes aux actionnaires et autofinancer les investissements.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le PIB : mesurer la richesse nationale</h3>
+          <p>Le <strong>Produit Intérieur Brut</strong> (PIB) est l'indicateur principal de mesure de la richesse produite dans un pays pendant une année. Il se calcule de trois manières équivalentes :</p>
+          <ul>
+            <li><strong>Approche production</strong> : PIB = somme des valeurs ajoutées + impôts sur les produits - subventions sur les produits.</li>
+            <li><strong>Approche revenus</strong> : PIB = rémunération des salariés + excédent brut d'exploitation + impôts nets sur la production.</li>
+            <li><strong>Approche dépenses</strong> : PIB = consommation finale + investissement (FBCF) + variations de stocks + exportations - importations.</li>
+          </ul>
+          <p>On distingue le <strong>PIB nominal</strong> (en euros courants, non corrigé de l'inflation) du <strong>PIB réel</strong> (en euros constants, corrigé de l'inflation), qui permet de mesurer la croissance effective de la production.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les facteurs de production</h3>
+          <p>Pour produire, les entreprises combinent deux grands facteurs de production :</p>
+          <ul>
+            <li><strong>Le facteur travail</strong> : l'ensemble des capacités physiques et intellectuelles mises en oeuvre par les salariés. Sa qualité dépend du niveau de formation et de qualification (capital humain).</li>
+            <li><strong>Le facteur capital</strong> : l'ensemble des biens de production durables utilisés (machines, bâtiments, équipements informatiques). On parle de capital fixe (utilisé pendant plusieurs cycles de production) et de capital circulant (détruit au premier usage).</li>
+          </ul>
+          <p>L'entreprise choisit une <strong>combinaison productive</strong> en fonction des coûts relatifs du travail et du capital. Elle peut substituer du capital au travail (automatisation) ou inversement.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. La productivité</h3>
+          <p>La <strong>productivité</strong> mesure l'efficacité de la production. On distingue :</p>
+          <ul>
+            <li><strong>Productivité du travail</strong> = Production / Quantité de travail utilisée. Elle peut se calculer par tête (par salarié) ou horaire (par heure travaillée).</li>
+            <li><strong>Productivité du capital</strong> = Production / Capital utilisé.</li>
+          </ul>
+          <p>Les <strong>gains de productivité</strong> permettent de produire plus avec autant de facteurs, ou autant avec moins. Ils sont la source principale de la croissance économique et résultent du progrès technique, de l'innovation, de la formation et de l'organisation du travail.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Sachez calculer la valeur ajoutée (CA - CI) et expliquer ce qu'elle représente. Connaissez les trois approches du PIB et ses limites (il ne mesure ni le bien-être, ni les inégalités, ni les activités non marchandes domestiques).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/economie/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/economie/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>
