@@ -139,6 +139,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Rarete', definition: "Les ressources (travail, capital, matieres premieres) sont limitees alors que les besoins sont illimites. C'est le fondement du probleme economique." },
       { term: 'Choix economique', definition: "Necessite pour tout agent economique de selectionner entre differentes alternatives en raison de la rarete des ressources." },
       { term: 'Cout d\'opportunite', definition: "Valeur de la meilleure option a laquelle on renonce lorsqu'on fait un choix. Choisir, c'est renoncer.", example: "Etudier au lieu de travailler : le cout d'opportunite est le salaire perdu" },
+      { term: 'Bien libre vs bien economique', definition: "Un bien libre est disponible en abondance et gratuit (air, lumiere du soleil). Un bien economique est rare, produit par le travail humain et echange a un prix sur un marche.", example: "L'air est un bien libre ; un telephone est un bien economique" },
+      { term: 'Classification des biens', definition: "Les biens economiques se classent en : durables (resistant a plusieurs usages) vs non durables (detruits au premier usage) ; de production (servant a produire) vs de consommation (usage final) ; materiels vs immateriels.", example: "Un ordinateur est un bien durable ; un yaourt est un bien non durable" },
+      { term: 'Contraintes economiques', definition: "Quatre contraintes encadrent les choix des agents : la contrainte de revenu (budget limite), de temps (ressource rare), d'information (savoir imparfait) et d'espace geographique (acces inegal selon le lieu)." },
     ],
   },
   'les-agents-economiques': {
@@ -149,6 +152,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Banques (institutions financieres)', definition: "Organismes dont la fonction principale est de financer l'economie en collectant l'epargne et en accordant des credits.", example: "BNP Paribas, Credit Agricole, Banque de France" },
       { term: 'Exterieur (reste du monde)', definition: "Ensemble des agents economiques situes hors du territoire national avec lesquels les agents residents effectuent des echanges.", example: "Exportations francaises vers l'Allemagne, importations de Chine" },
       { term: 'Circuit economique', definition: "Representation simplifiee des flux (reels et monetaires) entre les differents agents economiques d'une economie.", example: "Les menages fournissent du travail aux entreprises qui leur versent des salaires" },
+      { term: 'Secteurs institutionnels INSEE', definition: "L'INSEE classe les agents en 5 secteurs : menages, societes non financieres (SNF), societes financieres, administrations publiques (APU) et ISBLSM (associations, syndicats).", example: "Une banque est une societe financiere ; une mairie est une administration publique" },
+      { term: 'ISBLSM', definition: "Institutions Sans But Lucratif au Service des Menages : associations, syndicats, partis politiques, fondations. Leurs ressources proviennent des cotisations et des dons." },
+      { term: 'Specialisation des agents', definition: "Chaque agent se specialise dans une fonction principale (consommer, produire, financer, redistribuer). Cette specialisation rend les echanges entre agents indispensables." },
     ],
   },
   'le-fonctionnement-du-marche': {
@@ -160,6 +166,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Concurrence pure et parfaite', definition: "Modele theorique supposant : atomicite, homogeneite, transparence, libre entree et mobilite des facteurs." },
       { term: 'Surplus', definition: "Situation ou l'offre depasse la demande, poussant le prix a la baisse." },
       { term: 'Penurie', definition: "Situation ou la demande depasse l'offre, poussant le prix a la hausse." },
+      { term: 'Types de marches', definition: "On distingue trois grands types de marches : le marche des biens et services, le marche du travail (ou le prix est le salaire) et le marche des capitaux (monetaire a court terme, financier a long terme)." },
+      { term: 'Mecanisme d\'ajustement par les prix', definition: "Les prix agissent comme des signaux : un prix eleve signale la rarete (incite a produire plus et consommer moins), un prix bas signale l'abondance (incite a consommer plus et produire moins)." },
+      { term: 'Transparence du marche', definition: "Condition de la CPP selon laquelle tous les acteurs disposent de la meme information complete sur les prix, la qualite et les conditions d'echange. En realite, l'information est souvent imparfaite." },
     ],
   },
   'les-defaillances-du-marche': {
@@ -170,6 +179,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Monopole', definition: "Situation de marche ou un seul offreur fait face a de nombreux demandeurs. Il peut fixer les prix et limiter les quantites.", example: "Historiquement, EDF en monopole sur l'electricite en France" },
       { term: 'Intervention de l\'Etat', definition: "L'Etat intervient pour corriger les defaillances du marche : reglementation, taxation, subventions, production de biens collectifs.", example: "Taxe carbone pour limiter la pollution (externalite negative)" },
       { term: 'Alea moral', definition: "Risque qu'un agent economique adopte un comportement plus risque parce qu'il est protege contre les consequences de ce risque.", example: "Un assure qui prend moins de precautions car il sait qu'il est couvert" },
+      { term: 'Passager clandestin (free rider)', definition: "Agent qui profite d'un bien collectif sans contribuer a son financement. Ce comportement empeche la production privee de biens collectifs et justifie le financement par l'impot.", example: "Un habitant qui beneficie de l'eclairage public sans payer d'impots locaux" },
+      { term: 'Selection adverse', definition: "Mecanisme ou l'asymetrie d'information avant un echange conduit les mauvais produits a chasser les bons du marche. Les acheteurs, ne pouvant evaluer la qualite, proposent un prix moyen qui fait fuir les bons vendeurs.", example: "Sur le marche des voitures d'occasion, les mauvaises voitures restent car les vendeurs de bonnes voitures refusent le prix moyen" },
     ],
   },
   'la-production-de-richesses': {
@@ -180,6 +191,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Productivite', definition: "Rapport entre la production realisee et les moyens mis en oeuvre. Elle mesure l'efficacite du processus de production.", example: "Productivite du travail = Production / Nombre d'heures travaillees" },
       { term: 'Consommations intermediaires', definition: "Biens et services detruits ou transformes au cours du processus de production.", example: "La farine pour le boulanger, l'electricite pour l'usine" },
       { term: 'Combinaison productive', definition: "Choix de la proportion entre travail et capital pour produire. Elle depend du cout relatif des facteurs et de la technologie disponible." },
+      { term: 'PIB marchand vs non marchand', definition: "Le PIB marchand correspond aux biens et services vendus a un prix de marche (environ 85 % du PIB). Le PIB non marchand correspond aux services publics evalues a leur cout de production (salaires des fonctionnaires)." },
+      { term: 'Limites du PIB', definition: "Le PIB ne mesure pas : l'economie informelle (travail au noir), le travail domestique, les externalites negatives (pollution), le bien-etre ou les inegalites.", example: "Un maree noire augmente le PIB (couts de depollution) alors qu'elle detruit de la richesse naturelle" },
+      { term: 'IDH (Indice de Developpement Humain)', definition: "Indicateur alternatif au PIB cree par le PNUD, combinant trois dimensions : niveau de vie (PIB/habitant en PPA), sante (esperance de vie) et education (duree de scolarisation). Il varie de 0 a 1." },
     ],
   },
   'le-financement-de-leconomie': {
@@ -190,6 +204,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Credit bancaire', definition: "Pret accorde par une banque a un agent economique (menage ou entreprise) moyennant le remboursement avec interets.", example: "Un pret immobilier sur 20 ans pour acheter un logement" },
       { term: 'Taux d\'interet', definition: "Prix de l'argent emprunte, exprime en pourcentage. Il remunere le preteur pour le risque pris et le temps d'immobilisation de son argent.", example: "Un taux de 3 % signifie que l'emprunteur paie 3 euros d'interet pour 100 euros empruntes par an" },
       { term: 'Actions et obligations', definition: "Une action est un titre de propriete d'une partie du capital d'une societe. Une obligation est un titre de creance representant un pret.", example: "Acheter une action Apple rend actionnaire. Acheter une obligation d'Etat rend creancier" },
+      { term: 'Capacite vs besoin de financement', definition: "Un agent en capacite de financement a une epargne superieure a ses investissements (il peut preter). Un agent en besoin de financement a des investissements superieurs a son epargne (il doit emprunter).", example: "Les menages francais sont structurellement en capacite de financement ; les entreprises et l'Etat sont en besoin de financement" },
+      { term: 'Marche primaire vs secondaire', definition: "Le marche primaire est celui de l'emission de nouveaux titres (levee de fonds). Le marche secondaire est celui de la revente des titres deja emis (Bourse au quotidien). L'entreprise ne recoit de l'argent que sur le marche primaire." },
     ],
   },
   'la-monnaie': {
@@ -200,6 +216,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'BCE (Banque Centrale Europeenne)', definition: "Institution chargee de la politique monetaire de la zone euro. Son objectif principal est la stabilite des prix (inflation proche de 2 %).", example: "La BCE fixe les taux directeurs qui influencent le cout du credit dans la zone euro" },
       { term: 'Masse monetaire', definition: "Quantite totale de monnaie en circulation dans une economie a un moment donne. Elle est mesuree par des agregats (M1, M2, M3)." },
       { term: 'Taux directeur', definition: "Taux d'interet fixe par la banque centrale auquel les banques commerciales peuvent emprunter. Il influence l'ensemble des taux de l'economie.", example: "Si la BCE baisse son taux directeur, les credits deviennent moins chers" },
+      { term: 'Agregats monetaires M1, M2, M3', definition: "M1 = billets + pieces + depots a vue. M2 = M1 + depots a terme courts + livrets d'epargne. M3 = M2 + instruments negociables (OPCVM monetaires, certificats de depot). M3 est l'agregat le plus large, surveille par la BCE." },
+      { term: 'Evolution historique de la monnaie', definition: "La monnaie a evolue du troc vers la monnaie marchandise, puis metallique (pieces d'or), fiduciaire (billets), scripturale (ecritures bancaires) et enfin numerique (paiements electroniques)." },
+      { term: 'Multiplicateur de credit', definition: "Mecanisme par lequel un depot initial genere un volume de credits superieur dans le systeme bancaire. Avec un taux de reserves de 10 %, un depot de 1 000 euros peut generer jusqu'a 10 000 euros de monnaie.", example: "1 000 euros deposes, 900 pretes, redeposes, 810 repretes... au total 10 000 euros crees" },
     ],
   },
   'la-redistribution': {
@@ -210,6 +229,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Protection sociale', definition: "Systeme couvrant les individus contre les risques sociaux (maladie, vieillesse, chomage, famille) finance par les cotisations et l'impot.", example: "La Securite sociale couvre les frais de sante des assures" },
       { term: 'Revenu disponible', definition: "Revenu dont dispose effectivement un menage apres prelevements obligatoires et ajout des transferts sociaux. Revenu disponible = Revenus primaires - Prelevements + Transferts." },
       { term: 'Redistribution verticale et horizontale', definition: "Verticale : des plus riches vers les plus pauvres (impot progressif). Horizontale : des actifs vers les inactifs, des bien-portants vers les malades.", example: "L'impot sur le revenu progressif redistribue des hauts revenus vers les bas revenus" },
+      { term: 'Cinq branches de la Securite sociale', definition: "Depuis 2021, la Securite sociale comprend 5 branches : maladie (CNAM), accidents du travail/maladies professionnelles, retraite (vieillesse), famille (CAF) et autonomie (perte d'autonomie des personnes agees et handicapees)." },
+      { term: 'CSG et CRDS', definition: "La CSG (Contribution Sociale Generalisee) et la CRDS (Contribution au Remboursement de la Dette Sociale) sont des impots preleves sur tous les revenus (travail, capital, remplacement). La CSG est devenue la premiere source de financement de la Securite sociale." },
+      { term: 'Trappes a inactivite', definition: "Situation ou reprendre un emploi fait perdre plus d'aides sociales qu'elle ne rapporte de revenus supplementaires. Ce phenomene est un argument contre un niveau trop eleve de redistribution.", example: "Un allocataire du RSA qui, en reprenant un emploi a temps partiel, perd ses droits au RSA et a la CMU, sans gain net de revenu" },
     ],
   },
 
