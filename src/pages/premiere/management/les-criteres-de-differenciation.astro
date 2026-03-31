@@ -204,6 +204,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">VéloCity est une SAS créée en 2021 à Lyon. Elle conçoit et vend des vélos électriques haut de gamme fabriqués en France. L'entreprise compte 38 salariés, réalise un chiffre d'affaires de 6,2 millions d'euros et distribue ses produits via son site e-commerce et 4 boutiques en propre à Lyon, Paris, Bordeaux et Lille. Elle détient un brevet sur un système de batterie longue durée et investit 8 % de son CA en recherche et développement. Parallèlement, l'association CycloSolidaire (loi 1901, 120 adherents, 15 benevoles) récupère des vélos usagés pour les réparer et les donner à des personnes en difficulté dans le quartier de la Guillotière à Lyon.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez le type d'organisation, le statut juridique, la taille et le secteur d'activité de VéloCity et de CycloSolidaire. (3 pts)</li>
+            <li>Comparez les ressources mobilisées et le champ d'action géographique de ces deux organisations. (4 pts)</li>
+            <li>En mobilisant les critères de différenciation des organisations, montrez que VéloCity et CycloSolidaire, bien que toutes deux liées au vélo, poursuivent des finalités différentes et fonctionnent selon des logiques opposées. Proposez une forme de collaboration possible entre elles. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>VéloCity</strong> : entreprise (organisation à but lucratif), statut SAS, PME (38 salariés, CA de 6,2 M euros), secteur secondaire (fabrication) et tertiaire (vente). <strong>CycloSolidaire</strong> : association loi 1901 (organisation à but non lucratif), petite structure (15 benevoles, 120 adherents), secteur tertiaire (service de réparation et de don).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>VéloCity</strong> mobilise des ressources importantes : humaines (38 salariés qualifiés, ingénieurs R&D), financières (CA de 6,2 M euros, capacité d'investissement de 8 % en R&D), matérielles (usine, 4 boutiques, équipements de production), immatérielles (brevet, marque, savoir-faire). Son champ d'action est <strong>national</strong> (4 villes françaises + e-commerce). <strong>CycloSolidaire</strong> mobilise des ressources limitées : humaines (benevoles), financières (cotisations, éventuelles subventions), matérielles (atelier de réparation, outils). Son champ d'action est <strong>local</strong> (quartier de la Guillotière à Lyon).</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">VéloCity poursuit une <strong>finalité lucrative</strong> : générer du profit en vendant des vélos électriques haut de gamme. Sa logique est marchande (prix élevé, innovation, compétitivité). CycloSolidaire poursuit une <strong>finalité non lucrative</strong> : l'insertion sociale par le don de vélos. Sa logique est solidaire (gratuité, lien social, proximité). Les critères de différenciation (taille, statut, ressources, champ d'action, finalité) montrent deux modèles radicalement différents. <br/><br/><strong>Collaboration possible</strong> : VéloCity pourrait confier à CycloSolidaire la récupération et le reconditionnement de ses vélos en fin de vie, dans le cadre d'une démarche RSE. L'association gagnerait en ressources matérielles et en visibilité, tandis que VéloCity renforcerait son image de marque responsable et contribuerait à l'économie circulaire. Ce partenariat respecterait la finalité de chaque organisation.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

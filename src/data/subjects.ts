@@ -209,7 +209,7 @@ export const subjects: Subject[] = [
         theme: "Qu'est-ce qu'une organisation ?",
         themeNumber: 1,
         notions: ['Organisation', 'Entreprise', 'Association', 'Organisation publique', 'Finalité'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'les-criteres-de-differenciation',
@@ -217,7 +217,7 @@ export const subjects: Subject[] = [
         theme: "Qu'est-ce qu'une organisation ?",
         themeNumber: 1,
         notions: ['Taille', 'Secteur d\'activité', 'Statut juridique', 'Ressources', 'Champ d\'action'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'le-management-strategique-et-operationnel',
@@ -225,7 +225,7 @@ export const subjects: Subject[] = [
         theme: 'Comment le management permet-il de répondre aux changements ?',
         themeNumber: 2,
         notions: ['Management stratégique', 'Management opérationnel', 'Parties prenantes', 'Décision'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'la-performance',
@@ -233,7 +233,7 @@ export const subjects: Subject[] = [
         theme: 'Comment le management permet-il de répondre aux changements ?',
         themeNumber: 2,
         notions: ['Efficacité', 'Efficience', 'Performance', 'Indicateurs', 'Tableaux de bord'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'les-choix-strategiques',
@@ -241,7 +241,7 @@ export const subjects: Subject[] = [
         theme: 'Comment le management permet-il de répondre aux changements ?',
         themeNumber: 2,
         notions: ['Diagnostic interne', 'Diagnostic externe', 'SWOT', 'Avantage concurrentiel'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'les-styles-de-direction',
@@ -249,7 +249,7 @@ export const subjects: Subject[] = [
         theme: 'Comment le management permet-il de répondre aux changements ?',
         themeNumber: 2,
         notions: ['Styles de direction (Likert)', 'Centralisation', 'Décentralisation', 'Leadership'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
     ],
   },
@@ -441,7 +441,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et consommateur',
         themeNumber: 1,
         notions: ['Marché', 'Demande', 'Offre', 'Veille mercatique', 'SIM'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'le-comportement-du-consommateur',
@@ -449,7 +449,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et consommateur',
         themeNumber: 1,
         notions: ['Besoins', 'Motivations', 'Freins', 'Facteurs d\'influence', 'Processus d\'achat'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'la-politique-de-produit',
@@ -457,7 +457,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Gamme', 'Cycle de vie', 'Innovation', 'Packaging', 'Marque'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'la-politique-de-prix',
@@ -465,7 +465,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Coût de revient', 'Marge', 'Prix psychologique', 'Élasticité prix'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'la-politique-de-distribution',
@@ -473,7 +473,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Canal', 'Circuit', 'Réseau', 'Stratégie de distribution', 'E-commerce'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'la-politique-de-communication',
@@ -481,7 +481,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Communication média', 'Hors média', 'Publicité', 'Marketing digital'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'la-fidelisation',
@@ -489,7 +489,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et société',
         themeNumber: 3,
         notions: ['CRM', 'Programme de fidélité', 'Satisfaction client', 'NPS'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
     ],
   },
@@ -512,7 +512,7 @@ export const subjects: Subject[] = [
         theme: "Les organisations et la société",
         themeNumber: 1,
         notions: ['Parties prenantes', 'RSE', 'Finalités', 'Gouvernance'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'les-choix-strategiques-de-lorganisation',
@@ -520,7 +520,7 @@ export const subjects: Subject[] = [
         theme: 'Les organisations et la société',
         themeNumber: 1,
         notions: ['Stratégie globale', 'Spécialisation', 'Diversification', 'Intégration'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'les-ressources-humaines',
@@ -528,7 +528,7 @@ export const subjects: Subject[] = [
         theme: 'Les organisations et les acteurs',
         themeNumber: 2,
         notions: ['GPEC', 'Recrutement', 'Formation', 'Motivation', 'Rémunération'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'le-numerique-transforme-le-management',
@@ -536,7 +536,7 @@ export const subjects: Subject[] = [
         theme: 'Les organisations et le numérique',
         themeNumber: 3,
         notions: ['Transformation digitale', 'Intelligence artificielle', 'Big data', 'Automatisation'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
       {
         slug: 'linnovation-et-la-creation-de-valeur',
@@ -544,7 +544,7 @@ export const subjects: Subject[] = [
         theme: 'Les organisations et le numérique',
         themeNumber: 3,
         notions: ['Innovation', 'Veille stratégique', 'Création de valeur', 'Business model'],
-        hasQCM: true, hasFiche: true, hasSujet: false,
+        hasQCM: true, hasFiche: true, hasSujet: true,
       },
     ],
   },

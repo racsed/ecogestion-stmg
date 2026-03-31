@@ -178,6 +178,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">TechVision est une entreprise de 220 salariés spécialisée dans la conception de logiciels de gestion pour les PME. Fondée en 2010, elle réalise un CA de 18 millions d'euros. Sa directrice générale, Mme Farah Kaddour, vient d'annoncer une décision majeure : lancer une offre de logiciel en mode SaaS (Software as a Service) pour remplacer progressivement la vente de licences classiques. Cette transformation nécessite de recruter 15 développeurs, de former les équipes commerciales et de réorganiser le service client. Les salariés du service commercial craignent pour leur emploi. Les actionnaires s'inquiètent de la baisse temporaire de rentabilité. Le responsable du service technique, M. Lemaire, doit quant à lui décider du planning de migration des serveurs pour les 6 prochains mois et organiser les astreintes de son équipe de 12 techniciens.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Distinguez les décisions relevant du management stratégique et du management opérationnel dans la situation de TechVision. Classez-les selon les niveaux de décision d'Ansoff. (3 pts)</li>
+            <li>Identifiez les parties prenantes concernées par la décision de passer au modèle SaaS. Montrez que leurs intérets peuvent être divergents. (4 pts)</li>
+            <li>En mobilisant le modèle IMC de Simon et la notion de rationalité limitée, analysez le processus de décision de Mme Kaddour. Proposez des actions concrètes pour concilier les intérets des différentes parties prenantes. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Management stratégique</strong> (décision stratégique selon Ansoff) : le passage au modèle SaaS est une décision de long terme, prise par la direction générale, difficilement réversible et à fort degré d'incertitude. Le recrutement de 15 développeurs relève d'une <strong>décision tactique</strong> : moyen terme, prise par les cadres, mise en oeuvre de la stratégie. <strong>Management opérationnel</strong> (décision opérationnelle) : le planning de migration des serveurs et l'organisation des astreintes par M. Lemaire sont des décisions de court terme, répétitives et facilement réversibles.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Parties prenantes internes</strong> : Mme Kaddour (dirigeante, souhaite la pérennité et la croissance), les salariés du service commercial (craignent pour leur emploi), les actionnaires (veulent maintenir la rentabilité), les techniciens (charge de travail supplémentaire). <strong>Parties prenantes externes</strong> : les clients PME (attendent un service fiable et un bon rapport qualité-prix), les concurrents (menace si TechVision réussit sa transition). Les intérets divergent : les salariés veulent la stabilité de l'emploi, les actionnaires veulent le profit, les clients veulent un service performant. Selon Freeman, le management doit concilier ces intérets.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Modèle IMC</strong> : <em>Intelligence</em> - Mme Kaddour a diagnostiqué que le marché du logiciel migre vers le cloud et que les clients PME préfèrent l'abonnement à l'achat de licences. <em>Modélisation</em> - Elle a envisagé plusieurs scénarios : maintenir les licences, basculer tout en SaaS, ou proposer un modèle hybride. <em>Choix</em> - Elle a retenu le passage progressif au SaaS. <br/><br/>Cependant, selon la <strong>rationalité limitée</strong> de Simon, Mme Kaddour ne dispose pas de toutes les informations (évolution exacte du marché, réaction des clients, cout réel de la transition). Elle a choisi une solution <strong>satisfaisante</strong> plutot qu'optimale. <br/><br/><strong>Actions proposées</strong> : former les commerciaux aux nouveaux modèles d'abonnement plutot que les licencier ; communiquer un plan de transition clair aux actionnaires avec des objectifs de rentabilité à 3 ans ; accompagner les techniciens par des primes d'astreinte et des formations cloud. Cette approche concilie les intérets de toutes les parties prenantes, conformément à la théorie de Freeman.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

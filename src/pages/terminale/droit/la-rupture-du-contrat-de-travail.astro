@@ -197,6 +197,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Marc, 35 ans, est employé en CDI depuis 7 ans comme technicien informatique dans l'entreprise « InfoTech Solutions » (120 salariés). Son employeur lui reproche d'avoir consulté des sites personnels pendant ses heures de travail à plusieurs reprises malgré des avertissements. L'employeur décide de le licencier pour faute grave et lui remet sa lettre de licenciement le jour même, sans entretien préalable. En parallèle, l'entreprise traverse des difficultés économiques et prévoit de supprimer 15 postes dans les prochains mois. La collègue de Marc, Fatima, en CDI depuis 3 ans, souhaite quitter l'entreprise et propose à son employeur une rupture conventionnelle.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>La procédure de licenciement de Marc est-elle régulière ? Rappelez les étapes obligatoires d'un licenciement pour motif personnel. (4 pts)</li>
+            <li>La qualification de « faute grave » vous semble-t-elle justifiée ? Distinguez faute simple, faute grave et faute lourde et leurs conséquences sur les indemnités de Marc. (4 pts)</li>
+            <li>Comparez la situation de Marc (licenciement) et celle de Fatima (rupture conventionnelle) en termes de procédure, d'indemnités et de droits au chômage. L'entreprise devra-t-elle mettre en place un plan de sauvegarde de l'emploi pour les 15 suppressions de postes ? Justifiez. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Irrégularité de la procédure de licenciement (4 pts)</p>
+              <p class="text-sm text-gray-700">La procédure de licenciement de Marc est irrégulière. Le Code du travail (articles L. 1232-2 à L. 1232-6) impose trois étapes obligatoires pour un licenciement pour motif personnel : 1) la <strong>convocation à un entretien préalable</strong> par lettre recommandée ou remise en main propre, au moins 5 jours ouvrables avant l'entretien, 2) l'<strong>entretien préalable</strong>, au cours duquel l'employeur expose les motifs du licenciement et recueille les observations du salarié (le salarié peut se faire assister), 3) la <strong>notification du licenciement</strong> par lettre recommandée avec accusé de réception, envoyée au moins 2 jours ouvrables après l'entretien. L'employeur de Marc a remis la lettre de licenciement le jour même, sans convoquer ni réaliser d'entretien préalable. Cette procédure est irrégulière, ce qui peut donner lieu à des dommages-intérêts pour Marc, même si le motif du licenciement est fondé.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. La qualification de faute grave (4 pts)</p>
+              <p class="text-sm text-gray-700">La <strong>faute simple</strong> est un manquement aux obligations du salarié justifiant un licenciement, mais le salarié conserve ses droits à l'indemnité de licenciement et au préavis. La <strong>faute grave</strong> rend impossible le maintien du salarié dans l'entreprise, même pendant le préavis : le salarié perd son droit à l'indemnité de licenciement et au préavis. La <strong>faute lourde</strong> suppose une intention de nuire à l'employeur : le salarié perd les mêmes droits que pour la faute grave. Dans le cas de Marc, la consultation de sites personnels malgré des avertissements constitue probablement une <strong>faute simple</strong> plutôt qu'une faute grave. La jurisprudence considère généralement que l'usage personnel modéré d'internet au travail ne constitue pas une faute grave, sauf si l'usage est excessif, porte sur des contenus illicites ou perturbe gravement le fonctionnement de l'entreprise. Marc pourrait contester la qualification de faute grave devant le conseil de prud'hommes.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Comparaison licenciement / rupture conventionnelle et PSE (6 pts)</p>
+              <p class="text-sm text-gray-700"><strong>Procédure</strong> : le licenciement est une décision unilatérale de l'employeur (avec entretien préalable obligatoire), tandis que la rupture conventionnelle est un accord mutuel entre l'employeur et le salarié (articles L. 1237-11 et suivants du Code du travail). La rupture conventionnelle nécessite au moins un entretien, la signature d'une convention, un délai de rétractation de 15 jours calendaires, et l'homologation par la DREETS (Direction régionale de l'économie, de l'emploi, du travail et des solidarités). <strong>Indemnités</strong> : si le licenciement de Marc est requalifié en faute simple, il a droit à une indemnité de licenciement (1/4 de mois par année d'ancienneté pour les 10 premières années, soit environ 2,8 mois de salaire pour 7 ans) et au préavis (2 mois). Fatima, en rupture conventionnelle, percevra une indemnité au moins égale à l'indemnité légale de licenciement (calculée sur 3 ans d'ancienneté). <strong>Droits au chômage</strong> : le licenciement (même pour faute grave) ouvre droit aux allocations chômage. La rupture conventionnelle ouvre également droit au chômage, ce qui la distingue de la démission. Concernant le <strong>PSE</strong> : l'entreprise InfoTech Solutions compte 120 salariés (soit plus de 50) et prévoit de supprimer 15 postes. Si ces suppressions interviennent sur une période de 30 jours, l'entreprise doit mettre en place un Plan de Sauvegarde de l'Emploi (article L. 1233-61 du Code du travail), car elle dépasse le seuil de 10 licenciements économiques sur 30 jours dans une entreprise de 50 salariés ou plus. Le PSE doit prévoir des mesures de reclassement, de formation et d'accompagnement des salariés concernés.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

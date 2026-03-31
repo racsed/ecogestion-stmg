@@ -171,6 +171,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            La commune de Villeneuve adopte un arrêté municipal interdisant la consommation de boissons alcoolisées sur la voie publique entre 22 h et 6 h. Mehdi, étudiant en droit, conteste cette mesure. Il estime que l'arrêté est contraire à la liberté individuelle garantie par la Déclaration des droits de l'homme et du citoyen de 1789 (texte à valeur constitutionnelle). Par ailleurs, une directive européenne récente impose aux États membres d'harmoniser la réglementation sur la vente d'alcool aux mineurs. Le maire de Villeneuve affirme que son arrêté est parfaitement légal car il relève de son pouvoir de police administrative.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez les différentes sources du droit mentionnées dans cette situation et classez-les selon la hiérarchie des normes. (4 pts)</li>
+            <li>Expliquez pourquoi l'arrêté municipal doit respecter les normes supérieures. Quel principe juridique est en jeu ? (4 pts)</li>
+            <li>Mehdi peut-il obtenir l'annulation de l'arrêté municipal ? Argumentez en distinguant la source constitutionnelle, la source européenne et la source réglementaire. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Identification et classement des sources du droit (4 pts)</p>
+              <p class="text-sm text-gray-700">Les sources identifiables sont, du sommet à la base de la hiérarchie des normes : la Constitution et le bloc de constitutionnalité (ici la DDHC de 1789, qui a valeur constitutionnelle) ; le droit européen (la directive européenne sur la vente d'alcool aux mineurs) ; et le règlement administratif (l'arrêté municipal du maire de Villeneuve, qui relève du pouvoir réglementaire local). Selon la pyramide de Kelsen, chaque norme inférieure doit être conforme aux normes qui lui sont supérieures.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. Le principe de légalité et la hiérarchie des normes (4 pts)</p>
+              <p class="text-sm text-gray-700">L'arrêté municipal, en tant que norme réglementaire, se situe au bas de la hiérarchie des normes. Il doit donc respecter toutes les normes supérieures : la loi, les traités et directives européennes, et la Constitution. Le principe en jeu est le principe de légalité, selon lequel tout acte administratif doit être conforme aux normes qui lui sont supérieures. Si l'arrêté porte une atteinte disproportionnée à une liberté fondamentale garantie par la Constitution, il peut être annulé par le juge administratif.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Argumentation sur la possibilité d'annulation (6 pts)</p>
+              <p class="text-sm text-gray-700">Mehdi peut saisir le tribunal administratif pour demander l'annulation de l'arrêté. Du point de vue <strong>constitutionnel</strong>, la DDHC de 1789 garantit la liberté individuelle (article 4), mais cette liberté n'est pas absolue : le Conseil constitutionnel admet que l'ordre public peut justifier des restrictions proportionnées. L'interdiction limitée dans le temps (22 h-6 h) et dans l'espace (voie publique) pourrait être jugée proportionnée. Du point de vue du <strong>droit européen</strong>, la directive porte sur la vente d'alcool aux mineurs, un sujet différent de la consommation sur la voie publique ; elle ne s'oppose donc pas directement à l'arrêté. Du point de vue <strong>réglementaire</strong>, le maire dispose bien d'un pouvoir de police administrative (article L. 2212-2 du Code général des collectivités territoriales) pour assurer l'ordre public, la sécurité et la tranquillité. En conclusion, l'arrêté a de bonnes chances d'être jugé légal si la restriction est proportionnée au but poursuivi (prévention des troubles à l'ordre public). Mehdi pourrait toutefois obtenir gain de cause si le juge estime que la mesure est disproportionnée au regard de la liberté individuelle.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

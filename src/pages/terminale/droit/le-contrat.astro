@@ -194,6 +194,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Axel, 19 ans, achète un scooter d'occasion à M. Ferreira pour 2 500 euros. Le vendeur lui assure que le scooter n'a jamais eu d'accident et qu'il est en parfait état. Deux semaines après l'achat, le garagiste d'Axel découvre que le cadre du scooter a été soudé suite à un choc violent et que le compteur kilométrique a été trafiqué (35 000 km affichés au lieu de 72 000 km réels). Par ailleurs, Axel avait signé le contrat de vente sous la pression de M. Ferreira, qui lui avait dit : « Si tu ne signes pas maintenant, je vends à quelqu'un d'autre dans une heure et tu ne retrouveras jamais cette affaire. »
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Rappelez les conditions de validité d'un contrat prévues par l'article 1128 du Code civil. Identifiez celles qui posent problème dans cette situation. (4 pts)</li>
+            <li>Qualifiez juridiquement le comportement de M. Ferreira concernant l'état du scooter. Quel vice du consentement peut être invoqué par Axel ? (4 pts)</li>
+            <li>Axel peut-il obtenir l'annulation du contrat de vente ? Argumentez en distinguant les différents vices du consentement identifiables et en précisant les conséquences de la nullité du contrat. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Conditions de validité du contrat (4 pts)</p>
+              <p class="text-sm text-gray-700">L'article 1128 du Code civil pose trois conditions de validité du contrat : le <strong>consentement</strong> des parties (libre et éclairé), la <strong>capacité</strong> de contracter, et un <strong>contenu licite et certain</strong>. Dans cette situation, la capacité n'est pas en cause (Axel est majeur, M. Ferreira aussi). En revanche, le consentement d'Axel pose problème : il a été trompé sur l'état réel du scooter (kilométrage trafiqué, accident dissimulé) et pressé de signer rapidement. Le contenu du contrat pourrait aussi poser question si l'on considère que le scooter accidenté ne correspond pas à ce qui a été convenu.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. Qualification du vice du consentement (4 pts)</p>
+              <p class="text-sm text-gray-700">Le comportement de M. Ferreira, qui a menti sur l'état du scooter (accident dissimulé) et trafiqué le compteur kilométrique, constitue un <strong>dol</strong> au sens de l'article 1137 du Code civil. Le dol est une manoeuvre frauduleuse (mensonge, dissimulation intentionnelle d'une information déterminante) destinée à tromper le cocontractant pour obtenir son consentement. Sans ces mensonges, Axel n'aurait pas acheté le scooter ou l'aurait acheté à un prix inférieur. Il s'agit de manoeuvres dolosives (trafic du compteur) et d'une réticence dolosive (dissimulation de l'accident).</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Possibilité d'annulation et conséquences (6 pts)</p>
+              <p class="text-sm text-gray-700">Axel peut demander la <strong>nullité relative</strong> du contrat pour vice du consentement. Deux vices sont identifiables. Le <strong>dol</strong> (article 1137 du Code civil) est caractérisé par les mensonges de M. Ferreira sur l'état du scooter et le trafic du compteur : ce sont des manoeuvres intentionnelles portant sur un élément déterminant du consentement. La <strong>violence</strong> (article 1140 du Code civil) est plus discutable : la pression exercée par M. Ferreira (« Si tu ne signes pas maintenant... ») relève davantage d'une technique de vente agressive que d'une véritable contrainte. Pour être constitutive de violence, la pression doit être illégitime et inspirer une crainte suffisante. Le juge pourrait estimer que cette pression n'atteint pas le seuil de la violence au sens juridique. En revanche, le dol est ici clairement établi et suffisant pour obtenir la nullité. Les <strong>conséquences de la nullité</strong> sont la restitution réciproque des prestations (article 1178 du Code civil) : M. Ferreira devra rembourser les 2 500 euros à Axel, et Axel devra restituer le scooter. Axel peut en outre demander des <strong>dommages-intérêts</strong> pour le préjudice subi (frais de garagiste, préjudice d'usage). Le délai pour agir en nullité est de 5 ans à compter de la découverte du dol (article 1144 du Code civil).</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

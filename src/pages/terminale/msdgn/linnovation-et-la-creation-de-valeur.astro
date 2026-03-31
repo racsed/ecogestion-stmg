@@ -224,6 +224,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">MobiClean est une startup de 28 salariés fondée en 2022 à Nantes. Elle a développé une application mobile qui met en relation des particuliers avec des agents de ménage indépendants, en proposant un service de réservation en quelques clics, un paiement sécurisé et un systeme de notation mutuelle. Son business model repose sur une commission de 18 % prélevée sur chaque prestation. En 18 mois, MobiClean a conquis 12 000 utilisateurs actifs dans 5 villes françaises et réalise un CA de 2,1 millions d'euros. L'entreprise vient de lever 3 millions d'euros auprès d'un fonds d'investissement pour se développer. Elle pratique une veille stratégique permanente via un outil automatisé qui surveille les brevets déposés par les concurrents, les tendances de recherche Google et les avis clients sur les plateformes rivales. MobiClean envisage deux innovations : 1) un abonnement mensuel « MobiClean+ » offrant un ménage hebdomadaire à tarif réduit, et 2) l'intégration d'un chatbot IA pour le service client.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez le type d'innovation mis en oeuvre par MobiClean à sa création. Décrivez son business model en distinguant proposition de valeur, sources de revenus et ressources clés. (3 pts)</li>
+            <li>Analysez le role de la veille stratégique dans la capacité d'innovation de MobiClean. Distinguez les différents types de veille pratiqués. (4 pts)</li>
+            <li>Pour chacune des deux innovations envisagées (abonnement MobiClean+ et chatbot IA), analysez leur potentiel de création de valeur pour l'entreprise et pour les utilisateurs. Recommandez une stratégie de déploiement en justifiant l'ordre de priorité. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">MobiClean a mis en oeuvre une <strong>innovation de procédé</strong> (ou d'organisation) : elle n'a pas inventé le ménage à domicile, mais a révolutionné la manière dont le service est organisé et délivré grace à une plateforme numérique. On peut aussi parler d'<strong>innovation de business model</strong> : elle crée un modèle de plateforme biface (marketplace). <strong>Business model</strong> : <em>Proposition de valeur</em> - simplifier la réservation d'un ménage à domicile (quelques clics, paiement sécurisé, notation transparente) pour les particuliers, et fournir des clients aux agents de ménage indépendants. <em>Sources de revenus</em> - commission de 18 % sur chaque prestation, potentiellement complétée par l'abonnement MobiClean+. <em>Ressources clés</em> - la plateforme technologique (application mobile), la base d'utilisateurs (12 000 actifs), la base d'agents de ménage, l'algorithme de matching et de notation, les 3 millions d'euros levés.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">La <strong>veille stratégique</strong> est un processus continu et organisé de collecte, d'analyse et de diffusion d'informations sur l'environnement de l'entreprise pour anticiper les évolutions et prendre de meilleures décisions. Pour MobiClean, elle est vitale car le marché des plateformes de services évolue très rapidement (faibles barrières à l'entrée, concurrence intense). <strong>Types de veille pratiqués</strong> : <em>Veille technologique</em> - surveillance des brevets déposés par les concurrents (pour anticiper les innovations technologiques et ne pas se faire dépasser). <em>Veille concurrentielle</em> - analyse des avis clients sur les plateformes rivales (identifier les forces et faiblesses des concurrents, détecter les attentes non satisfaites). <em>Veille commerciale</em> - suivi des tendances de recherche Google (comprendre les évolutions de la demande : quels services sont recherchés, dans quelles villes, à quels moments). L'automatisation de la veille par un outil dédié est un atout : elle permet une surveillance continue à moindre cout, libérant du temps humain pour l'analyse et la décision.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Abonnement MobiClean+</strong> : <br/><em>Valeur pour l'entreprise</em> - revenus récurrents et prévisibles (modèle d'abonnement), fidélisation des clients (un abonné est moins susceptible de partir chez un concurrent), amélioration du taux de remplissage des agents (prestations régulières). <em>Valeur pour les utilisateurs</em> - tarif réduit (économie pour le client régulier), simplification (plus besoin de réserver chaque semaine), régularité du service (meme agent attitré possible). <br/><br/><strong>Chatbot IA</strong> : <br/><em>Valeur pour l'entreprise</em> - réduction des couts de service client (le chatbot traite les demandes simples 24h/24, libérant les salariés pour les cas complexes), collecte de données sur les problèmes récurrents (amélioration continue). <em>Valeur pour les utilisateurs</em> - réponse instantanée à toute heure, résolution rapide des problèmes courants (annulation, changement d'horaire, réclamation). <br/><br/><strong>Ordre de priorité recommandé</strong> : déployer le <strong>chatbot IA en premier</strong> (investissement estimé : 80 000 euros, déploiement en 3 mois). Il améliore immédiatement l'expérience client et réduit les couts opérationnels. Ensuite, lancer <strong>MobiClean+ en phase de test</strong> sur 2 villes (6 mois après), en commençant par les clients les plus actifs identifiés via le CRM. Si le taux de conversion est supérieur à 15 %, généraliser à toutes les villes. Cette séquence permet de stabiliser l'infrastructure (service client) avant d'accélérer la croissance (abonnement). Les 3 millions d'euros levés financent les deux projets tout en conservant une trésorerie de sécurité.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

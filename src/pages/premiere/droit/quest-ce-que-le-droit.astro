@@ -174,6 +174,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Léa, 17 ans, est lycéenne en Terminale STMG. Lors d'une soirée organisée chez une amie, elle constate que plusieurs invités fument à l'intérieur de l'appartement. Léa rappelle que la loi interdit de fumer dans les lieux affectés à un usage collectif. Un invité, Karim, lui répond que cette règle ne s'applique pas dans un domicile privé et que, de toute façon, « la politesse voudrait qu'on ne fasse pas de remarques chez les autres ». Le lendemain, Léa découvre que des photos d'elle prises pendant la soirée ont été publiées sur Instagram sans son accord.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez, dans cette situation, un exemple de règle de droit et un exemple de règle morale. Précisez ce qui les distingue. (4 pts)</li>
+            <li>Qualifiez juridiquement la publication des photos de Léa sur Instagram. Quel droit subjectif est en cause ? (4 pts)</li>
+            <li>En vous appuyant sur les caractères de la règle de droit, expliquez pourquoi l'interdiction de fumer dans les lieux collectifs relève du droit objectif et non d'une simple convention sociale. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Règle de droit vs règle morale (4 pts)</p>
+              <p class="text-sm text-gray-700">La règle de droit identifiable est l'interdiction de fumer dans les lieux affectés à un usage collectif (article L. 3512-8 du Code de la santé publique). Elle est générale, obligatoire et sanctionnée par l'autorité publique (amende de 68 euros). La règle morale est la « politesse » invoquée par Karim : ne pas faire de remarques chez autrui. Cette règle repose sur la conscience individuelle et n'est sanctionnée que par la réprobation sociale, jamais par un tribunal. La distinction fondamentale réside dans la sanction : étatique et coercitive pour le droit, sociale et morale pour la politesse.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. Qualification juridique de la publication des photos (4 pts)</p>
+              <p class="text-sm text-gray-700">La publication des photos de Léa sans son consentement constitue une atteinte au droit à l'image, qui est un droit subjectif extrapatrimonial rattaché aux droits de la personnalité. Ce droit est protégé par l'article 9 du Code civil (« Chacun a droit au respect de sa vie privée »). Léa, en tant que personne physique titulaire de droits subjectifs, peut exiger le retrait des photos et demander réparation du préjudice subi. La qualification juridique permet de passer des faits (publication de photos) à la catégorie de droit applicable (atteinte au droit à l'image).</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Les caractères de la règle de droit appliqués à l'interdiction de fumer (6 pts)</p>
+              <p class="text-sm text-gray-700">L'interdiction de fumer dans les lieux collectifs présente les quatre caractères de la règle de droit, ce qui la distingue d'une simple convention sociale. Elle est <strong>générale</strong> : elle s'applique à toute personne se trouvant dans un lieu collectif, sans distinction. Elle est <strong>abstraite</strong> : elle vise une situation type (fumer dans un lieu collectif) et non un cas particulier. Elle est <strong>obligatoire</strong> : nul ne peut décider de s'en affranchir, même avec l'accord des personnes présentes. Enfin, elle est <strong>coercitive</strong> : son non-respect est sanctionné par une amende forfaitaire de 68 euros infligée par les forces de l'ordre. Une convention sociale (comme la politesse) ne possède aucun de ces caractères au sens juridique : elle n'est ni sanctionnée par l'État, ni imposée de manière uniforme. C'est précisément parce que la règle de droit est assortie d'une sanction étatique qu'elle se distingue des autres normes sociales et qu'elle relève du droit objectif.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (
@@ -185,7 +237,7 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
           </div>
         </a>
       ) : <div />}
-      
+
       {nextChapter ? (
         <a href={`/premiere/droit/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
           <div>

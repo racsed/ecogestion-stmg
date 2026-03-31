@@ -192,6 +192,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">En France, les prelevements obligatoires representent 44,3 % du PIB en 2025, soit environ 1 270 milliards d'euros. Un salarie gagnant 2 400 euros brut par mois perçoit 1 890 euros net apres deduction des cotisations sociales salariales (environ 22 %). Son employeur verse en plus 1 080 euros de cotisations patronales. Ce salarie beneficie en contrepartie de la Securite sociale : remboursement des soins de sante, allocations familiales, indemnites en cas de chomage. Par ailleurs, un menage monoparental avec deux enfants et un revenu modeste de 1 400 euros par mois perçoit 520 euros de prestations sociales (RSA activite, allocations familiales, aide au logement), ce qui porte son revenu disponible a 1 920 euros. Le rapport entre le revenu des 10 % les plus riches et celui des 10 % les plus pauvres passe de 7,2 avant redistribution a 3,4 apres redistribution.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Distinguez revenus primaires et revenus de transfert. Illustrez chacun a l'aide du document. (3 pts)</li>
+            <li>Expliquez comment les prelevements obligatoires et les prestations sociales permettent la redistribution des revenus. Appuyez-vous sur les donnees chiffrees du document. (4 pts)</li>
+            <li>La redistribution permet-elle de reduire efficacement les inegalites ? Discutez en vous appuyant sur le document et vos connaissances. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">Les revenus primaires sont les revenus issus directement de la participation a l'activite economique : revenus du travail (salaires), revenus du capital (loyers, dividendes, interets) et revenus mixtes (benefices des entrepreneurs individuels). Dans le document, le salaire brut de 2 400 euros est un revenu primaire. Les revenus de transfert sont les prestations sociales versees par les administrations publiques, sans contrepartie directe de travail. Dans le document, les 520 euros perçus par le menage monoparental (RSA, allocations familiales, aide au logement) sont des revenus de transfert.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">La redistribution fonctionne en deux temps. D'abord, les prelevements obligatoires (cotisations sociales, impots) sont preleves sur les revenus primaires : le salarie perd 510 euros en cotisations salariales, et l'employeur verse 1 080 euros de cotisations patronales. Ces prelevements financent la protection sociale. Ensuite, les prestations sociales sont versees aux menages en fonction de leurs besoins : le menage monoparental reçoit 520 euros qui portent son revenu disponible de 1 400 a 1 920 euros, soit une hausse de 37 %. Le mecanisme preleve donc sur les revenus les plus eleves pour redistribuer aux plus modestes, ce qui reduit l'ecart entre riches et pauvres.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">Le document montre une efficacite reelle de la redistribution : le rapport interdecile (D9/D1) passe de 7,2 avant redistribution a 3,4 apres, soit une reduction de plus de moitie des inegalites de revenus. Le systeme francais, avec 44,3 % du PIB en prelevements obligatoires, est l'un des plus redistributifs d'Europe. Cependant, la redistribution a des limites. Elle ne corrige que partiellement les inegalites de patrimoine (heritage, immobilier), qui restent tres concentrees. Un taux de prelevement eleve peut aussi decourager le travail ou l'investissement (debat sur l'effet desincitatif). Certaines prestations sont jugees insuffisantes pour sortir de la pauvrete (le RSA ne couvre pas le seuil de pauvrete). Enfin, la redistribution ne s'attaque pas aux causes structurelles des inegalites (acces inegal a l'education, discrimination a l'embauche). La redistribution est donc necessaire mais pas suffisante : elle doit etre completee par des politiques de predistribution (education, formation, egalite des chances).</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

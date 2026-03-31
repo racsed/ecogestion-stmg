@@ -197,6 +197,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Mme Durand est propriétaire d'un appartement qu'elle loue à un étudiant, Kévin, depuis deux ans. Kévin a un retard de loyer de trois mois (soit 2 400 euros). Par ailleurs, le voisin du dessus, M. Martin, a laissé un dégât des eaux endommager le plafond de l'appartement de Mme Durand. Enfin, la fille de Mme Durand, Chloé, 20 ans, a composé une chanson originale qu'elle diffuse sur une plateforme de streaming. Un autre artiste a repris le refrain de cette chanson dans son propre titre sans autorisation.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez les différents droits patrimoniaux en jeu dans cette situation. Précisez pour chacun s'il s'agit d'un droit réel ou d'un droit personnel (droit de créance). (4 pts)</li>
+            <li>Rappelez les trois attributs du droit de propriété de Mme Durand sur son appartement. Montrez comment chacun s'applique dans cette situation. (4 pts)</li>
+            <li>Chloé peut-elle protéger sa chanson ? Expliquez la nature du droit d'auteur en distinguant sa composante patrimoniale et sa composante extrapatrimoniale, et précisez les recours possibles de Chloé. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Identification des droits patrimoniaux (4 pts)</p>
+              <p class="text-sm text-gray-700">Trois droits patrimoniaux sont identifiables. Le <strong>droit de propriété</strong> de Mme Durand sur son appartement est un <strong>droit réel</strong> : il porte directement sur un bien (l'appartement) et confère à son titulaire un pouvoir direct sur ce bien. La <strong>créance de loyer</strong> de Mme Durand sur Kévin (2 400 euros impayés) est un <strong>droit personnel</strong> (ou droit de créance) : il s'exerce contre une personne déterminée (Kévin, le débiteur) qui doit exécuter une obligation (payer le loyer). Le <strong>droit d'auteur</strong> de Chloé sur sa chanson est un droit de propriété intellectuelle, qui comporte une dimension patrimoniale (droits patrimoniaux cessibles et monnayables).</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. Les trois attributs du droit de propriété (4 pts)</p>
+              <p class="text-sm text-gray-700">Le droit de propriété, défini par l'article 544 du Code civil, confère trois attributs : l'<strong>usus</strong> (droit d'utiliser le bien), le <strong>fructus</strong> (droit de percevoir les revenus du bien) et l'<strong>abusus</strong> (droit de disposer du bien, c'est-à-dire de le vendre, le donner ou le détruire). Dans cette situation, Mme Durand exerce son usus en étant propriétaire de l'appartement, son fructus en percevant les loyers versés par Kévin (même s'ils sont en retard), et conserve son abusus car elle pourrait décider de vendre l'appartement si elle le souhaitait. Le dégât des eaux causé par M. Martin porte atteinte à son droit de propriété (dommage matériel au bien).</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Le droit d'auteur de Chloé : composantes et recours (6 pts)</p>
+              <p class="text-sm text-gray-700">Chloé bénéficie automatiquement du droit d'auteur sur sa chanson dès sa création originale, sans aucune formalité d'enregistrement (article L. 111-1 du Code de la propriété intellectuelle). Ce droit comporte deux composantes. La <strong>composante patrimoniale</strong> (droits patrimoniaux) regroupe le droit de reproduction et le droit de représentation : Chloé peut autoriser ou interdire l'utilisation de sa chanson et en tirer des revenus. Ces droits sont cessibles (ils peuvent être vendus ou cédés par contrat) et durent 70 ans après la mort de l'auteur. La <strong>composante extrapatrimoniale</strong> (droit moral) protège le lien entre l'auteur et son oeuvre : droit à la paternité (être reconnue comme auteure), droit au respect de l'intégrité de l'oeuvre, droit de divulgation. Le droit moral est perpétuel, inaliénable et imprescriptible. L'artiste qui a repris le refrain sans autorisation a violé les droits patrimoniaux de Chloé (reproduction non autorisée) et potentiellement son droit moral (absence de mention de la paternité). Chloé peut agir en contrefaçon (article L. 335-2 du Code de la propriété intellectuelle) devant le tribunal judiciaire pour obtenir l'interdiction de la diffusion du titre litigieux et des dommages-intérêts.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

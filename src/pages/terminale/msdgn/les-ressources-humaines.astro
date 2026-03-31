@@ -199,6 +199,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">LogiNord est une entreprise de logistique et de transport de 310 salariés basée à Lille. Elle gère 4 entrepots et une flotte de 85 camions. Le secteur de la logistique connait une transformation profonde avec l'automatisation des entrepots et la digitalisation des processus. Le DRH, M. Philippe Renaud, fait face à plusieurs défis : 45 préparateurs de commandes risquent de voir leur poste supprimé à cause de l'introduction de robots dans les entrepots d'ici 2 ans, 12 postes de techniciens en maintenance robotique sont à pourvoir mais introuvables sur le marché local, le taux de turnover des chauffeurs est de 28 % (contre 15 % dans le secteur) en raison de conditions de travail difficiles, et une enquête interne révèle que 62 % des salariés se disent « peu ou pas motivés ». Le budget formation annuel est de 180 000 euros (soit 1,2 % de la masse salariale). M. Renaud doit présenter un plan RH au comité de direction.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Définissez la GPEC (Gestion Prévisionnelle des Emplois et des Compétences). Montrez en quoi elle est indispensable pour LogiNord dans le contexte décrit. (3 pts)</li>
+            <li>Analysez les causes du turnover élevé des chauffeurs et de la démotivation des salariés. Proposez des leviers de motivation en distinguant facteurs financiers et non financiers. (4 pts)</li>
+            <li>Élaborez un plan RH structuré pour M. Renaud couvrant le recrutement, la formation, la reconversion des préparateurs de commandes et l'amélioration du climat social. Justifiez chaque mesure. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">La <strong>GPEC</strong> est une démarche qui vise à anticiper les besoins futurs en compétences de l'organisation et à adapter les ressources humaines en conséquence. Elle consiste à comparer les emplois et compétences actuels avec ceux qui seront nécessaires à moyen terme, puis à mettre en place des actions (recrutement, formation, reconversion, mobilité) pour combler les écarts. Pour LogiNord, la GPEC est <strong>indispensable</strong> car : 1) l'automatisation va supprimer 45 postes de préparateurs (écart quantitatif en emplois), 2) 12 postes de techniciens robotique sont à créer (écart qualitatif en compétences nouvelles), 3) le turnover élevé des chauffeurs crée un besoin de recrutement permanent. Sans GPEC, l'entreprise risque des licenciements massifs d'un coté et des postes vacants de l'autre.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Causes du turnover des chauffeurs</strong> : conditions de travail difficiles (horaires décalés, travail physique, isolement sur la route, pression des délais), rémunération insuffisante par rapport à la pénibilité, manque de perspectives d'évolution, sentiment de ne pas etre reconnu. <strong>Causes de la démotivation générale</strong> (62 %) : incertitude liée à l'automatisation (peur de perdre son emploi), manque de communication de la direction sur les projets, budget formation faible (1,2 % vs 2-3 % recommandés), absence de reconnaissance. <br/><br/><strong>Leviers financiers</strong> : prime d'ancienneté pour les chauffeurs, intéressement aux résultats, revalorisation salariale ciblée, prime de pénibilité. <strong>Leviers non financiers</strong> : amélioration des conditions de travail (renouvellement de la flotte pour des camions plus confortables), plan de carrière visible (possibilité de devenir formateur, chef d'équipe ou gestionnaire de flotte), reconnaissance (salarié du mois, feedback positif régulier), communication transparente sur les projets d'automatisation, formation continue pour donner aux salariés le sentiment de progresser.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Plan RH structuré</strong> : <br/><br/><em>1) Reconversion des 45 préparateurs</em> : identifier les volontaires pour une formation de technicien en maintenance robotique (12 postes à pourvoir en interne), proposer des formations de conducteur de chariot automatisé, de gestionnaire de stocks numériques ou de superviseur d'entrepot. Tripler le budget formation (de 180 000 à 540 000 euros, soit 3,6 % de la masse salariale). Accompagner les salariés qui ne souhaitent pas se reconvertir (bilan de compétences, aide à la mobilité externe). <br/><br/><em>2) Recrutement</em> : pour les postes de techniciens robotique non pourvus en interne, développer des partenariats avec les écoles et IUT de la région lilloise (alternance, stages), proposer des salaires attractifs et des primes d'installation pour attirer les profils rares. <br/><br/><em>3) Rétention des chauffeurs</em> : revalorisation salariale de 5 % + prime de fidélité à 3 ans, investissement dans le renouvellement de la flotte (camions récents, cabines confortables), création d'un parcours de carrière (chauffeur junior, confirmé, référent, formateur). <br/><br/><em>4) Climat social</em> : réunions trimestrielles de la direction avec tous les salariés pour communiquer sur la stratégie et l'automatisation (lever les incertitudes), enquête de climat social semestrielle avec plan d'action associé, mise en place d'un accord d'intéressement lié aux gains de productivité issus de l'automatisation (les salariés bénéficient aussi des gains). Chaque mesure répond à un problème identifié et contribue à réduire le turnover et à restaurer la motivation.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

@@ -177,6 +177,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Nadia a commandé un canapé sur un site de vente en ligne pour 1 200 euros. À la livraison, elle constate que le canapé présente une déchirure sur le côté gauche et que la couleur ne correspond pas à celle choisie sur le site. Elle contacte le service client qui refuse de procéder à l'échange, estimant que le dommage a pu être causé par le transporteur. Nadia souhaite obtenir le remplacement du canapé ou le remboursement de sa commande. Une amie lui suggère de tenter une médiation avant de saisir un tribunal, mais Nadia veut aller directement devant le juge.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez le litige en précisant les parties, l'objet du désaccord et la nature du litige (civil ou pénal). (3 pts)</li>
+            <li>Présentez le mode alternatif de règlement des litiges suggéré par l'amie de Nadia. Quels en sont les avantages par rapport au recours au juge ? (4 pts)</li>
+            <li>Si Nadia choisit de saisir la justice, devant quelle juridiction doit-elle porter son litige ? Justifiez votre réponse en précisant les critères de compétence et les recours possibles en cas de décision défavorable. (7 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Identification du litige (3 pts)</p>
+              <p class="text-sm text-gray-700">Les parties sont Nadia (consommatrice, demanderesse) et le site de vente en ligne (professionnel, défendeur). L'objet du désaccord porte sur la conformité du produit livré : déchirure et couleur non conforme. Il s'agit d'un litige de nature civile (et plus précisément d'un litige de consommation), car il oppose deux personnes privées sur l'exécution d'un contrat de vente. Il n'y a pas d'infraction pénale en cause.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. La médiation comme mode alternatif (4 pts)</p>
+              <p class="text-sm text-gray-700">La médiation est un mode alternatif de règlement des litiges (MARL) dans lequel un tiers neutre et impartial, le médiateur, aide les parties à trouver un accord amiable. Depuis 2016, tout consommateur peut recourir gratuitement à un médiateur de la consommation (article L. 612-1 du Code de la consommation). Les avantages par rapport au recours au juge sont : la rapidité (délai de 90 jours maximum contre plusieurs mois devant un tribunal), la gratuité pour le consommateur, la confidentialité des échanges, et la souplesse de la solution trouvée (les parties décident ensemble de l'issue, au lieu d'une décision imposée par le juge).</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Juridiction compétente et recours (7 pts)</p>
+              <p class="text-sm text-gray-700">Le litige porte sur un montant de 1 200 euros, soit un litige civil inférieur à 10 000 euros. La juridiction compétente est le <strong>tribunal judiciaire</strong> (anciennement tribunal d'instance pour les litiges inférieurs à 10 000 euros). La compétence est déterminée par deux critères : la <strong>compétence d'attribution</strong> (nature civile du litige, entre un consommateur et un professionnel) et la <strong>compétence territoriale</strong> (en principe, le tribunal du domicile du défendeur, mais en matière de consommation, Nadia peut aussi saisir le tribunal de son propre domicile, conformément à l'article R. 631-3 du Code de la consommation). Nadia peut se présenter seule, sans avocat obligatoire, pour un litige de ce montant. En cas de décision défavorable, Nadia dispose de voies de recours : elle peut faire <strong>appel</strong> devant la cour d'appel si le jugement est rendu en premier ressort (ce qui suppose que le litige dépasse 5 000 euros, ce qui est le cas ici). Si le jugement de la cour d'appel ne la satisfait pas, elle peut former un <strong>pourvoi en cassation</strong> devant la Cour de cassation, qui ne rejuge pas les faits mais vérifie la bonne application du droit.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

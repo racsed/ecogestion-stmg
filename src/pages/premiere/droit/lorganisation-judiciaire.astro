@@ -177,6 +177,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Thomas, salarié d'une boulangerie, glisse sur le trottoir verglacé devant la mairie de sa commune en se rendant au travail. Il se fracture le poignet et doit être arrêté pendant trois semaines. Il souhaite obtenir réparation de son préjudice et se demande quel tribunal saisir. Par ailleurs, Thomas a reçu une amende de 135 euros pour avoir traversé en dehors du passage piéton juste avant l'accident. Il conteste cette contravention. Enfin, un de ses collègues lui indique qu'il pourrait aussi attaquer la mairie pour défaut d'entretien de la voie publique.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez les deux ordres de juridiction du système judiciaire français. À quel ordre rattachez-vous chacune des actions envisagées par Thomas ? (4 pts)</li>
+            <li>Pour la contestation de l'amende, précisez la juridiction compétente et expliquez le rôle du double degré de juridiction si Thomas est mécontent du jugement. (4 pts)</li>
+            <li>Thomas peut-il poursuivre la mairie devant un tribunal civil ? Argumentez en expliquant les critères de répartition des compétences entre l'ordre judiciaire et l'ordre administratif, et précisez la juridiction compétente pour l'action contre la mairie. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Les deux ordres de juridiction (4 pts)</p>
+              <p class="text-sm text-gray-700">Le système judiciaire français est organisé en deux ordres : l'<strong>ordre judiciaire</strong>, qui traite les litiges entre personnes privées (juridictions civiles) et les infractions pénales (juridictions pénales), et l'<strong>ordre administratif</strong>, qui traite les litiges impliquant l'administration ou une personne publique. La contestation de l'amende relève de l'ordre judiciaire (juridiction pénale, car il s'agit d'une contravention). L'action contre la mairie pour défaut d'entretien de la voie publique relève de l'ordre administratif, car elle met en cause la responsabilité d'une personne publique dans l'exercice de ses missions de service public.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. Contestation de l'amende et double degré de juridiction (4 pts)</p>
+              <p class="text-sm text-gray-700">L'amende de 135 euros correspond à une contravention de 4e classe. Thomas peut la contester devant le <strong>tribunal de police</strong> (intégré au tribunal judiciaire). Le principe du double degré de juridiction garantit à tout justiciable la possibilité de faire rejuger son affaire par une juridiction supérieure. Si Thomas est mécontent du jugement du tribunal de police, il peut faire appel devant la <strong>cour d'appel</strong> (chambre correctionnelle), qui rejugera l'affaire en fait et en droit. En dernier recours, un pourvoi en cassation est possible devant la Cour de cassation, qui vérifie uniquement la bonne application du droit sans rejuger les faits.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Action contre la mairie : ordre judiciaire ou administratif ? (6 pts)</p>
+              <p class="text-sm text-gray-700">Thomas ne peut pas poursuivre la mairie devant un tribunal civil. Le critère de répartition des compétences repose sur la <strong>nature des parties</strong> et la <strong>nature de l'activité</strong>. Lorsqu'une personne publique (ici la commune) est mise en cause pour un dommage lié à l'exercice d'une mission de service public (ici l'entretien de la voie publique), le litige relève de l'ordre administratif. Thomas devra saisir le <strong>tribunal administratif</strong> du ressort de la commune. Il devra démontrer un défaut d'entretien normal de l'ouvrage public (le trottoir verglacé non salé ni signalé). Si le tribunal administratif rejette sa demande, Thomas pourra faire appel devant la <strong>cour administrative d'appel</strong>, puis former un pourvoi devant le <strong>Conseil d'État</strong>, juridiction suprême de l'ordre administratif. En cas de conflit de compétence entre les deux ordres, c'est le <strong>Tribunal des conflits</strong> qui tranche.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

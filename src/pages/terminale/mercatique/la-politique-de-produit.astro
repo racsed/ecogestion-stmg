@@ -212,6 +212,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">FruitVital est une PME agroalimentaire de 65 salariés qui produit des jus de fruits bio pressés à froid, vendus en grande distribution. Sa gamme actuelle comprend 12 références réparties en 3 lignes : « Classiques » (orange, pomme, raisin), « Exotiques » (mangue, passion, ananas) et « Detox » (concombre-menthe, gingembre-citron, betterave). La ligne « Classiques » est en phase de maturité avec des ventes stables. La ligne « Exotiques » est en phase de croissance (+18 % par an). La ligne « Detox », lancée il y a 6 mois, peine à décoller (seulement 4 % du CA). La direction envisage de lancer une nouvelle ligne « Protéinés » (jus enrichis en protéines végétales) pour répondre à la tendance sport et nutrition. Le packaging actuel (bouteilles en verre de 750 ml) est apprécié pour son coté premium mais génère des couts logistiques élevés et des problèmes de casse en transport.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez les composantes de la gamme de FruitVital (largeur, profondeur). Situez chaque ligne dans le cycle de vie du produit. (3 pts)</li>
+            <li>Analysez le role du packaging dans la stratégie de FruitVital. Montrez les avantages et les inconvénients du choix actuel (bouteilles en verre). (4 pts)</li>
+            <li>Conseillez la direction de FruitVital sur le lancement de la ligne « Protéinés » : positionnement, choix de packaging et gestion du cycle de vie de la ligne « Detox ». Justifiez vos recommandations. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">La <strong>largeur de gamme</strong> est de 3 lignes (Classiques, Exotiques, Detox), bientot 4 avec la ligne Protéinés. La <strong>profondeur</strong> varie selon les lignes : Classiques (3 références), Exotiques (3 références), Detox (3 références), soit un total de 9 références connues sur 12. <strong>Cycle de vie</strong> : « Classiques » en phase de <em>maturité</em> (ventes stables, marché saturé), « Exotiques » en phase de <em>croissance</em> (+18 %/an, forte progression), « Detox » en phase de <em>lancement</em> (6 mois d'existence, 4 % du CA, le produit cherche encore son marché).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Le <strong>packaging</strong> remplit plusieurs fonctions : <em>technique</em> (contenir, protéger, conserver le produit), <em>commerciale</em> (attirer, informer, véhiculer l'image de marque) et <em>logistique</em> (faciliter le transport et le stockage). <strong>Avantages du verre</strong> : image premium et haut de gamme, perception de qualité supérieure (le verre est associé au naturel et au bio), recyclabilité à 100 % (cohérent avec le positionnement bio), conservation optimale des qualités gustatives. <strong>Inconvénients</strong> : cout élevé (le verre est plus cher que le plastique ou le carton), poids important (augmente les couts de transport et l'empreinte carbone), risque de casse lors du transport et en rayon (perte de marchandise), format de 750 ml peu adapté à la consommation nomade. Le packaging doit être cohérent avec le positionnement mais aussi viable économiquement.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Lancement « Protéinés »</strong> : positionnement « sport et santé naturelle » pour se différencier des boissons protéinées industrielles. Cible : sportifs réguliers, 25-40 ans, sensibles au bio. <strong>Packaging recommandé</strong> : bouteille en plastique recyclé (rPET) de 33 cl, format nomade adapté à la salle de sport ou à la course à pied. Ce format réduit les couts logistiques et la casse tout en restant cohérent avec l'engagement écologique (plastique recyclé). Design dynamique avec codes visuels sportifs pour se distinguer du reste de la gamme. <br/><br/><strong>Gestion de la ligne « Detox »</strong> : avec seulement 4 % du CA après 6 mois, il faut d'abord analyser les causes : manque de notoriété, prix trop élevé, gout déroutant, mauvais emplacement en rayon ? Avant de retirer la ligne, il est recommandé de la relancer avec une campagne de communication ciblée (dégustation en magasin, partenariats avec des influenceurs bien-être) et d'adapter le format (25 cl en format « shot » detox quotidien). Si après 6 mois supplémentaires les ventes restent marginales, il faudra envisager un retrait pour concentrer les ressources sur les lignes rentables. La gestion du cycle de vie impose de ne pas s'accrocher à un produit non rentable mais de lui donner les moyens de réussir avant de trancher.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

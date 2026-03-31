@@ -188,6 +188,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Samira se rend au supermarché « FreshMarket » pour faire ses courses. En passant dans le rayon fruits et légumes, elle glisse sur une feuille de salade tombée au sol et se fracture la cheville. Elle est transportée aux urgences et doit porter un plâtre pendant six semaines, l'empêchant de travailler (elle est serveuse dans un restaurant). Par ailleurs, pendant qu'elle était au sol, un chariot laissé sans surveillance par un autre client a roulé et lui a écrasé la main. Un employé du magasin, témoin de la scène, a filmé l'accident avec son téléphone personnel et a posté la vidéo sur les réseaux sociaux.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Distinguez responsabilité civile et responsabilité pénale. Identifiez laquelle est en cause pour le supermarché et laquelle est en cause pour l'employé ayant filmé la scène. (4 pts)</li>
+            <li>Identifiez et qualifiez les trois conditions de mise en oeuvre de la responsabilité civile du supermarché. (4 pts)</li>
+            <li>Sur quel fondement juridique Samira peut-elle engager la responsabilité du supermarché ? Détaillez le régime de responsabilité applicable et expliquez quels types de préjudice Samira peut faire valoir pour obtenir réparation. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Responsabilité civile vs responsabilité pénale (4 pts)</p>
+              <p class="text-sm text-gray-700">La <strong>responsabilité civile</strong> vise à réparer un dommage causé à autrui par le versement de dommages-intérêts. Elle est en cause pour le supermarché FreshMarket, qui doit indemniser Samira pour les préjudices subis à la suite de sa chute. La <strong>responsabilité pénale</strong> vise à sanctionner un comportement contraire à la loi par des peines (amende, prison). Elle est en cause pour l'employé qui a filmé et diffusé la vidéo de Samira sans son consentement : cette publication peut constituer une atteinte au droit à l'image (article 226-1 du Code pénal, puni d'un an d'emprisonnement et 45 000 euros d'amende). Les deux responsabilités sont indépendantes et peuvent se cumuler.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. Les trois conditions de la responsabilité civile (4 pts)</p>
+              <p class="text-sm text-gray-700">La mise en oeuvre de la responsabilité civile suppose trois conditions cumulatives. Un <strong>fait générateur</strong> : la feuille de salade au sol constitue un défaut d'entretien et de sécurité du magasin (manquement à l'obligation de sécurité envers les clients). Un <strong>dommage</strong> : Samira a subi une fracture de la cheville (dommage corporel) entraînant une incapacité de travail de six semaines (dommage matériel : perte de revenus) et une souffrance physique et morale. Un <strong>lien de causalité</strong> : c'est bien la feuille de salade non ramassée par le personnel du magasin qui a provoqué la glissade et la fracture. Sans cette négligence, l'accident n'aurait pas eu lieu.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Fondement juridique et types de préjudice (6 pts)</p>
+              <p class="text-sm text-gray-700">Samira peut engager la responsabilité du supermarché sur le fondement de la <strong>responsabilité du fait des choses</strong> (article 1242, alinéa 1er du Code civil) : le supermarché est gardien des choses présentes dans son établissement (y compris les produits tombés au sol), et le fait de la chose (la salade au sol) a causé le dommage. Alternativement, Samira peut invoquer l'<strong>obligation de sécurité</strong> du professionnel envers ses clients (responsabilité contractuelle implicite liée au contrat de vente). Le supermarché ne pourra s'exonérer qu'en prouvant un cas de force majeure ou la faute exclusive de la victime. Concernant les <strong>préjudices</strong>, Samira peut faire valoir : un <strong>préjudice corporel</strong> (fracture de la cheville, douleurs), un <strong>préjudice matériel</strong> (frais médicaux, perte de revenus pendant 6 semaines d'arrêt de travail, éventuels frais de déplacement), et un <strong>préjudice moral</strong> (souffrance psychologique, atteinte à la dignité liée à la diffusion de la vidéo). Le principe de la réparation intégrale impose que tous ces préjudices soient indemnisés, sans enrichissement ni appauvrissement de la victime.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

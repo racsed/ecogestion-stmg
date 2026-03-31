@@ -167,6 +167,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">La start-up TechVert, specialisee dans les capteurs environnementaux connectes, a besoin de 500 000 euros pour financer le developpement de son nouveau produit. Son benefice annuel est de 85 000 euros, ce qui ne couvre qu'une partie de ce besoin. Le fondateur hesite entre plusieurs solutions : contracter un emprunt bancaire a 4,2 % sur 5 ans, emettre des actions sur le marche Euronext Growth pour lever des fonds propres, ou faire appel a un fonds d'investissement en capital-risque. Parallelement, les menages francais ont epargne 270 milliards d'euros en 2025, dont une large part est placee sur des livrets d'epargne reglementee. Ce decalage entre l'epargne disponible et les besoins de financement des entreprises illustre les enjeux du financement de l'economie.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Distinguez le financement interne et le financement externe. Identifiez ces modes dans le document. (3 pts)</li>
+            <li>Comparez les avantages et les inconvenients de l'emprunt bancaire et de l'emission d'actions pour TechVert. (4 pts)</li>
+            <li>Montrez que le systeme financier joue un role essentiel dans la transformation de l'epargne en investissement. Quels risques cela comporte-t-il ? (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">Le financement interne (ou autofinancement) correspond au financement par les ressources propres de l'entreprise, c'est-a-dire les benefices non distribues. Dans le document, les 85 000 euros de benefice annuel de TechVert constituent l'autofinancement. Le financement externe fait appel a des ressources exterieures a l'entreprise. Il peut etre indirect (emprunt bancaire a 4,2 %) ou direct (emission d'actions sur Euronext Growth, appel au capital-risque). Ici, l'autofinancement ne couvre que 17 % du besoin (85 000 / 500 000), d'ou la necessite d'un financement externe.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">L'emprunt bancaire permet a TechVert de conserver le controle total de son entreprise et d'obtenir rapidement les fonds. En revanche, il impose des remboursements fixes (capital + interets a 4,2 %) qui pesent sur la tresorerie, meme si l'entreprise ne genere pas encore de profits suffisants. L'emission d'actions permet de lever des fonds sans endettement ni remboursement obligatoire, et les actionnaires partagent le risque. Cependant, le fondateur dilue son capital et perd une partie du pouvoir de decision. Le capital-risque apporte en plus un accompagnement strategique mais exige souvent une rentabilite elevee et une sortie a moyen terme. Pour une start-up en croissance, l'emission d'actions ou le capital-risque est souvent preferable car ils n'alourdissent pas la dette.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">Le systeme financier (banques, marches financiers) joue un role d'intermediation en canalisant l'epargne des menages vers les besoins de financement des entreprises. Les 270 milliards d'euros epargnes par les menages sont collectes par les banques (livrets, depots) puis pretes aux entreprises comme TechVert. Les marches financiers permettent une mise en relation directe entre epargnants et emprunteurs. Ce mecanisme est essentiel car sans lui, l'epargne resterait inutilisee et les entreprises ne pourraient pas investir, freinant la croissance. Cependant, ce systeme comporte des risques : le risque de credit (l'emprunteur ne rembourse pas), le risque de marche (chute des cours des actions), et le risque systemique (une defaillance bancaire peut se propager a l'ensemble de l'economie, comme lors de la crise de 2008). C'est pourquoi les autorites de regulation (BCE, AMF) supervisent le systeme financier pour en garantir la stabilite.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

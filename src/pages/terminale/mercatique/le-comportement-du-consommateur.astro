@@ -214,6 +214,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">BelleNuit est une marque française de literie haut de gamme (matelas, oreillers, linge de lit) qui vend exclusivement en ligne. Elle cible les 25-45 ans, urbains et soucieux de leur bien-être. Une enquête menée auprès de 800 clients révèle les données suivantes : 62 % ont découvert BelleNuit via les réseaux sociaux (Instagram, TikTok), 45 % déclarent que les avis en ligne ont été déterminants dans leur achat, 78 % citent la qualité du sommeil comme motivation principale, mais 38 % avouent avoir hésité à cause du prix élevé (matelas à partir de 890 euros). Le panier moyen est de 1 150 euros. Les clients mettent en moyenne 3 semaines entre la première visite du site et l'achat. 25 % des paniers sont abandonnés au moment du paiement.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez les besoins, motivations et freins des consommateurs de BelleNuit. (3 pts)</li>
+            <li>Analysez les facteurs d'influence qui interviennent dans le processus d'achat des clients BelleNuit. Distinguez les facteurs individuels et les facteurs socioculturels. (4 pts)</li>
+            <li>Décrivez les étapes du processus d'achat d'un client BelleNuit et proposez des actions marketing concrètes pour réduire le taux d'abandon de panier et raccourcir le délai de décision. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Besoin</strong> : besoin physiologique de sommeil de qualité (besoin primaire selon Maslow), complété par un besoin d'estime (se faire plaisir avec un produit haut de gamme). <strong>Motivations</strong> : motivation <em>hédoniste</em> (recherche du plaisir et du confort), motivation <em>oblative</em> (offrir un bon matelas à sa famille), motivation <em>rationnelle</em> (investir dans sa santé par un meilleur sommeil, cité par 78 % des clients). <strong>Freins</strong> : frein <em>financier</em> (prix élevé, cité par 38 % comme facteur d'hésitation), frein <em>psychologique</em> (difficulté d'acheter un matelas sans le tester physiquement), frein lié au <em>risque perçu</em> (peur de se tromper sur un achat important).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Facteurs individuels</strong> : la personnalité (sensibilité au bien-être et à la qualité de vie), le style de vie (urbain, connecté, soucieux de sa santé), la perception (image haut de gamme de la marque), l'experience passée (qualité du sommeil ressentie). <strong>Facteurs socioculturels</strong> : l'influence des réseaux sociaux (62 % découvrent la marque via Instagram/TikTok), les avis en ligne et le bouche-à-oreille numérique (45 % les jugent déterminants), les groupes de référence (influenceurs bien-être, communauté en ligne). La tendance sociétale au « self-care » et au bien-être renforce la motivation d'achat. Les avis en ligne jouent le role de prescripteurs : ils réduisent le risque perçu et compensent l'absence de test physique du produit.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Processus d'achat</strong> : <em>1) Reconnaissance du besoin</em> : le client prend conscience d'un problème de sommeil ou souhaite améliorer son confort. <em>2) Recherche d'information</em> : il découvre BelleNuit sur les réseaux sociaux, consulte les avis en ligne, compare les offres (durée moyenne : 3 semaines). <em>3) Évaluation des alternatives</em> : il compare BelleNuit avec d'autres marques sur les critères de prix, qualité, avis et garantie. <em>4) Décision d'achat</em> : il ajoute au panier et procède au paiement (25 % abandonnent à cette étape). <em>5) Comportement post-achat</em> : satisfaction ou insatisfaction, partage d'avis. <br/><br/><strong>Actions pour réduire l'abandon</strong> : proposer le paiement en 3 ou 4 fois sans frais (lever le frein financier), offrir une période d'essai de 100 nuits avec retour gratuit (lever le frein du risque perçu), envoyer un email de relance personnalisé aux paniers abandonnés avec un code promo de 10 %. <strong>Actions pour raccourcir le délai</strong> : mettre en avant les avis clients positifs directement sur les pages produit, proposer un chat en direct avec un conseiller sommeil, publier des vidéos de témoignages clients sur les réseaux sociaux pour renforcer la confiance.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

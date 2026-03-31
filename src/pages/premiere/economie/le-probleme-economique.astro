@@ -175,6 +175,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">En France, un menage moyen dispose d'un revenu mensuel net de 2 850 euros. Ce menage doit arbitrer entre differentes depenses : loyer (950 euros), alimentation (480 euros), transport (320 euros), loisirs (200 euros), epargne et imprevus. Parallelement, le prix de l'energie a augmente de 15 % en un an, ce qui reduit encore les possibilites de consommation. Face a ces contraintes, la famille hesite entre inscrire leur enfant a un stage sportif (350 euros) ou remplacer un electromenager en panne (400 euros). Ce dilemme illustre le probleme economique fondamental auquel font face tous les agents economiques.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Definissez la notion de rarete et distinguez besoins primaires et besoins secondaires. (3 pts)</li>
+            <li>A partir du document, identifiez les contraintes economiques qui pesent sur ce menage et expliquez comment elles limitent ses choix. (4 pts)</li>
+            <li>En vous appuyant sur le document et vos connaissances, montrez que tout choix economique implique un cout d'opportunite. Illustrez votre reponse par au moins deux exemples. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">La rarete designe le fait que les ressources disponibles (revenus, temps, matieres premieres) existent en quantite limitee alors que les besoins humains sont illimites. Les besoins primaires sont ceux indispensables a la survie (se nourrir, se loger, se vetir). Les besoins secondaires relevent du confort ou de l'epanouissement personnel (loisirs, culture, voyages). Dans le document, le loyer et l'alimentation sont des besoins primaires, tandis que le stage sportif est un besoin secondaire.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Plusieurs contraintes pesent sur ce menage. D'abord, la contrainte de revenu : avec 2 850 euros mensuels, les depenses incompressibles (loyer, alimentation, transport) absorbent deja 1 750 euros, ne laissant que 1 100 euros pour les autres postes. Ensuite, la contrainte liee a la hausse des prix de l'energie (+15 %), qui reduit le pouvoir d'achat et ampute le budget restant. Enfin, la contrainte de choix : le menage ne peut pas financer simultanement le stage sportif et le remplacement de l'electromenager. Ces contraintes illustrent le probleme economique fondamental : satisfaire des besoins illimites avec des ressources limitees.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">Tout choix economique implique un cout d'opportunite, c'est-a-dire la valeur de la meilleure alternative a laquelle on renonce. Dans le document, si le menage choisit le stage sportif (350 euros), il renonce au remplacement de l'electromenager : le cout d'opportunite est le confort domestique perdu. Inversement, s'il remplace l'electromenager, il renonce au stage sportif et donc au bien-etre de l'enfant. Au-dela du document, ce raisonnement s'applique a tous les agents : un etudiant qui travaille le week-end renonce a du temps de revision (cout d'opportunite = des notes potentiellement meilleures) ; une entreprise qui investit dans une nouvelle machine renonce a embaucher un salarie supplementaire. Le cout d'opportunite montre que la rarete oblige chaque agent a faire des arbitrages rationnels.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

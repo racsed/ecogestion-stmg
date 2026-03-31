@@ -189,6 +189,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">PixelCraft est un studio de jeux vidéo indépendant de 40 salariés basé à Montpellier. Son fondateur et PDG, M. Antoine Morel, gère l'entreprise depuis 10 ans avec un style très directif : il valide personnellement chaque décision créative, impose les deadlines et contrôle le travail de chaque équipe au quotidien. Récemment, le studio a connu une crise : 6 développeurs expérimentés ont démissionné en 3 mois, déplorant un manque d'autonomie. Le taux de turnover atteint 25 %. Parallèlement, le studio vient de signer un contrat avec un éditeur international pour développer 3 jeux en 18 mois, ce qui nécessite de recruter 15 personnes et de réorganiser le travail. Le DRH propose d'adopter le management agile avec des équipes autonomes de 5 à 8 personnes, chacune pilotant un projet. M. Morel hésite, craignant de perdre le contrôle créatif.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez le style de direction actuel de M. Morel selon la classification de Likert. Caractérisez la répartition du pouvoir (centralisation/décentralisation). (3 pts)</li>
+            <li>Analysez les conséquences du style de direction actuel sur la performance sociale de PixelCraft. En quoi la distinction entre autorité formelle et leadership éclaire-t-elle la situation ? (4 pts)</li>
+            <li>En mobilisant le leadership situationnel de Hersey et Blanchard et la grille de Blake et Mouton, conseillez M. Morel sur l'évolution de son style de management. Montrez en quoi le passage au management agile pourrait répondre aux défis actuels de PixelCraft. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">Selon la classification de <strong>Likert</strong>, M. Morel adopte un <strong>style autoritaire</strong> : il prend seul toutes les décisions créatives, impose les deadlines sans consultation et contrôle le travail au quotidien. La communication est essentiellement descendante. Le pouvoir est fortement <strong>centralisé</strong> : toutes les décisions, y compris opérationnelles, passent par le PDG. Il n'y a pas de délégation aux managers intermédiaires ou aux chefs d'équipe.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Les conséquences sur la <strong>performance sociale</strong> sont négatives : turnover de 25 % (très élevé, coutera cher en recrutement et formation), départ de 6 développeurs expérimentés (perte de compétences clés), démotivation liée au manque d'autonomie. M. Morel dispose de l'<strong>autorité formelle</strong> (pouvoir lié à son statut de PDG) mais semble manquer de <strong>leadership</strong> : il ne parvient pas à motiver et fédérer ses équipes. Les développeurs démissionnaires recherchent un leader qui les inspire et leur fait confiance, pas simplement un chef qui contrôle. Un bon leadership repose sur le charisme, la vision partagée et la capacité à responsabiliser, ce qui fait défaut ici.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">Selon <strong>Hersey et Blanchard</strong>, les développeurs expérimentés qui ont démissionné étaient probablement au niveau de maturité le plus élevé (compétents et motivés). Ils nécessitaient un <strong>style délégatif (S4)</strong>, or M. Morel leur appliquait un style directif (S1), inadapté à leur profil. Pour les 15 nouveaux recrutés, un style <strong>persuasif (S2)</strong> serait plus approprié (expliquer, accompagner, former). <br/><br/>Selon la <strong>grille de Blake et Mouton</strong>, M. Morel se situe en <strong>9.1</strong> (fort intéret pour la production, faible pour les personnes). Il devrait évoluer vers un <strong>style 9.9</strong> (intégrateur) : maintenir l'exigence créative tout en développant l'écoute et la responsabilisation. <br/><br/>Le <strong>management agile</strong> proposé par le DRH est pertinent : des équipes autonomes de 5 à 8 personnes, chacune responsable d'un projet, avec des sprints courts et des retours réguliers. Cela permettrait de <strong>décentraliser</strong> les décisions opérationnelles tout en conservant la vision créative au niveau stratégique. M. Morel garderait le contrôle sur les orientations globales mais délèguerait l'exécution. Cette organisation répondrait aux attentes d'autonomie des développeurs et permettrait de gérer 3 projets simultanément.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

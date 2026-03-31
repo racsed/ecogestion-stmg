@@ -211,6 +211,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">Au premier trimestre 2025, le taux de chomage en France s'etablit a 7,3 % de la population active, soit 2,3 millions de personnes. Le chomage des jeunes de 15 a 24 ans atteint 17,8 %, trois fois plus que celui des 25-49 ans (5,9 %). Le secteur industriel a perdu 45 000 emplois en deux ans en raison de la robotisation et des delocalisations, tandis que le numerique a cree 62 000 postes, souvent inaccessibles aux ouvriers peu qualifies. Le gouvernement a annonce un plan de 800 millions d'euros de formation aux metiers du numerique et de la transition ecologique, ainsi qu'une baisse des cotisations patronales pour les embauches de jeunes de moins de 26 ans. Parallelement, 380 000 postes restent vacants dans la restauration, le batiment et le soin, malgre un chomage eleve.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Definissez le chomage selon le BIT et distinguez chomage structurel et chomage conjoncturel. (3 pts)</li>
+            <li>A partir du document, expliquez pourquoi 380 000 postes restent vacants malgre un chomage de 7,3 %. Quel type de chomage cela illustre-t-il ? (4 pts)</li>
+            <li>Analysez les politiques de l'emploi presentees dans le document. Sont-elles suffisantes pour reduire durablement le chomage ? (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">Selon le Bureau International du Travail (BIT), est au chomage toute personne en age de travailler qui remplit trois criteres : etre sans emploi, etre disponible pour travailler dans les deux semaines, et avoir effectue des recherches actives d'emploi dans le mois precedent. Le chomage conjoncturel est lie a un ralentissement temporaire de l'activite economique (recession, baisse de la demande) : il se resorbe avec la reprise. Le chomage structurel est lie a des desequilibres profonds et durables du marche du travail (inadequation des qualifications, rigidites du marche, mutations technologiques) : il persiste meme en periode de croissance.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">La coexistence de 2,3 millions de chomeurs et de 380 000 postes vacants illustre un chomage structurel, et plus precisement un probleme d'inadequation (« mismatch ») entre l'offre et la demande de travail. Les postes vacants se trouvent dans la restauration, le batiment et le soin, des secteurs aux conditions de travail difficiles ou aux salaires peu attractifs. Dans le meme temps, les emplois detruits dans l'industrie concernent des ouvriers dont les competences ne correspondent pas aux postes disponibles dans le numerique. Il y a donc une double inadequation : geographique (les chomeurs ne sont pas la ou se trouvent les emplois) et de qualification (les competences disponibles ne correspondent pas aux besoins des employeurs). Ce phenomene montre que le chomage ne se reduit pas a un simple manque de croissance.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">Le document presente deux types de politiques de l'emploi. Des politiques actives de l'offre : le plan de formation de 800 millions d'euros vise a requalifier les travailleurs vers les metiers du numerique et de la transition ecologique, reduisant ainsi l'inadequation des competences. C'est une reponse adaptee au chomage structurel. Des politiques de la demande : la baisse des cotisations patronales pour les jeunes de moins de 26 ans vise a reduire le cout du travail pour les employeurs et les inciter a embaucher, ciblant le chomage des jeunes (17,8 %). Cependant, ces mesures ont des limites. La formation prend du temps (plusieurs mois a plusieurs annees) et ne garantit pas l'emploi. La baisse des cotisations patronales a un cout budgetaire et peut creer un effet d'aubaine (l'employeur aurait embauche de toute facon). Elles ne repondent pas au probleme de l'attractivite des metiers en tension (restauration, batiment, soin), qui necessite une revalorisation des salaires et des conditions de travail. Pour etre efficaces, les politiques de l'emploi doivent combiner formation, incitations a l'embauche, amelioration des conditions de travail et accompagnement des transitions professionnelles.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

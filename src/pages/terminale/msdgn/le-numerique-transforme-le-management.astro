@@ -190,6 +190,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">OptiSanté est un groupe de 5 cliniques privées employant 620 salariés (médecins, infirmiers, aides-soignants, personnel administratif) dans le sud de la France. Le directeur général, M. Laurent Mercier, a lancé un plan de transformation digitale ambitieux. Parmi les projets : déploiement d'un logiciel d'intelligence artificielle pour l'aide au diagnostic médical (analyse automatisée des radiographies), mise en place du dossier patient informatisé partagé entre les 5 cliniques (remplacement du papier), utilisation du big data pour optimiser la planification des blocs opératoires (prédiction des durées d'intervention), et passage de 40 % du personnel administratif en télétravail 3 jours par semaine. Le syndicat du personnel soignant s'inquiète de la place de l'IA dans les décisions médicales. Le personnel administratif craint des suppressions de postes liées à l'automatisation. Certains médecins résistent au changement, attachés à leurs habitudes de travail.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez les différentes dimensions de la transformation digitale d'OptiSanté (IA, big data, automatisation, télétravail). Précisez pour chacune son impact sur le management. (3 pts)</li>
+            <li>Analysez les résistances au changement exprimées par les différents acteurs (syndicat, personnel administratif, médecins). En quoi la conduite du changement est-elle un enjeu managérial majeur ? (4 pts)</li>
+            <li>Proposez une stratégie de conduite du changement pour M. Mercier permettant de réussir la transformation digitale tout en répondant aux inquiétudes des parties prenantes internes. Montrez les opportunités que le numérique offre pour améliorer la performance globale d'OptiSanté. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Intelligence artificielle</strong> (aide au diagnostic) : transforme la prise de décision médicale en l'assistant par des algorithmes. Le management doit redéfinir les responsabilités (le médecin reste décideur, l'IA est un outil d'aide). <strong>Big data</strong> (planification des blocs) : permet un management fondé sur les données (data-driven management) plutot que sur l'intuition. Cela améliore l'allocation des ressources et la gestion du temps. <strong>Automatisation</strong> (dossier patient informatisé) : remplace les processus manuels par des processus numériques, ce qui modifie l'organisation du travail et les compétences requises. Le management opérationnel est directement impacté (nouveaux processus, nouvelles procédures). <strong>Télétravail</strong> (personnel administratif) : transforme le management à distance : le contrôle physique est remplacé par le management par objectifs, la confiance et la communication numérique.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Syndicat du personnel soignant</strong> : résistance idéologique et éthique - crainte que l'IA déshumanise la médecine, que les algorithmes remplacent le jugement clinique du médecin, questions de responsabilité en cas d'erreur de diagnostic assisté par IA. <strong>Personnel administratif</strong> : résistance liée à la peur - crainte de suppressions de postes causées par l'automatisation et la dématérialisation, sentiment de devenir inutile. <strong>Médecins</strong> : résistance au changement par habitude et par sentiment de perte de contrôle - certains refusent d'abandonner leurs méthodes éprouvées, d'autres craignent de ne pas maitriser les outils numériques. <br/><br/>La <strong>conduite du changement</strong> est un enjeu majeur car la transformation digitale échoue dans 70 % des cas lorsque le facteur humain est négligé. Sans adhésion des équipes, les outils numériques seront mal utilisés, contournés ou rejetés, ce qui annulera les bénéfices attendus. Le manager doit accompagner le changement et pas seulement l'imposer.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Stratégie de conduite du changement</strong> : <br/><br/><em>1) Communication et transparence</em> : organiser des réunions d'information dans chaque clinique pour expliquer la vision, les objectifs et le calendrier. Rassurer : l'IA est un outil d'aide au diagnostic, pas un remplacement du médecin. Aucune suppression de poste n'est prévue pour le personnel administratif (réaffectation vers des missions à plus forte valeur ajoutée). <br/><br/><em>2) Formation massive</em> : plan de formation pour tous les utilisateurs (dossier patient numérique, outils de télétravail, interface IA). Former des « ambassadeurs numériques » dans chaque service (médecins et soignants volontaires qui forment leurs collègues). <br/><br/><em>3) Participation</em> : associer le syndicat à la rédaction d'une charte d'utilisation de l'IA (garantir que le médecin conserve le pouvoir de décision final). Impliquer les médecins résistants dans la phase de test (ils deviennent contributeurs et non pas subisseurs). <br/><br/><em>4) Progressivité</em> : déployer les projets clinique par clinique (pilote puis généralisation), commencer par les outils les moins controversés (dossier patient) avant l'IA. <br/><br/><strong>Opportunités pour la performance globale</strong> : <em>Performance financière</em> - optimisation des blocs opératoires (+ de patients opérés par jour), réduction des couts papier. <em>Performance commerciale</em> - meilleure expérience patient, diagnostic plus rapide. <em>Performance sociale</em> - télétravail pour le personnel administratif (meilleur équilibre vie pro/perso), allègement des taches répétitives. <em>Performance environnementale</em> - réduction de la consommation de papier et des déplacements (télétravail).</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

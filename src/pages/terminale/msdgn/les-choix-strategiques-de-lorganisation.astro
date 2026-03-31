@@ -203,6 +203,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">Saveurs du Terroir est une entreprise familiale de 95 salariés spécialisée dans la fabrication de confitures artisanales haut de gamme. Fondée en 1985 en Dordogne, elle réalise un CA de 14 millions d'euros, dont 90 % provient de la confiture. Son savoir-faire artisanal et ses recettes traditionnelles constituent sa principale compétence distinctive. Face au ralentissement de la croissance du marché de la confiture en France (+1 % par an), le comité de direction hésite entre deux orientations stratégiques : 1) une stratégie de spécialisation en développant de nouvelles recettes premium (confitures aux fruits rares, éditions limitées saisonnières) et en s'exportant en Europe du Nord, ou 2) une stratégie de diversification en lançant une gamme de pates à tartiner artisanales, de miels et de compotes bio, en s'appuyant sur le réseau de distribution existant.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Définissez les notions de spécialisation et de diversification. Identifiez la stratégie actuelle de Saveurs du Terroir. (3 pts)</li>
+            <li>Analysez les avantages et les risques de chacune des deux options stratégiques envisagées par le comité de direction. (4 pts)</li>
+            <li>Recommandez et justifiez la stratégie la plus adaptée à Saveurs du Terroir. Proposez un plan de mise en oeuvre en précisant les ressources à mobiliser et les étapes clés. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">La <strong>spécialisation</strong> consiste à concentrer les ressources de l'organisation sur un seul métier ou domaine d'activité stratégique (DAS) pour y développer un avantage concurrentiel fort. La <strong>diversification</strong> consiste à se développer dans de nouveaux domaines d'activité, liés ou non au métier d'origine, pour répartir les risques et trouver de nouveaux relais de croissance. Actuellement, Saveurs du Terroir pratique une <strong>stratégie de spécialisation</strong> : 90 % du CA provient d'un seul produit (la confiture), ce qui traduit une forte concentration sur un unique DAS.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Option 1 - Spécialisation renforcée</strong> : <em>Avantages</em> - capitalise sur le savoir-faire existant (compétence distinctive), renforce le positionnement haut de gamme, l'export ouvre un marché plus vaste sans changer de métier, les recettes premium justifient des prix plus élevés et améliorent la marge. <em>Risques</em> - dépendance accrue à un seul produit (si le marché de la confiture décline, toute l'entreprise est menacée), l'export nécessite des investissements importants (logistique, adaptation aux gouts locaux, conformité réglementaire). <br/><br/><strong>Option 2 - Diversification liée</strong> : <em>Avantages</em> - répartition des risques sur plusieurs produits, exploitation du réseau de distribution existant, synergies de production (memes matières premières : fruits, sucre), réponse à la demande de produits naturels et bio. <em>Risques</em> - dispersion des ressources et des compétences, investissements lourds en R&D et en équipements, risque de dilution de l'image de marque (l'expertise « confiture » peut perdre en crédibilité si la gamme s'élargit trop), concurrence forte sur les marchés du miel et des pates à tartiner.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">La <strong>diversification liée</strong> est recommandée car elle réduit la dépendance à un seul marché en croissance faible (+1 %/an) tout en valorisant les synergies existantes. Cependant, elle doit etre menée de manière <strong>progressive et maitrisée</strong>. <br/><br/><strong>Plan de mise en oeuvre</strong> : <br/><em>Phase 1 (année 1)</em> : lancer la gamme de compotes bio (produit le plus proche du savoir-faire confiture, memes équipements, memes fruits). Investissement estimé : 500 000 euros (adaptation de la ligne de production, packaging, lancement commercial). Tester sur le réseau de distribution existant. <br/><em>Phase 2 (année 2)</em> : lancer les pates à tartiner artisanales si la compote fonctionne. Recruter un chef pâtissier spécialisé (ressources humaines). Investissement supplémentaire en communication pour positionner la marque comme « expert du fruit artisanal » (et non plus seulement « confiturier »). <br/><em>Phase 3 (année 3)</em> : évaluer l'opportunité du miel (plus éloigné du métier, nécessite de nouvelles compétences). Parallèlement, développer les recettes premium de confiture et lancer l'export en Europe du Nord (combiner les deux options). <br/><br/><strong>Ressources clés</strong> : financement par emprunt et autofinancement, recrutement de profils marketing et export, montée en compétence de l'équipe R&D. Cette approche graduelle limite les risques tout en construisant un portefeuille de produits diversifié à moyen terme.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

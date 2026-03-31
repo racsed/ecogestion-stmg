@@ -197,6 +197,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">En 2025, le taux d'inflation en zone euro s'etablit a 2,4 % sur un an, apres avoir atteint un pic de 8,6 % en 2022. Les prix alimentaires ont augmente de 3,1 %, l'energie de 5,7 %, et les services de 2,8 %. Dans le meme temps, les salaires n'ont progresse que de 1,9 % en moyenne. Un menage dont le revenu mensuel est de 2 500 euros constate que son panier de courses hebdomadaire est passe de 95 euros a 108 euros en deux ans. La BCE a releve ses taux directeurs de 0 % en 2022 a 4 % en 2023 pour freiner l'inflation, avant de les reduire progressivement a 3,25 % en 2025. Certains economistes estiment que cette hausse des taux a freine l'investissement des entreprises et ralenti la croissance a 0,8 % en 2024.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Definissez l'inflation et expliquez ses consequences sur le pouvoir d'achat des menages. Illustrez a l'aide du document. (3 pts)</li>
+            <li>Identifiez les causes de l'inflation evoquees dans le document et classez-les selon leur nature (inflation par la demande, par les couts). (4 pts)</li>
+            <li>Analysez la politique monetaire de la BCE face a l'inflation. Quels sont les avantages et les limites de cette strategie ? (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">L'inflation designe la hausse generale et durable du niveau des prix dans une economie. Elle se distingue d'une simple hausse de prix isolee. Elle erode le pouvoir d'achat, c'est-a-dire la quantite de biens et services qu'un revenu permet d'acheter. Dans le document, les prix augmentent de 2,4 % tandis que les salaires ne progressent que de 1,9 % : l'ecart de 0,5 point signifie une perte de pouvoir d'achat reelle. Concretement, le panier de courses du menage est passe de 95 a 108 euros par semaine, soit une hausse de 13,7 %. Avec un revenu stable, ce menage doit reduire ses autres depenses ou puiser dans son epargne.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Le document evoque principalement une inflation par les couts : la hausse des prix de l'energie (+5,7 %) rencherit les couts de production de toutes les entreprises (transport, chauffage, fabrication), qui repercutent cette hausse sur leurs prix de vente. Les prix alimentaires (+3,1 %) augmentent en partie parce que l'agriculture et l'industrie agroalimentaire sont fortement consommatrices d'energie. La hausse des prix des services (+2,8 %) peut aussi refleter une inflation par les couts (salaires, loyers des locaux commerciaux). On pourrait egalement evoquer une inflation importee : la hausse des prix de l'energie est souvent liee aux tensions sur les marches mondiaux (petrole, gaz), ce qui constitue un choc d'offre exterieur transmis a l'economie domestique. L'inflation par la demande n'est pas directement evoquee dans le document, mais la politique de taux bas de la BCE entre 2015 et 2022 a pu y contribuer en stimulant excessivement le credit.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">La BCE a mene une politique monetaire restrictive en relevant son taux directeur de 0 % a 4 % entre 2022 et 2023. En augmentant le cout du credit, elle vise a reduire la demande de prets des menages et des entreprises, ce qui freine la consommation, l'investissement et donc la demande globale. Avec moins de monnaie en circulation, la pression a la hausse sur les prix diminue. Les resultats sont visibles : l'inflation est passee de 8,6 % a 2,4 %, se rapprochant de l'objectif de la BCE (proche de 2 %). Cependant, cette strategie a des limites importantes. La hausse des taux a freine l'investissement des entreprises et ralenti la croissance a 0,8 % en 2024, avec un risque de recession. Elle est peu efficace contre l'inflation par les couts (hausse de l'energie), car relever les taux ne fait pas baisser le prix du petrole. Elle penalise les emprunteurs (menages avec un credit immobilier, entreprises endettees) et peut aggraver le chomage. La BCE doit donc arbitrer entre deux objectifs potentiellement contradictoires : stabilite des prix et soutien a l'activite economique. La reduction progressive du taux a 3,25 % en 2025 traduit cette recherche d'equilibre.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

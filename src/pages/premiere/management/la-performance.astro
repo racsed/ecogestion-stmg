@@ -199,6 +199,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">GreenPack est une entreprise de 85 salariés qui fabrique des emballages alimentaires écologiques (carton recyclé, amidon de mais). Son CA a atteint 12 millions d'euros en 2025 avec un objectif initial de 14 millions. Le taux de marge nette est de 6 % (contre 8 % visé). La satisfaction client atteint 4,1/5, mais le taux d'absentéisme des salariés est monté à 9,3 % (contre 4 % en moyenne dans le secteur). L'empreinte carbone de la production a baissé de 22 % en deux ans grace à l'installation de panneaux solaires. Le directeur, M. Romain Vasseur, souhaite mettre en place un tableau de bord pour piloter la performance globale de l'entreprise et convaincre un fonds d'investissement ESG de financer son développement.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Distinguez l'efficacité et l'efficience de GreenPack à partir des données fournies. (3 pts)</li>
+            <li>Identifiez et classez les indicateurs de performance de GreenPack selon les 5 dimensions de la performance globale. Précisez pour chacun s'il est quantitatif ou qualitatif. (4 pts)</li>
+            <li>En mobilisant le balanced scorecard de Kaplan et Norton et les critères ESG, proposez un tableau de bord structuré que M. Vasseur pourrait présenter au fonds d'investissement. Justifiez vos choix d'indicateurs. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Efficacité</strong> : GreenPack n'est <strong>pas pleinement efficace</strong> car elle n'a pas atteint ses objectifs. Le CA réalisé (12 M euros) est inférieur à l'objectif (14 M euros), soit un écart de -14 %. Le taux de marge nette (6 %) est également inférieur à la cible (8 %). En revanche, l'objectif environnemental semble atteint (-22 % d'empreinte carbone). <strong>Efficience</strong> : avec un taux d'absentéisme de 9,3 % (plus du double de la moyenne sectorielle), l'entreprise mobilise mal ses ressources humaines. Des salariés absents entrainent des couts supplémentaires (remplacement, désorganisation) qui réduisent l'efficience globale.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Performance financière</strong> : CA de 12 M euros (quantitatif), taux de marge nette de 6 % (quantitatif). <strong>Performance commerciale</strong> : satisfaction client de 4,1/5 (quantitatif, issu d'un questionnaire qualitatif). <strong>Performance sociale</strong> : taux d'absentéisme de 9,3 % (quantitatif). <strong>Performance environnementale</strong> : réduction de l'empreinte carbone de 22 % (quantitatif), installation de panneaux solaires (qualitatif, investissement responsable). <strong>Performance sociétale</strong> : production d'emballages écologiques contribuant à la réduction des déchets plastiques (qualitatif).</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Balanced scorecard</strong> : <br/><em>Axe financier</em> : CA, taux de marge nette, capacité d'autofinancement - pour montrer la viabilité économique. <br/><em>Axe client</em> : note de satisfaction (4,1/5), taux de fidélisation, nombre de nouveaux clients - pour prouver la demande. <br/><em>Axe processus internes</em> : taux de production conforme, délai moyen de livraison, taux de recyclage des déchets de production - pour démontrer la maitrise industrielle. <br/><em>Axe apprentissage</em> : heures de formation par salarié, taux de turnover, taux d'absentéisme (à améliorer) - pour montrer la capacité de progression. <br/><br/><strong>Critères ESG</strong> : <em>E</em> - réduction de 22 % de l'empreinte carbone, panneaux solaires, matières premières recyclées. <em>S</em> - taux d'absentéisme à surveiller, plan d'amélioration des conditions de travail à proposer. <em>G</em> - transparence du reporting, engagement de la direction dans la démarche RSE. Ce tableau de bord complet montre au fonds ESG que GreenPack pilote une performance globale, pas seulement financière.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

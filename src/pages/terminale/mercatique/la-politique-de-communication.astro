@@ -212,6 +212,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">UrbanFit est une salle de sport indépendante située à Toulouse qui compte 1 800 adherents et réalise un CA de 1,2 million d'euros. Face à l'ouverture prochaine de deux salles low-cost dans le quartier, le gérant, M. Thomas Berger, décide de lancer une campagne de communication avec un budget de 15 000 euros. Ses objectifs : recruter 300 nouveaux adherents en 3 mois et renforcer la notoriété locale de la salle. Il hésite entre plusieurs supports : une campagne d'affichage dans le métro toulousain (5 000 euros), des publicités ciblées sur Instagram et Facebook (4 000 euros), un partenariat avec 3 influenceurs fitness locaux (3 000 euros), une opération de street marketing avec distribution de pass découverte gratuits (2 000 euros) et la création d'un programme de parrainage récompensant les adherents actuels (1 000 euros).</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Classez les 5 supports de communication proposés en communication média et communication hors média. Précisez pour chacun s'il s'agit de communication de masse ou de communication ciblée. (3 pts)</li>
+            <li>Analysez les avantages et les limites du marketing d'influence (partenariat avec les influenceurs) pour UrbanFit par rapport à l'affichage traditionnel dans le métro. (4 pts)</li>
+            <li>Proposez un plan de communication cohérent pour UrbanFit en répartissant le budget de 15 000 euros entre les différents supports. Justifiez vos choix en fonction des objectifs (recrutement et notoriété) et de la cible. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Communication média</strong> : affichage métro (média traditionnel, communication de <em>masse</em> - touche un large public indifférencié), publicités Instagram/Facebook (média digital, communication <em>ciblée</em> - permet de sélectionner l'audience par age, localisation et centres d'intéret). <strong>Communication hors média</strong> : partenariat influenceurs (marketing d'influence, communication <em>ciblée</em> - touche la communauté de l'influenceur), street marketing (promotion directe, communication <em>ciblée</em> géographiquement), programme de parrainage (marketing relationnel, communication <em>ciblée</em> - s'appuie sur les adherents existants).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Marketing d'influence - avantages</strong> : authenticité perçue (les followers font confiance aux recommandations de l'influenceur), ciblage précis (communauté fitness locale déjà intéressée par le sport), cout raisonnable (3 000 euros pour toucher potentiellement des milliers de personnes qualifiées), contenu réutilisable (photos, vidéos, stories). <strong>Limites</strong> : dépendance vis-à-vis de l'image de l'influenceur (risque de bad buzz), difficulté à mesurer le retour sur investissement exact, effet potentiellement éphémère (une story disparait en 24h). <strong>Affichage métro - avantages</strong> : forte visibilité (des milliers de passages quotidiens), notoriété de masse, présence physique durable (campagne de plusieurs semaines). <strong>Limites</strong> : cout élevé (5 000 euros) pour un ciblage imprécis (tous les usagers ne sont pas des sportifs potentiels), pas d'interaction possible, mesure d'impact difficile. Pour une salle locale, l'influence est probablement plus efficace que l'affichage car elle touche une audience qualifiée.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Plan de communication recommandé</strong> (budget : 15 000 euros) : <br/><br/><em>Phase 1 - Notoriété (semaines 1-2)</em> : publicités Instagram/Facebook (4 000 euros) avec ciblage géo (rayon de 10 km autour de la salle), tranche d'age 18-45 ans, centres d'intéret fitness/sport/bien-être. Objectif : faire connaitre la salle et générer du trafic sur le site. Partenariat avec 3 influenceurs fitness locaux (3 000 euros) pour des vidéos de découverte de la salle et des témoignages authentiques. <br/><br/><em>Phase 2 - Recrutement (semaines 3-8)</em> : street marketing (2 000 euros) avec distribution de 500 pass découverte gratuits (1 semaine) aux abords des universités et bureaux du quartier. Programme de parrainage (1 000 euros) : chaque adherent qui amène un filleul reçoit un mois offert, le filleul bénéficie de -30 % sur son inscription. <br/><br/><em>Phase 3 - Renforcement (semaines 9-12)</em> : affichage métro (5 000 euros) limité aux stations proches de la salle pour ancrer la notoriété locale. <br/><br/><strong>Justification</strong> : le digital et l'influence sont prioritaires car ils offrent le meilleur ciblage pour un budget limité. Le street marketing et le parrainage génèrent des contacts directs et des conversions mesurables. L'affichage vient en renfort pour la notoriété de masse. Ce plan combine les 5 supports dans un ordre logique : faire connaitre, puis convertir, puis ancrer.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

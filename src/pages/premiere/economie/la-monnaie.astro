@@ -186,6 +186,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">En 2025, les paiements par carte bancaire representent 58 % des transactions en France, les virements et prelevements 27 %, et les especes seulement 12 %. Les paiements par telephone mobile progressent de 34 % par an. Parallelement, la Banque Centrale Europeenne (BCE) a fixe son taux directeur a 3,25 %, apres l'avoir abaisse de 0,5 point en six mois pour soutenir l'activite economique. Lorsque la banque Creditplus accorde un pret immobilier de 250 000 euros a un menage, elle cree de la monnaie en creditant le compte de l'emprunteur. Cette monnaie scripturale n'existait pas avant l'octroi du pret. La masse monetaire en zone euro atteint 16 400 milliards d'euros, dont 85 % sous forme scripturale.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Rappelez les trois fonctions de la monnaie et identifiez les differentes formes de monnaie mentionnees dans le document. (3 pts)</li>
+            <li>Expliquez le mecanisme de creation monetaire illustre dans le document. En quoi la formule « les credits font les depots » se verifie-t-elle ? (4 pts)</li>
+            <li>Analysez le role de la BCE dans la regulation de la masse monetaire. Quels sont les effets attendus de la baisse du taux directeur evoquee dans le document ? (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">Les trois fonctions de la monnaie sont : intermediaire des echanges (elle facilite les transactions, evitant le troc), unite de compte (elle permet de mesurer et comparer la valeur des biens et services), reserve de valeur (elle permet de conserver du pouvoir d'achat dans le temps). Le document mentionne plusieurs formes de monnaie : la monnaie fiduciaire (especes : billets et pieces, 12 % des transactions), la monnaie scripturale (ecritures sur les comptes bancaires : cartes, virements, prelevements, soit 85 % de la masse monetaire), et la monnaie electronique (paiements par telephone mobile).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">La creation monetaire s'effectue lorsqu'une banque commerciale accorde un credit. Dans le document, Creditplus accorde un pret de 250 000 euros : elle inscrit cette somme au credit du compte de l'emprunteur. Cette monnaie scripturale n'existait pas auparavant, elle est creee « ex nihilo » (a partir de rien). La formule « les credits font les depots » signifie que c'est l'acte de preter qui cree le depot bancaire, et non l'inverse. La banque n'a pas besoin de disposer prealablement de 250 000 euros d'epargne pour accorder ce pret. Lorsque le pret est rembourse, la monnaie creee est detruite. C'est pourquoi la masse monetaire varie en fonction du volume de credits accordes.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">La BCE regule la masse monetaire principalement par sa politique de taux directeur. Le taux directeur est le taux auquel les banques commerciales empruntent aupres de la BCE pour se refinancer. En abaissant ce taux de 0,5 point a 3,25 %, la BCE rend le refinancement moins couteux pour les banques, ce qui les incite a accorder davantage de credits aux menages et aux entreprises. Les effets attendus sont : une hausse de la creation monetaire, une augmentation de l'investissement des entreprises et de la consommation des menages, et donc une relance de l'activite economique et de la croissance. Cependant, cette politique comporte des risques : si la creation monetaire est trop abondante, elle peut alimenter l'inflation (trop de monnaie en circulation par rapport aux biens disponibles) ou favoriser la formation de bulles speculatives sur les marches financiers ou immobiliers. La BCE doit donc trouver un equilibre entre soutien a l'activite et stabilite des prix, son objectif principal etant de maintenir l'inflation proche de 2 %.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

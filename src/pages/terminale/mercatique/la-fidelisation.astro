@@ -227,6 +227,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">CaféTorréfié est une chaine de 12 coffee shops implantés dans les grandes villes françaises. Elle compte 45 000 clients enregistrés dans son CRM et réalise un CA de 8,5 millions d'euros. Le programme de fidélité actuel fonctionne avec une carte à tampon : un café offert pour 10 achetés. Le taux de rétention client est de 42 % (contre 60 % chez les leaders du marché). Le NPS (Net Promoter Score) est de +18 (considéré comme moyen). Une analyse du CRM révèle que les 20 % de clients les plus fidèles génèrent 55 % du CA, que le panier moyen des clients fidèles est de 8,50 euros contre 5,20 euros pour les clients occasionnels, et que le cout d'acquisition d'un nouveau client est de 35 euros tandis que le cout de rétention d'un client existant est de 8 euros. La directrice marketing, Mme Léa Dupont, souhaite moderniser le programme de fidélité pour augmenter le taux de rétention à 55 % sous 18 mois.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Définissez le NPS et interprétez le score de +18 de CaféTorréfié. Expliquez pourquoi fidéliser coute moins cher que conquérir. (3 pts)</li>
+            <li>Analysez les limites du programme de fidélité actuel (carte à tampon). Distinguez fidélité comportementale et fidélité attitudinale dans le cas de CaféTorréfié. (4 pts)</li>
+            <li>Proposez un nouveau programme de fidélité digitalisé pour CaféTorréfié en vous appuyant sur les données du CRM. Montrez comment ce programme peut améliorer le taux de rétention et le NPS. Estimez l'impact financier de la fidélisation. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">Le <strong>NPS</strong> (Net Promoter Score) mesure la probabilité qu'un client recommande la marque. Il se calcule en soustrayant le % de détracteurs (notes 0-6) au % de promoteurs (notes 9-10). Un score de <strong>+18</strong> est <em>moyen</em> : CaféTorréfié a plus de promoteurs que de détracteurs, mais l'écart est faible. Les leaders du secteur dépassent +40. Cela indique que les clients sont satisfaits sans etre enthousiastes. <strong>Fidéliser coute moins cher</strong> : le cout de rétention (8 euros) est 4 fois inférieur au cout d'acquisition (35 euros). Un client fidèle connait déjà la marque, n'a pas besoin d'etre convaincu et dépense plus (panier moyen de 8,50 euros vs 5,20 euros). La fidélisation est donc plus rentable.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Limites de la carte à tampon</strong> : mécanique trop simple (pas de personnalisation), facile à copier par les concurrents, aucune collecte de données (on ne sait pas qui est le client, ce qu'il consomme, quand il vient), pas de segmentation possible, récompense unique (un café gratuit) qui ne crée pas d'attachement émotionnel. <strong>Fidélité comportementale</strong> : le client revient par habitude, proximité géographique ou grace à la carte à tampon. Il pourrait facilement changer pour un concurrent qui propose la meme offre. C'est une fidélité fragile. <strong>Fidélité attitudinale</strong> : le client revient parce qu'il est réellement attaché à la marque, à l'ambiance, aux valeurs de CaféTorréfié. Il recommande activement la marque. C'est une fidélité durable. Avec un NPS de +18, la fidélité attitudinale de CaféTorréfié reste faible : les clients reviennent plus par habitude que par attachement profond.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Nouveau programme de fidélité digitalisé</strong> : <br/>1) <em>Application mobile</em> avec carte de fidélité dématérialisée, commande et paiement en ligne, historique des achats. 2) <em>Systeme de points</em> : 1 euro dépensé = 10 points. Paliers de récompenses variés : café offert (100 pts), patisserie offerte (200 pts), mug personnalisé (500 pts), invitation à un atelier de torréfaction (1 000 pts). 3) <em>Personnalisation via le CRM</em> : offre d'anniversaire, suggestion de produits basée sur l'historique, notification push pour les nouveaux produits correspondant aux gouts du client. 4) <em>Gamification</em> : badges (« 50e café », « client matinal »), challenges mensuels, classement entre amis. 5) <em>Programme de parrainage intégré</em> : 200 points pour le parrain et le filleul. <br/><br/><strong>Impact sur le taux de rétention</strong> : la personnalisation et la variété des récompenses créent un attachement émotionnel (fidélité attitudinale). Le NPS devrait augmenter car les clients satisfaits deviennent des ambassadeurs via le parrainage. <strong>Impact financier</strong> : si le taux de rétention passe de 42 % à 55 %, CaféTorréfié conserve 5 850 clients de plus (45 000 x 13 %). Avec un panier moyen fidèle de 8,50 euros et une fréquence de 3 visites/mois, cela représente un CA supplémentaire potentiel de 1,8 million d'euros par an, pour un cout de rétention de seulement 46 800 euros (5 850 x 8 euros).</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

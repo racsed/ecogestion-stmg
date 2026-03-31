@@ -182,6 +182,58 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Situation juridique</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Trois amis lycéens -- Yasmine, Lucas et Inès -- décident de créer une association pour organiser des événements culturels dans leur quartier. Ils rédigent des statuts et organisent une assemblée générale constitutive. Lucas, qui a 16 ans, se propose comme trésorier. Yasmine, 18 ans, sera présidente. L'association souhaite ouvrir un compte bancaire, signer un contrat de location pour une salle des fêtes et demander une subvention auprès de la mairie. Un mois plus tard, un fournisseur de matériel de sonorisation refuse de contracter avec l'association, estimant qu'elle n'a « pas d'existence légale ».
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Distinguez personne physique et personne morale dans cette situation. Quand l'association acquiert-elle la personnalité juridique ? (4 pts)</li>
+            <li>Lucas, mineur de 16 ans, peut-il valablement être trésorier de l'association ? Analysez sa situation au regard de la capacité juridique. (4 pts)</li>
+            <li>Le fournisseur a-t-il raison de refuser de contracter ? Expliquez les conséquences de la personnalité juridique pour l'association et démontrez que cette personnalité lui confère les mêmes attributs qu'une personne physique pour agir en justice et conclure des contrats. (6 pts)</li>
+          </ol>
+        </div>
+
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div>
+              <p class="font-semibold text-sm mb-1">1. Personne physique, personne morale et personnalité juridique (4 pts)</p>
+              <p class="text-sm text-gray-700">Les personnes physiques sont Yasmine, Lucas et Inès : ce sont des êtres humains dotés de la personnalité juridique dès la naissance (article 16 du Code civil). L'association est une personne morale, c'est-à-dire un groupement de personnes doté d'une personnalité juridique distincte de celle de ses membres. L'association acquiert la personnalité juridique au moment de sa déclaration en préfecture (et de la publication au Journal officiel des associations - JOAFE), conformément à la loi du 1er juillet 1901. Sans cette déclaration, l'association existe en fait mais n'a pas de personnalité juridique.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">2. La capacité juridique de Lucas, mineur (4 pts)</p>
+              <p class="text-sm text-gray-700">Lucas, 16 ans, possède la personnalité juridique (capacité de jouissance : il peut être titulaire de droits) mais sa capacité d'exercice est limitée en raison de sa minorité. Un mineur non émancipé est frappé d'une incapacité d'exercice : il ne peut pas accomplir seul les actes juridiques importants (article 388-1-1 du Code civil). Toutefois, la loi du 1er juillet 1901 ne fixe pas d'âge minimum pour être membre ou dirigeant d'une association. Lucas peut donc être trésorier, mais les actes engageant financièrement l'association de manière importante devront être validés par un représentant légal (ses parents) ou par la présidente majeure (Yasmine).</p>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">3. Conséquences de la personnalité juridique pour l'association (6 pts)</p>
+              <p class="text-sm text-gray-700">Si l'association a bien été déclarée en préfecture, le fournisseur a tort de refuser de contracter. La personnalité juridique confère à l'association les attributs nécessaires pour agir dans la vie juridique : un <strong>nom</strong> (la dénomination de l'association), un <strong>domicile</strong> (le siège social déclaré dans les statuts), un <strong>patrimoine propre</strong> (distinct de celui de ses membres, permettant d'ouvrir un compte bancaire et de posséder des biens), et la <strong>capacité juridique</strong> (elle peut conclure des contrats, ester en justice, recevoir des subventions). L'association peut donc signer un contrat de location, commander du matériel et agir en justice si nécessaire, comme le ferait une personne physique majeure. En revanche, si l'association n'a pas été déclarée (simple association de fait), elle n'a pas la personnalité juridique et ne peut ni contracter en son nom, ni ouvrir de compte bancaire, ni recevoir de subvention. Le fournisseur aurait alors raison. C'est la déclaration en préfecture qui fait toute la différence.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

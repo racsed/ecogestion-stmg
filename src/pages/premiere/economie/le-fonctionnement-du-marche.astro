@@ -170,6 +170,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">Le marche francais des fraises connait d'importantes variations saisonnieres. Au printemps 2025, le kilogramme de fraises francaises se vend en moyenne 6,20 euros. Les producteurs locaux proposent 85 000 tonnes sur la saison. Du cote de la demande, les consommateurs sont prets a acheter 92 000 tonnes a ce prix. Cependant, une vague de gel tardif en avril a detruit 15 % des recoltes dans le sud-ouest. En parallele, l'arrivee sur le marche de fraises espagnoles a 3,80 euros le kilo exerce une pression concurrentielle. Selon une etude de marche, lorsque le prix des fraises augmente de 10 %, la demande diminue de 14 %.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Definissez les notions d'offre, de demande et de prix d'equilibre. (3 pts)</li>
+            <li>Analysez les consequences du gel tardif sur l'equilibre du marche des fraises. Quel sera l'effet sur le prix ? (4 pts)</li>
+            <li>A partir du document et de vos connaissances, montrez comment la concurrence des fraises espagnoles influence le fonctionnement de ce marche. Calculez et interpretez l'elasticite-prix de la demande. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">L'offre represente la quantite de biens que les producteurs sont disposes a vendre a un prix donne. Elle est generalement croissante avec le prix. La demande represente la quantite de biens que les consommateurs souhaitent acheter a un prix donne. Elle est generalement decroissante avec le prix. Le prix d'equilibre est le prix auquel la quantite offerte est egale a la quantite demandee : il n'y a ni excedent ni penurie.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Le gel tardif detruit 15 % des recoltes, ce qui reduit l'offre de fraises francaises d'environ 12 750 tonnes (85 000 x 0,15). L'offre passe donc a environ 72 250 tonnes. Comme la demande reste a 92 000 tonnes, il se cree un exces de demande (penurie). Selon la loi de l'offre et de la demande, ce desequilibre va provoquer une hausse du prix d'equilibre : les producteurs peuvent augmenter leurs prix car les quantites disponibles sont insuffisantes pour satisfaire tous les acheteurs. Le prix va augmenter jusqu'a ce qu'un nouvel equilibre soit atteint.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">La concurrence des fraises espagnoles a 3,80 euros (contre 6,20 euros pour les francaises) exerce une pression a la baisse sur le prix du marche. Les consommateurs, rationnels, peuvent se tourner vers le produit moins cher, ce qui reduit la demande adressee aux producteurs francais. Pour conserver leurs parts de marche, les producteurs francais doivent soit baisser leurs prix, soit se differencier (qualite, label, circuit court). L'elasticite-prix de la demande se calcule : variation de la demande (%) / variation du prix (%) = -14 % / +10 % = -1,4. Cette elasticite est superieure a 1 en valeur absolue : la demande est donc elastique. Cela signifie que les consommateurs sont tres sensibles au prix des fraises, ce qui renforce le pouvoir de la concurrence espagnole et limite la capacite des producteurs francais a augmenter leurs prix.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

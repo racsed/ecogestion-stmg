@@ -198,6 +198,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">MaisonAromes est une entreprise familiale de 20 salariés spécialisée dans la fabrication artisanale de bougies parfumées haut de gamme. Jusqu'à présent, elle distribue ses produits via 3 canaux : sa propre boutique-atelier à Grasse (35 % du CA), un réseau de 40 boutiques indépendantes de décoration en France (45 % du CA) et son site e-commerce (20 % du CA). Le CA total est de 2,8 millions d'euros. La fondatrice, Mme Claire Fontaine, hésite entre deux options stratégiques pour accélérer sa croissance : 1) accepter le référencement en grande distribution (une chaine de magasins de décoration avec 200 points de vente lui propose un contrat), ou 2) développer une stratégie omnicanale en investissant dans le e-commerce et le click & collect depuis les boutiques partenaires.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez le circuit de distribution actuel de MaisonAromes (canal, longueur) pour chacun des 3 canaux. (3 pts)</li>
+            <li>Analysez les avantages et les risques du référencement en grande distribution pour MaisonAromes. En quoi cette décision pourrait-elle affecter son positionnement ? (4 pts)</li>
+            <li>Recommandez et justifiez la stratégie de distribution la plus adaptée à MaisonAromes (grande distribution ou stratégie omnicanale). Proposez un plan d'action concret pour sa mise en oeuvre. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Boutique-atelier à Grasse</strong> : canal <strong>direct</strong> (producteur vers consommateur), circuit <strong>ultra-court</strong> (aucun intermédiaire). <strong>40 boutiques indépendantes</strong> : canal <strong>indirect court</strong> (producteur vers détaillant vers consommateur), circuit <strong>court</strong> (un seul intermédiaire : le détaillant). <strong>Site e-commerce</strong> : canal <strong>direct</strong> (producteur vers consommateur via internet), circuit <strong>ultra-court</strong>. La stratégie de distribution actuelle est <strong>sélective</strong> : MaisonAromes choisit ses points de vente pour préserver l'image de marque.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Avantages du référencement en grande distribution</strong> : accès immédiat à 200 points de vente (couverture nationale), augmentation significative du volume de ventes, économies d'échelle sur la production, notoriété accrue grace à la visibilité en magasin. <strong>Risques</strong> : pression sur les prix (la chaine imposera des marges pour le distributeur, réduisant la marge de MaisonAromes), perte de contrôle sur la mise en valeur des produits en rayon, image de marque diluée (une bougie « artisanale haut de gamme » perd son exclusivité en grande distribution), risque de conflit avec les 40 boutiques indépendantes actuelles qui pourraient se sentir concurrencées et se désengager, dépendance vis-à-vis d'un seul client majeur. Le <strong>positionnement haut de gamme</strong> est menacé car la distribution massive est incompatible avec l'image d'exclusivité artisanale.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">La <strong>stratégie omnicanale</strong> est recommandée car elle préserve le positionnement haut de gamme tout en permettant la croissance. <br/><br/><strong>Plan d'action</strong> : 1) <em>Renforcer le e-commerce</em> : refonte du site avec une expérience immersive (vidéos de fabrication artisanale, histoires des parfums), livraison soignée dans un packaging cadeau, objectif de passer de 20 % à 35 % du CA en ligne sous 2 ans. 2) <em>Click & collect</em> : permettre aux clients de commander en ligne et de retirer en boutique partenaire, ce qui génère du trafic pour les détaillants et renforce la relation. 3) <em>Élargir le réseau sélectif</em> : passer de 40 à 80 boutiques indépendantes soigneusement sélectionnées (concept stores, boutiques de décoration haut de gamme) plutot que d'entrer en grande distribution. 4) <em>Développer la vente directe</em> : organiser des ateliers de création de bougies à Grasse (tourisme expérientiel) et des pop-up stores dans les grandes villes. Cette stratégie permet une croissance maitrisée sans sacrifier l'identité artisanale ni la marge, contrairement à la grande distribution qui imposerait des conditions commerciales défavorables.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

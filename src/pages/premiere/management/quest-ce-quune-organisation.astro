@@ -187,6 +187,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">NaturBio est une association loi 1901 fondée en 2019 dans la région bordelaise. Elle regroupe 45 adherents (agriculteurs, consommateurs et benevoles) et a pour objectif de promouvoir l'agriculture biologique locale en organisant des marchés hebdomadaires, des ateliers de sensibilisation et un systeme de paniers livrés à domicile. Elle emploie 3 salariés et fonctionne grace aux cotisations de ses membres (15 euros par an) et à une subvention annuelle de la mairie de 8 000 euros. Recemment, NaturBio a été sollicitée par une chaine de supermarchés qui souhaite distribuer ses paniers bio. Le bureau de l'association (président, trésorier, secrétaire) doit décider s'il accepte ce partenariat.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez le type d'organisation que représente NaturBio et précisez sa finalité. (3 pts)</li>
+            <li>Analysez les ressources mobilisées par NaturBio en les classant par catégorie (humaines, financières, matérielles, immatérielles). (4 pts)</li>
+            <li>En vous appuyant sur les mécanismes de coordination de Mintzberg, expliquez comment NaturBio fonctionne au quotidien, puis argumentez sur les avantages et les risques du partenariat avec la chaine de supermarchés au regard de la finalité de l'association. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">NaturBio est une <strong>association</strong> (organisation de la société civile, loi 1901). Sa finalité est <strong>non lucrative</strong> : elle vise à promouvoir l'agriculture biologique locale et à satisfaire les intérets de ses membres, sans recherche de profit. Elle se distingue d'une entreprise (finalité lucrative) et d'une organisation publique (finalité d'intéret général financée par les prélèvements obligatoires).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Ressources humaines</strong> : 3 salariés, 45 adherents dont des benevoles, les membres du bureau (président, trésorier, secrétaire). <strong>Ressources financières</strong> : cotisations des membres (45 x 15 = 675 euros), subvention municipale de 8 000 euros, recettes des ventes de paniers. <strong>Ressources matérielles</strong> : stands de marché, locaux pour les ateliers, véhicules de livraison. <strong>Ressources immatérielles</strong> : réputation auprès des consommateurs locaux, savoir-faire en agriculture biologique, réseau de producteurs partenaires.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">NaturBio fonctionne principalement par <strong>ajustement mutuel</strong> : structure de petite taille, communication directe entre les membres, décisions prises collectivement lors des réunions du bureau. La <strong>supervision directe</strong> est exercée ponctuellement par le président pour coordonner les benevoles lors des marchés. <br/><br/><strong>Avantages du partenariat</strong> : augmentation des revenus, plus grande visibilité, possibilité de toucher un public plus large et de mieux rémunérer les producteurs. <strong>Risques</strong> : le partenariat avec une chaine de supermarchés pourrait entrer en contradiction avec la finalité de l'association (promouvoir le circuit court et le local). L'association risque de perdre son identité, de décevoir ses adherents attachés aux valeurs de proximité, et de devenir dépendante d'un acteur commercial. Il faudrait vérifier que ce partenariat reste compatible avec l'objet social de l'association inscrit dans ses statuts.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

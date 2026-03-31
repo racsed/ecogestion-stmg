@@ -187,6 +187,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">SportPlus est une enseigne française de vente d'articles de sport créée en 2008. Elle possède 25 magasins en France et réalise un CA de 95 millions d'euros. Ses forces : une marque reconnue, des vendeurs experts (anciens sportifs), un programme de fidélité comptant 200 000 membres. Ses faiblesses : un site e-commerce peu performant (seulement 8 % du CA en ligne) et des couts logistiques élevés. L'environnement évolue rapidement : le marché du sport en France croit de 4 % par an, le e-commerce sportif explose (+15 % par an), mais un géant américain, FitWorld, annonce son arrivée en France avec une stratégie de prix agressive. Par ailleurs, la tendance au sport en plein air et au bien-être se renforce depuis la crise sanitaire. Le comité de direction de SportPlus doit définir sa stratégie pour les 5 prochaines années.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Réalisez la matrice SWOT de SportPlus à partir des informations fournies. (3 pts)</li>
+            <li>Analysez l'environnement concurrentiel de SportPlus en mobilisant le modèle des 5 forces de Porter. (4 pts)</li>
+            <li>En vous appuyant sur les stratégies génériques de Porter, proposez et justifiez une orientation stratégique pour SportPlus face à l'arrivée de FitWorld. Précisez les actions concrètes à mettre en oeuvre. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Forces (S)</strong> : marque reconnue en France, vendeurs experts (anciens sportifs) apportant un conseil de qualité, programme de fidélité solide (200 000 membres), réseau de 25 magasins. <strong>Faiblesses (W)</strong> : site e-commerce peu performant (8 % du CA seulement), couts logistiques élevés. <strong>Opportunités (O)</strong> : marché du sport en croissance (+4 %/an), explosion du e-commerce sportif (+15 %/an), tendance au sport en plein air et au bien-être. <strong>Menaces (T)</strong> : arrivée de FitWorld avec une stratégie de prix agressive, intensification de la concurrence en ligne.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700"><strong>Rivalité entre concurrents</strong> : forte, avec des enseignes nationales et l'arrivée imminente de FitWorld. <strong>Menace de nouveaux entrants</strong> : élevée, FitWorld en est la preuve. Les barrières à l'entrée sont faibles dans la distribution (pas de brevet, capital modéré). <strong>Menace de substitution</strong> : modérée (le sport en salle, les applications fitness ou le matériel d'occasion peuvent détourner certains clients). <strong>Pouvoir des clients</strong> : fort, car les consommateurs comparent facilement les prix en ligne et peuvent changer d'enseigne sans cout. <strong>Pouvoir des fournisseurs</strong> : modéré, les grandes marques (Nike, Adidas) imposent leurs conditions mais SportPlus peut diversifier ses fournisseurs. L'intensité concurrentielle globale est <strong>élevée</strong>.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">Face à FitWorld qui adopte une <strong>domination par les couts</strong>, SportPlus ne peut pas rivaliser sur les prix. La stratégie recommandée est la <strong>différenciation</strong> : s'appuyer sur ses compétences distinctives (expertise des vendeurs, conseil personnalisé, fidélité client) pour proposer une expérience client unique que FitWorld ne peut pas reproduire. <br/><br/><strong>Actions concrètes</strong> : 1) Investir massivement dans le e-commerce (refonte du site, click & collect, application mobile) pour capter la croissance en ligne. 2) Développer des services exclusifs : coaching personnalisé en magasin, ateliers de test de matériel, communauté de sportifs liée au programme de fidélité. 3) Se positionner sur le créneau sport en plein air et bien-être (opportunité PESTEL socioculturelle) avec des gammes spécialisées. 4) Éventuellement, adopter une <strong>stratégie de focalisation</strong> sur certains segments (trail, yoga, cyclisme) où l'expertise des vendeurs crée un avantage concurrentiel durable et difficile à imiter. Cette stratégie transforme les forces internes en avantage concurrentiel face aux menaces externes.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

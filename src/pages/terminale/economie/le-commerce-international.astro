@@ -201,6 +201,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">En 2025, la France a exporte pour 587 milliards d'euros de biens et services et importe pour 643 milliards, affichant un deficit commercial de 56 milliards d'euros. L'aeronautique reste le premier poste excedentaire (+38 milliards), tandis que les importations d'energie representent un deficit de 62 milliards. L'Union europeenne absorbe 59 % des exportations francaises. Parallelement, les Etats-Unis ont instaure des droits de douane de 25 % sur les importations d'acier europeen, affectant les siderurgistes francais dont les exportations vers les USA ont chute de 18 %. L'OMC a ete saisie par l'UE pour contester cette mesure, jugee contraire aux regles du libre-echange. En riposte, l'UE envisage un mecanisme d'ajustement carbone aux frontieres pour taxer les importations de produits fabriques sans contraintes environnementales.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Definissez le libre-echange et le protectionnisme. Identifiez les mesures protectionnistes mentionnees dans le document. (3 pts)</li>
+            <li>A partir du document, analysez la structure du commerce exterieur francais. Quelles sont ses forces et ses faiblesses ? (4 pts)</li>
+            <li>Le protectionnisme est-il toujours nefaste pour l'economie ? Discutez en vous appuyant sur le document et la theorie de l'avantage comparatif. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">Le libre-echange est une doctrine economique qui preconise la libre circulation des biens et services entre les pays, sans entraves (droits de douane, quotas, normes). Le protectionnisme, a l'inverse, vise a proteger la production nationale en limitant les importations. Dans le document, deux mesures protectionnistes sont identifiables : les droits de douane americains de 25 % sur l'acier europeen (protectionnisme tarifaire classique) et le mecanisme d'ajustement carbone aux frontieres envisage par l'UE (protectionnisme environnemental, visant a taxer les importations de produits fabriques sans contraintes ecologiques).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Le commerce exterieur francais presente des forces et des faiblesses. Les forces : la France dispose de secteurs d'excellence tres competitifs, notamment l'aeronautique (+38 milliards d'excedent), le luxe et l'agroalimentaire. L'ancrage europeen est solide (59 % des exportations vers l'UE), ce qui offre un marche proche et integre. Les faiblesses : le deficit commercial global est important (-56 milliards), principalement tire par la dependance energetique (-62 milliards d'importations d'energie). Ce deficit structurel signifie que la France consomme plus qu'elle ne produit a l'international, ce qui fragilise sa balance des paiements. La vulnerabilite aux mesures protectionnistes (chute de 18 % des exportations d'acier vers les USA) montre la sensibilite de certains secteurs aux tensions commerciales.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">Selon David Ricardo, le libre-echange est benefique car chaque pays a interet a se specialiser dans la production pour laquelle il dispose d'un avantage comparatif (cout d'opportunite le plus faible). La France, specialisee dans l'aeronautique, gagne a echanger avec des pays specialises dans d'autres secteurs. Le protectionnisme americain (25 % sur l'acier) rompt cette logique et nuit a l'ensemble : les consommateurs americains paient l'acier plus cher, et les siderurgistes europeens perdent des debouches. Cependant, le protectionnisme peut se justifier dans certains cas. Pour proteger les industries naissantes qui n'ont pas encore atteint une taille suffisante pour etre competitives (argument de Friedrich List). Pour des raisons strategiques : un pays peut vouloir conserver une souverainete energetique ou alimentaire. Pour des raisons environnementales : le mecanisme carbone aux frontieres de l'UE vise a eviter le « dumping ecologique », c'est-a-dire la delocalisation de la production vers des pays aux normes environnementales moins exigeantes. Le protectionnisme n'est donc pas toujours nefaste s'il est cible, temporaire et justifie par un objectif d'interet general (environnement, souverainete), mais il devient nuisible lorsqu'il est generalise et declenche des guerres commerciales.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

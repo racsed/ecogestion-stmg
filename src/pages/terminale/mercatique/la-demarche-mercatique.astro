@@ -213,6 +213,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">AquaPure est une PME française de 52 salariés spécialisée dans la fabrication de gourdes réutilisables en inox. Face à la croissance du marché des alternatives au plastique, la direction souhaite lancer une nouvelle gamme de gourdes filtrantes destinée aux randonneurs et voyageurs. Avant de se lancer, le responsable marketing, M. Julien Garnier, décide de réaliser une étude de marché complète. Il dispose d'un budget de 25 000 euros et de 3 mois pour mener cette étude. Le SIM (Système d'Information Mercatique) de l'entreprise contient les données de ventes des 3 dernières années, les avis clients collectés en ligne et les rapports de veille concurrentielle. Une enquête quantitative en ligne auprès de 1 200 randonneurs est prévue, ainsi que 4 focus groups qualitatifs.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Définissez la démarche mercatique et identifiez ses étapes dans le cas d'AquaPure. (3 pts)</li>
+            <li>Analysez le role du SIM dans la prise de décision de M. Garnier. Distinguez les sources d'information internes et externes mobilisées. (4 pts)</li>
+            <li>Expliquez en quoi la complémentarité entre l'étude quantitative et les focus groups qualitatifs permet de réduire le risque commercial du lancement de la nouvelle gamme. Proposez des recommandations pour structurer la veille mercatique d'AquaPure. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">La <strong>démarche mercatique</strong> est un processus qui consiste à identifier les besoins des consommateurs pour concevoir une offre adaptée, la proposer au bon prix, la distribuer efficacement et la promouvoir. Dans le cas d'AquaPure : <em>1) Analyse du marché</em> : étude de la demande des randonneurs et voyageurs pour des gourdes filtrantes. <em>2) Étude de l'offre concurrentielle</em> : veille concurrentielle sur les produits existants. <em>3) Définition de l'offre</em> : conception de la gamme de gourdes filtrantes. <em>4) Mise en oeuvre du mix marketing</em> : politique de produit, de prix, de distribution et de communication (à venir après l'étude).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Le <strong>SIM</strong> (Système d'Information Mercatique) centralise, traite et diffuse les informations nécessaires à la prise de décision marketing. Pour M. Garnier, il permet de croiser des données multiples avant de lancer la nouvelle gamme. <strong>Sources internes</strong> : données de ventes des 3 dernières années (tendances, saisonnalité, produits les plus vendus), avis clients collectés en ligne (satisfaction, attentes exprimées). <strong>Sources externes</strong> : rapports de veille concurrentielle (positionnement des concurrents, prix pratiqués), résultats de l'enquête quantitative (1 200 répondants), retours des focus groups. Le SIM transforme ces données brutes en informations exploitables pour réduire l'incertitude.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">L'<strong>étude quantitative</strong> (1 200 randonneurs) fournit des données chiffrées et représentatives : pourcentage de personnes intéressées par une gourde filtrante, prix acceptable, fréquence d'utilisation prévue, canaux de distribution préférés. Elle permet de mesurer la taille du marché potentiel et de valider statistiquement les hypothèses. Les <strong>focus groups qualitatifs</strong> (4 groupes) permettent de comprendre en profondeur les motivations, les freins et les attentes des consommateurs : pourquoi ils filtrent l'eau, quels critères de choix priment (poids, capacité, design, prix), quelles situations d'usage ils imaginent. Cette complémentarité réduit le risque : le quantitatif confirme la taille du marché, le qualitatif guide la conception du produit. <br/><br/><strong>Recommandations pour la veille</strong> : 1) Mettre en place une veille concurrentielle systématique (alertes Google, surveillance des brevets, salons professionnels). 2) Suivre les tendances de consommation liées au développement durable et aux sports outdoor (veille sociétale). 3) Analyser en continu les avis clients en ligne pour détecter les attentes non satisfaites (veille commerciale). 4) Surveiller les évolutions réglementaires sur les matériaux au contact alimentaire (veille juridique).</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

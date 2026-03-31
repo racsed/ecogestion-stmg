@@ -174,6 +174,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">Une cimenterie installee en peripherie d'une ville de 35 000 habitants rejette chaque annee 28 000 tonnes de CO2 et des poussieres fines qui affectent la qualite de l'air. Les riverains se plaignent de problemes respiratoires et d'une devalorisation de leurs biens immobiliers estimee a 8 % en moyenne. L'entreprise emploie 120 personnes et genere 14 millions d'euros de chiffre d'affaires. Le maire envisage d'imposer l'installation de filtres antipollution dont le cout s'eleve a 2,3 millions d'euros. Par ailleurs, la commune ne dispose que d'un seul fournisseur d'eau potable, la societe Aquapur, qui fixe librement ses tarifs en l'absence de concurrents.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Definissez la notion d'externalite et distinguez externalite positive et externalite negative. (2 pts)</li>
+            <li>Identifiez dans le document les defaillances du marche presentes et expliquez pourquoi le marche ne peut pas les corriger seul. (4 pts)</li>
+            <li>Discutez les moyens dont dispose l'Etat pour corriger ces defaillances. Votre argumentation s'appuiera sur le document et vos connaissances. (6 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (2 pts)</p><p class="text-sm text-gray-700">Une externalite est une consequence de l'activite d'un agent economique sur un tiers, sans que cette consequence soit compensee par le marche (ni payee, ni indemnisee). Une externalite negative impose un cout a un tiers (pollution, nuisances). Une externalite positive procure un benefice gratuit a un tiers (une entreprise qui forme ses salaries beneficie aussi aux entreprises qui les embaucheront ensuite).</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">Le document presente deux defaillances du marche. Premierement, une externalite negative : la cimenterie pollue l'air et devalue les biens immobiliers des riverains sans les indemniser. Le cout social (sante, immobilier) n'est pas integre dans le prix du ciment, le marche ne reflete donc pas le vrai cout de la production. Deuxiemement, un monopole : Aquapur est l'unique fournisseur d'eau, ce qui lui permet de fixer des prix eleves sans pression concurrentielle. En l'absence de concurrence, le marche ne peut pas jouer son role de regulation par les prix. Dans les deux cas, le marche seul ne parvient pas a une allocation optimale des ressources.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (6 pts)</p><p class="text-sm text-gray-700">L'Etat dispose de plusieurs moyens pour corriger ces defaillances. Contre les externalites negatives, il peut utiliser la reglementation : le maire envisage d'imposer des filtres antipollution, ce qui internalise une partie du cout social en l'imputant au pollueur (principe pollueur-payeur). L'Etat peut aussi instaurer des taxes ecologiques (taxe carbone) pour rencherir le cout de la pollution et inciter les entreprises a reduire leurs emissions. Il peut encore creer un marche de droits a polluer (marche du carbone europeen). Contre le monopole d'Aquapur, l'Etat peut reguler les prix par une autorite de la concurrence ou un contrat de delegation de service public avec des tarifs encadres. Il peut aussi favoriser l'entree de concurrents sur le marche. Toutefois, ces interventions ont des limites : le cout des filtres (2,3 millions d'euros) pourrait fragiliser l'emploi local (120 salaries) ; une regulation trop stricte des prix de l'eau pourrait decourager l'investissement dans les infrastructures. L'Etat doit donc arbitrer entre efficacite economique, protection de l'environnement et emploi.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

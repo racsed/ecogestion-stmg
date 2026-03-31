@@ -194,6 +194,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Cas d'entreprise</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">TextilEco est une entreprise de confection textile de 180 salariés basée à Roubaix. Elle produit des vetements pour plusieurs marques de pret-à-porter. Son CA est de 32 millions d'euros. Récemment, l'entreprise a été interpellée par plusieurs parties prenantes : les salariés réclament une augmentation salariale de 4 % (l'inflation est de 3,2 %), un collectif d'ONG a publié un rapport dénonçant les conditions de travail chez les sous-traitants au Bangladesh utilisés par TextilEco, les actionnaires souhaitent maintenir le niveau de dividendes (1,2 million d'euros distribués l'an dernier) et la mairie de Roubaix demande à l'entreprise de participer à un programme d'insertion des jeunes du quartier. Le PDG, M. Karim Belkacem, a décidé de lancer une démarche RSE structurée. Il envisage de créer un comité RSE, de publier un rapport extra-financier et de modifier les statuts de l'entreprise pour y inscrire une « raison d'être ».</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Identifiez les parties prenantes internes et externes de TextilEco. Montrez que leurs attentes sont parfois contradictoires. (3 pts)</li>
+            <li>Expliquez ce qu'est la RSE et analysez en quoi la démarche envisagée par M. Belkacem répond aux attentes des différentes parties prenantes. (4 pts)</li>
+            <li>Discutez les avantages et les limites de l'inscription d'une « raison d'être » dans les statuts de TextilEco. Proposez des engagements RSE concrets et mesurables que l'entreprise pourrait prendre vis-à-vis de chaque partie prenante identifiée. (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700"><strong>Parties prenantes internes</strong> : les salariés (attente : augmentation salariale, meilleures conditions de travail), les actionnaires (attente : maintien des dividendes et rentabilité), le PDG M. Belkacem (attente : pérennité et image positive de l'entreprise). <strong>Parties prenantes externes</strong> : les sous-traitants au Bangladesh (attente : commandes régulières), les ONG (attente : conditions de travail dignes dans la chaine d'approvisionnement), la mairie de Roubaix (attente : participation à l'insertion des jeunes), les clients (marques de pret-à-porter) (attente : produits de qualité à bon prix, image éthique). <strong>Contradictions</strong> : augmenter les salaires de 4 % réduit les bénéfices et donc les dividendes ; améliorer les conditions chez les sous-traitants augmente les couts de production ; l'insertion des jeunes mobilise des ressources humaines et financières.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">La <strong>RSE</strong> (Responsabilité Sociétale des Entreprises) est la prise en compte volontaire par l'entreprise des enjeux sociaux, environnementaux et éthiques dans ses activités et dans ses relations avec ses parties prenantes. Elle s'inscrit dans la théorie des parties prenantes de Freeman. La démarche de M. Belkacem y répond : le <strong>comité RSE</strong> institutionnalise le dialogue avec toutes les parties prenantes et montre un engagement structurel (pas simplement déclaratif). Le <strong>rapport extra-financier</strong> répond à l'exigence de transparence des ONG et permet de mesurer les progrès (indicateurs ESG). La <strong>raison d'être</strong> inscrite dans les statuts engage juridiquement l'entreprise au-delà du seul objectif de profit, ce qui rassure les salariés, les ONG et la collectivité. Cette démarche peut aussi devenir un avantage concurrentiel : les marques clientes privilégient de plus en plus les fournisseurs engagés en RSE.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700"><strong>Avantages de la raison d'être</strong> : elle donne un cap stratégique clair au-delà du profit, renforce l'engagement des salariés (sens au travail), améliore l'image auprès des clients et du territoire, et constitue un avantage dans les appels d'offres. Depuis la loi PACTE (2019), l'entreprise peut devenir « entreprise à mission » avec un cadre juridique renforcé. <strong>Limites</strong> : risque de « greenwashing » si la raison d'être n'est pas suivie d'actions concrètes, contrainte juridique supplémentaire (contrôle par un organisme tiers), tension possible avec les actionnaires si elle limite la distribution de dividendes. <br/><br/><strong>Engagements RSE concrets</strong> : <em>Salariés</em> - augmentation de 3 % + intéressement indexé sur les résultats RSE, plan de formation annuel de 40 heures par salarié. <em>Actionnaires</em> - maintien d'un dividende plancher avec réinvestissement partiel des bénéfices dans la transition écologique. <em>ONG / sous-traitants</em> - audit social annuel des sous-traitants par un organisme indépendant, engagement à ne travailler qu'avec des fournisseurs respectant les normes OIT. <em>Mairie</em> - accueil de 10 jeunes en contrat d'insertion par an, parrainage avec les salariés. <em>Environnement</em> - réduction de 30 % de la consommation d'eau d'ici 3 ans, passage à 50 % de coton bio. Chaque engagement doit etre assorti d'indicateurs mesurables publiés dans le rapport extra-financier.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (

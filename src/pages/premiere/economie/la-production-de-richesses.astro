@@ -179,6 +179,44 @@ const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapter
       </section>
     )}
 
+    <!-- ═══ SUJET TYPE BAC ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📄</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Sujet type bac</h2>
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Entraînement
+        </span>
+      </div>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <h3 class="font-display font-bold text-lg mb-3">📋 Document</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">La boulangerie artisanale « Le Fournil d'Or » a realise en 2025 un chiffre d'affaires de 620 000 euros. Pour produire, elle a achete 185 000 euros de matieres premieres (farine, beurre, levure) et 42 000 euros d'energie (electricite, gaz). Elle emploie 6 salaries pour un cout total de 198 000 euros. Le boulanger a egalement investi 75 000 euros dans un nouveau four a sole. Par ailleurs, le PIB francais a atteint 2 870 milliards d'euros en 2025, en hausse de 1,1 % par rapport a 2024. La productivite du travail dans l'artisanat alimentaire a progresse de 2,3 % grace a la modernisation des equipements.</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-display font-bold text-base">Questions :</h3>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+            <li>Calculez la valeur ajoutee du Fournil d'Or et definissez cette notion. (3 pts)</li>
+            <li>Expliquez comment la valeur ajoutee est repartie entre les differents agents economiques. Appuyez-vous sur les donnees du document. (4 pts)</li>
+            <li>Montrez que la productivite est un facteur essentiel de la creation de richesses. En quoi le PIB reste-t-il un indicateur imparfait ? (5 pts)</li>
+          </ol>
+        </div>
+        <details class="group">
+          <summary class="cursor-pointer flex items-center gap-2 text-sm font-semibold" style={`color: ${subject.colorHex};`}>
+            <svg class="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            Voir le corrigé
+          </summary>
+          <div class="mt-4 p-5 rounded-2xl space-y-4" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+            <div><p class="font-semibold text-sm mb-1">1. (3 pts)</p><p class="text-sm text-gray-700">La valeur ajoutee (VA) mesure la richesse reellement creee par une entreprise. Elle se calcule ainsi : VA = Chiffre d'affaires - Consommations intermediaires. Les consommations intermediaires sont les biens et services detruits ou transformes dans le processus de production : ici, matieres premieres (185 000) + energie (42 000) = 227 000 euros. Donc VA = 620 000 - 227 000 = 393 000 euros. Le Fournil d'Or a cree 393 000 euros de richesse en 2025.</p></div>
+            <div><p class="font-semibold text-sm mb-1">2. (4 pts)</p><p class="text-sm text-gray-700">La valeur ajoutee est repartie entre plusieurs beneficiaires. Les salaries recoivent les salaires : 198 000 euros pour remunerer le facteur travail. L'Etat percoit des impots et cotisations sociales (sur les salaires, impot sur les benefices, TVA). Les banques et preteurs recoivent les interets si l'entreprise a emprunte (financement du four). L'entreprise conserve le benefice restant, qui constitue l'excedent brut d'exploitation (EBE), utilise pour autofinancer de futurs investissements ou remunerer le proprietaire. Ainsi, la VA irrigue l'ensemble de l'economie en remunerant le travail, le capital, et en finançant les services publics.</p></div>
+            <div><p class="font-semibold text-sm mb-1">3. (5 pts)</p><p class="text-sm text-gray-700">La productivite mesure l'efficacite de la production : elle rapporte la quantite produite aux facteurs utilises. Dans le document, la productivite du travail dans l'artisanat a progresse de 2,3 % grace a la modernisation des equipements (nouveau four). Un gain de productivite signifie que l'on produit davantage avec la meme quantite de travail, ce qui augmente la valeur ajoutee et donc la richesse creee. A l'echelle nationale, la somme des valeurs ajoutees constitue le PIB (2 870 milliards d'euros). Cependant, le PIB est un indicateur imparfait : il ne comptabilise pas le travail domestique (le boulanger qui fait du pain chez lui gratuitement), il ignore l'economie informelle, il ne mesure pas les inegalites de repartition (un PIB eleve peut coexister avec de fortes inegalites), et il ne tient pas compte des degradations environnementales (pollution liee a la production). Des indicateurs complementaires comme l'IDH ou l'empreinte ecologique sont necessaires pour evaluer le bien-etre reel.</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
       {prevChapter ? (
