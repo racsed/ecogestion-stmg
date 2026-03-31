@@ -38,8 +38,23 @@ export const GET: APIRoute = async ({ request, url }) => {
     return new Response(JSON.stringify({ error: 'Missing file param' }), { status: 400 });
   }
 
+  const isDir = url.searchParams.get('dir') === 'true';
+
   try {
     const data = await githubAPI(`contents/${file}`);
+
+    // Directory listing
+    if (isDir && Array.isArray(data)) {
+      const files = data.map((f: any) => ({
+        name: f.name,
+        path: f.path,
+        size: f.size,
+        sha: f.sha,
+        download_url: f.download_url,
+      }));
+      return new Response(JSON.stringify({ files }), { status: 200 });
+    }
+
     const content = atob(data.content);
     return new Response(JSON.stringify({ content, sha: data.sha }), { status: 200 });
   } catch (e) {
@@ -53,18 +68,41 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const body = await request.json();
-  const { file, content, sha, message } = body;
+  const { file, content, sha, message, binary } = body;
+
+  // Handle delete requests
+  if (body.delete === true) {
+    if (!file || !sha) {
+      return new Response(JSON.stringify({ error: 'Missing file or sha for delete' }), { status: 400 });
+    }
+    try {
+      const data = await githubAPI(`contents/${file}`, {
+        method: 'DELETE',
+        body: JSON.stringify({
+          message: message || `Delete ${file} via admin panel`,
+          sha: sha,
+          branch: 'main',
+        }),
+      });
+      return new Response(JSON.stringify({ success: true, commit: data.commit?.sha }), { status: 200 });
+    } catch (e) {
+      return new Response(JSON.stringify({ error: 'Failed to delete file' }), { status: 500 });
+    }
+  }
 
   if (!file || !content) {
     return new Response(JSON.stringify({ error: 'Missing file or content' }), { status: 400 });
   }
 
   try {
+    // For binary uploads (PDF, images), content is already base64
+    const encodedContent = binary ? content : btoa(unescape(encodeURIComponent(content)));
+
     const data = await githubAPI(`contents/${file}`, {
       method: 'PUT',
       body: JSON.stringify({
         message: message || `Update ${file} via admin panel`,
-        content: btoa(unescape(encodeURIComponent(content))),
+        content: encodedContent,
         sha: sha,
         branch: 'main',
       }),

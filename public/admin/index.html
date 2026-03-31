@@ -172,20 +172,71 @@
 
     .relative { position: relative; }
 
+    /* ---- Cours toolbar ---- */
+    .html-toolbar {
+      display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 0; margin-bottom: 12px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .html-toolbar button {
+      padding: 7px 14px; border: 2px solid #e5e7eb; border-radius: 8px; background: white;
+      font-size: 13px; font-weight: 700; color: #374151; transition: all 0.2s;
+      font-family: 'JetBrains Mono', 'Plus Jakarta Sans', monospace;
+    }
+    .html-toolbar button:hover { border-color: #8b5cf6; color: #7c3aed; background: #faf5ff; }
+    .cours-textarea {
+      width: 100%; min-height: 400px; padding: 16px; border: 2px solid #e5e7eb; border-radius: 12px;
+      font-size: 14px; font-family: 'JetBrains Mono', monospace; line-height: 1.7; resize: vertical;
+      outline: none; transition: border-color 0.2s; background: white; tab-size: 2;
+    }
+    .cours-textarea:focus { border-color: #8b5cf6; }
+    .cours-preview {
+      background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 24px;
+      min-height: 120px; line-height: 1.7; font-size: 15px;
+    }
+    .cours-preview h3 { font-family: 'Outfit'; font-weight: 700; font-size: 18px; margin: 16px 0 8px; color: #111; }
+    .cours-preview h4 { font-family: 'Outfit'; font-weight: 600; font-size: 16px; margin: 12px 0 6px; color: #374151; }
+    .cours-preview p { margin: 8px 0; color: #374151; }
+    .cours-preview ul, .cours-preview ol { margin: 8px 0 8px 24px; color: #374151; }
+    .cours-preview li { margin: 4px 0; }
+    .cours-preview strong { color: #111; }
+    .cours-status { padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; margin-bottom: 16px; display: none; }
+    .cours-status.loaded { display: block; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .cours-status.empty { display: block; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+    .cours-status.error { display: block; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+
     /* ---- Documents tab ---- */
-    .docs-info {
-      background: linear-gradient(135deg, #eff6ff, #faf5ff); border-radius: 20px; padding: 40px;
-      border: 1px solid #e0e7ff; text-align: center;
+    .doc-upload-zone {
+      background: white; border: 2px dashed #d1d5db; border-radius: 16px; padding: 32px;
+      text-align: center; transition: all 0.2s; margin-bottom: 24px;
     }
-    .docs-info .docs-icon { font-size: 56px; margin-bottom: 16px; }
-    .docs-info h3 { font-family: 'Outfit'; font-weight: 700; font-size: 20px; margin-bottom: 8px; }
-    .docs-info p { color: #6b7280; font-size: 14px; line-height: 1.7; margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .docs-info a {
-      display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px;
-      background: #111; color: white; border-radius: 12px; font-weight: 700;
-      font-family: 'Outfit'; font-size: 15px; text-decoration: none; transition: opacity 0.2s;
+    .doc-upload-zone:hover { border-color: #8b5cf6; background: #faf5ff; }
+    .doc-upload-zone .upload-icon { font-size: 40px; margin-bottom: 12px; }
+    .doc-upload-zone p { color: #6b7280; font-size: 14px; margin-bottom: 16px; }
+    .doc-file-input { display: none; }
+    .doc-file-label {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; border-radius: 10px;
+      font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s;
     }
-    .docs-info a:hover { opacity: 0.85; }
+    .doc-file-label:hover { opacity: 0.9; }
+    .doc-selected { margin-top: 12px; font-size: 13px; color: #374151; font-weight: 500; }
+    .doc-list-item {
+      display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+      border: 1px solid #f3f4f6; border-radius: 12px; margin-bottom: 8px; background: #fafaf9;
+      transition: all 0.2s;
+    }
+    .doc-list-item:hover { border-color: #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .doc-list-item .doc-icon { font-size: 24px; flex-shrink: 0; }
+    .doc-list-item .doc-info { flex: 1; min-width: 0; }
+    .doc-list-item .doc-name { font-size: 14px; font-weight: 600; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .doc-list-item .doc-meta { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+    .doc-list-item .doc-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .doc-list-item .doc-actions a, .doc-list-item .doc-actions button {
+      padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; border: 1px solid #e5e7eb;
+      background: white; color: #374151; text-decoration: none; cursor: pointer; transition: all 0.2s;
+    }
+    .doc-list-item .doc-actions a:hover { border-color: #3b82f6; color: #3b82f6; }
+    .doc-list-item .doc-actions button:hover { border-color: #ef4444; color: #ef4444; }
 
     /* ---- Responsive ---- */
     @media (max-width: 768px) {
@@ -255,6 +306,8 @@
     <div class="tabs-bar">
       <button class="tab-btn active" data-tab="qcm">QCM</button>
       <button class="tab-btn" data-tab="flashcards">Fiches Flash</button>
+      <button class="tab-btn" data-tab="cours">Fiches de cours</button>
+      <button class="tab-btn" data-tab="documents">Documents</button>
     </div>
 
     <!-- ====== TAB: QCM ====== -->
@@ -386,6 +439,129 @@
         <div id="flash-empty" class="empty-state">
           <div class="empty-icon">⚡</div>
           <p>Selectionne une matiere et un chapitre pour commencer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== TAB: FICHES DE COURS ====== -->
+    <div class="tab-panel" id="tab-cours">
+      <div class="admin-content">
+        <div class="panel-header">
+          <h2>📖 Fiches de cours</h2>
+          <p>Editer le contenu HTML des fiches de cours pour chaque chapitre. Le contenu est enregistre dans les fichiers .astro via l'API GitHub.</p>
+        </div>
+
+        <div class="selector-row">
+          <div class="form-group">
+            <label>Matiere</label>
+            <select id="cours-subject" onchange="onCoursSubjectChange()">
+              <option value="">-- Choisir une matiere --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Chapitre</label>
+            <select id="cours-chapter" disabled>
+              <option value="">-- Choisir un chapitre --</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:0;min-width:auto;display:flex;align-items:flex-end;">
+            <button class="btn-primary" onclick="loadCoursContent()" style="white-space:nowrap;">Charger</button>
+          </div>
+        </div>
+
+        <div id="cours-status" class="cours-status"></div>
+
+        <div id="cours-editor-card" class="content-card" style="display:none;">
+          <h3>✏️ Editeur de contenu</h3>
+
+          <div class="html-toolbar">
+            <button onclick="insertCoursTag('h3')" title="Titre de section">H3</button>
+            <button onclick="insertCoursTag('h4')" title="Sous-titre">H4</button>
+            <button onclick="insertCoursTag('strong')" title="Gras">B</button>
+            <button onclick="insertCoursTag('em')" title="Italique">I</button>
+            <button onclick="insertCoursTag('p')" title="Paragraphe">P</button>
+            <button onclick="insertCoursList('ul')" title="Liste a puces">UL</button>
+            <button onclick="insertCoursList('ol')" title="Liste numerotee">OL</button>
+            <button onclick="insertCoursBlock('notions')" title="Encart notions essentielles">Notions</button>
+            <button onclick="insertCoursBlock('exemple')" title="Encart exemple">Exemple</button>
+          </div>
+
+          <textarea id="cours-content" class="cours-textarea" placeholder="Ecris le contenu HTML de la fiche de cours ici..."></textarea>
+
+          <div style="margin-top:20px;">
+            <h3 style="font-family:'Outfit';font-weight:700;font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px;">👁️ Apercu</h3>
+            <div id="cours-preview" class="cours-preview">
+              <p style="color:#9ca3af;font-style:italic;">L'apercu s'affiche ici en temps reel...</p>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-primary" id="cours-save-btn" onclick="saveCours()">Enregistrer le contenu</button>
+            <button class="btn-secondary" onclick="document.getElementById('cours-content').value=''; updateCoursPreview();">Effacer</button>
+          </div>
+        </div>
+
+        <div id="cours-empty" class="empty-state">
+          <div class="empty-icon">📖</div>
+          <p>Selectionne une matiere et un chapitre, puis clique sur Charger.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== TAB: DOCUMENTS ====== -->
+    <div class="tab-panel" id="tab-documents">
+      <div class="admin-content">
+        <div class="panel-header">
+          <h2>📁 Documents</h2>
+          <p>Uploader des documents (PDF, images, fichiers Office) qui seront disponibles en telechargement sur le site.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>📤 Uploader un document</h3>
+
+          <div class="doc-upload-zone" id="doc-upload-zone">
+            <div class="upload-icon">📎</div>
+            <p>Glisse un fichier ici ou clique pour selectionner</p>
+            <input type="file" id="doc-file" class="doc-file-input" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.gif" onchange="onDocFileSelected()" />
+            <label for="doc-file" class="doc-file-label">Choisir un fichier</label>
+            <div id="doc-selected" class="doc-selected" style="display:none;"></div>
+          </div>
+
+          <div class="selector-row" style="margin-bottom:16px;">
+            <div class="form-group">
+              <label>Titre du document</label>
+              <input type="text" id="doc-title" placeholder="Ex: Sujet bac 2024 Mercatique" />
+            </div>
+            <div class="form-group">
+              <label>Matiere</label>
+              <select id="doc-subject">
+                <option value="">-- Choisir une matiere --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <select id="doc-type">
+                <option value="sujet-bac">Sujet de bac</option>
+                <option value="corrige">Corrige</option>
+                <option value="cours">Cours</option>
+                <option value="exercice">Exercice</option>
+                <option value="methode">Methode</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btn-row" style="margin-top:16px;">
+            <button class="btn-primary" id="doc-upload-btn" onclick="uploadDocument()">Uploader le document</button>
+          </div>
+        </div>
+
+        <div class="content-card" style="margin-top:24px;">
+          <h3>📋 Documents uploades <span id="doc-count" style="font-size:14px;font-weight:500;color:#6b7280;"></span></h3>
+          <div style="margin-bottom:16px;">
+            <button class="btn-secondary" onclick="loadDocuments()" style="padding:8px 18px;font-size:13px;">Rafraichir la liste</button>
+          </div>
+          <div id="doc-list"></div>
         </div>
       </div>
     </div>
@@ -547,8 +723,9 @@
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-        const labels = { dashboard: 'Tableau de bord', qcm: 'QCM', flashcards: 'Fiches Flash', documents: 'Documents' };
-        document.getElementById('nav-badge').textContent = labels[btn.dataset.tab] || '';
+        const labels = { qcm: 'QCM', flashcards: 'Fiches Flash', cours: 'Fiches de cours', documents: 'Documents' };
+        const badgeEl = document.getElementById('admin-user-name');
+        if (badgeEl && labels[btn.dataset.tab]) badgeEl.textContent = labels[btn.dataset.tab];
       });
     });
 
@@ -590,8 +767,9 @@
     //  POPULATE SELECTORS
     // =========================================================
     function populateSelectors() {
-      ['qcm-subject', 'flash-subject'].forEach(id => {
+      ['qcm-subject', 'flash-subject', 'cours-subject', 'doc-subject'].forEach(id => {
         const select = document.getElementById(id);
+        if (!select) return;
         select.innerHTML = '<option value="">-- Choisir une matiere --</option>';
         SUBJECTS.forEach(s => {
           const opt = document.createElement('option');
@@ -995,6 +1173,436 @@
 
       btn.disabled = false;
       btn.textContent = 'Enregistrer la fiche';
+    }
+
+    // =========================================================
+    //  FICHES DE COURS LOGIC
+    // =========================================================
+    let coursFileContent = null;
+    let coursFileSha = null;
+    let coursFilePath = null;
+
+    function getChapterFilePath(subjectId, chapterSlug) {
+      const lastDash = subjectId.lastIndexOf('-');
+      const matiere = subjectId.substring(0, lastDash);
+      const level = subjectId.substring(lastDash + 1);
+      return 'ecogestion-stmg/src/pages/' + level + '/' + matiere + '/' + chapterSlug + '.astro';
+    }
+
+    function onCoursSubjectChange() {
+      const subjectId = document.getElementById('cours-subject').value;
+      populateChapters(subjectId, 'cours-chapter');
+      document.getElementById('cours-editor-card').style.display = 'none';
+      document.getElementById('cours-status').className = 'cours-status';
+      document.getElementById('cours-status').style.display = 'none';
+      document.getElementById('cours-empty').style.display = subjectId ? 'none' : 'block';
+    }
+
+    async function loadCoursContent() {
+      const subjectId = document.getElementById('cours-subject').value;
+      const slug = document.getElementById('cours-chapter').value;
+
+      if (!subjectId || !slug) {
+        showToast('Selectionne une matiere et un chapitre.', 'error');
+        return;
+      }
+
+      const statusEl = document.getElementById('cours-status');
+      statusEl.className = 'cours-status';
+      statusEl.style.display = 'none';
+      document.getElementById('cours-empty').style.display = 'none';
+      document.getElementById('cours-editor-card').style.display = 'block';
+
+      coursFilePath = getChapterFilePath(subjectId, slug);
+
+      try {
+        const data = await apiGet(coursFilePath);
+        coursFileContent = data.content;
+        coursFileSha = data.sha;
+
+        // Extract prose content
+        const proseStart = coursFileContent.indexOf('<div class="prose prose-sm max-w-none">');
+        if (proseStart === -1) {
+          // Try alternative prose markers
+          const altStart = coursFileContent.indexOf('<div class="prose');
+          if (altStart === -1) {
+            document.getElementById('cours-content').value = '';
+            statusEl.textContent = 'Fichier trouve mais aucune section "prose" detectee. Tu peux ecrire le contenu a inserer.';
+            statusEl.className = 'cours-status empty';
+            updateCoursPreview();
+            return;
+          }
+        }
+
+        // Find the opening tag end
+        let tagEnd = coursFileContent.indexOf('>', proseStart) + 1;
+        // Find the matching closing </div>
+        let depth = 1;
+        let i = tagEnd;
+        let closingIdx = -1;
+        while (i < coursFileContent.length && depth > 0) {
+          const nextOpen = coursFileContent.indexOf('<div', i);
+          const nextClose = coursFileContent.indexOf('</div>', i);
+
+          if (nextClose === -1) break;
+
+          if (nextOpen !== -1 && nextOpen < nextClose) {
+            depth++;
+            i = nextOpen + 4;
+          } else {
+            depth--;
+            if (depth === 0) {
+              closingIdx = nextClose;
+            }
+            i = nextClose + 6;
+          }
+        }
+
+        if (closingIdx !== -1) {
+          const proseContent = coursFileContent.substring(tagEnd, closingIdx).trim();
+          document.getElementById('cours-content').value = proseContent;
+          statusEl.textContent = 'Contenu actuel charge depuis ' + coursFilePath.split('/').pop();
+          statusEl.className = 'cours-status loaded';
+        } else {
+          document.getElementById('cours-content').value = '';
+          statusEl.textContent = 'Section prose trouvee mais impossible d\'extraire le contenu. Tu peux ecrire le contenu.';
+          statusEl.className = 'cours-status empty';
+        }
+
+        updateCoursPreview();
+      } catch (e) {
+        coursFileContent = null;
+        coursFileSha = null;
+        document.getElementById('cours-content').value = '';
+        statusEl.textContent = 'Fichier non trouve (' + coursFilePath.split('/').pop() + '). La page de ce chapitre n\'existe pas encore.';
+        statusEl.className = 'cours-status error';
+        updateCoursPreview();
+      }
+    }
+
+    function insertCoursTag(tag) {
+      const textarea = document.getElementById('cours-content');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+      const replacement = '<' + tag + '>' + (selected || '') + '</' + tag + '>';
+      textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+      textarea.focus();
+      const cursorPos = selected ? start + replacement.length : start + tag.length + 2;
+      textarea.setSelectionRange(cursorPos, cursorPos);
+      updateCoursPreview();
+    }
+
+    function insertCoursList(tag) {
+      const textarea = document.getElementById('cours-content');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+      let items;
+      if (selected) {
+        items = selected.split('\n').filter(l => l.trim()).map(l => '  <li>' + l.trim() + '</li>').join('\n');
+      } else {
+        items = '  <li></li>';
+      }
+      const replacement = '<' + tag + '>\n' + items + '\n</' + tag + '>';
+      textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+      textarea.focus();
+      updateCoursPreview();
+    }
+
+    function insertCoursBlock(type) {
+      const textarea = document.getElementById('cours-content');
+      const start = textarea.selectionStart;
+      let block = '';
+      if (type === 'notions') {
+        block = '<div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg mb-6">\n  <h4 class="font-bold text-blue-900 mb-2">Notions essentielles</h4>\n  <ul class="text-blue-800 space-y-1">\n    <li></li>\n  </ul>\n</div>';
+      } else if (type === 'exemple') {
+        block = '<div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg mb-4">\n  <p class="font-semibold text-amber-900">Exemple</p>\n  <p class="text-amber-800"></p>\n</div>';
+      }
+      textarea.value = textarea.value.substring(0, start) + block + textarea.value.substring(start);
+      textarea.focus();
+      updateCoursPreview();
+    }
+
+    function updateCoursPreview() {
+      const content = document.getElementById('cours-content').value;
+      const preview = document.getElementById('cours-preview');
+      if (!content.trim()) {
+        preview.innerHTML = '<p style="color:#9ca3af;font-style:italic;">L\'apercu s\'affiche ici en temps reel...</p>';
+      } else {
+        preview.innerHTML = content;
+      }
+    }
+
+    // Live preview
+    document.addEventListener('DOMContentLoaded', function() {
+      const coursTextarea = document.getElementById('cours-content');
+      if (coursTextarea) {
+        coursTextarea.addEventListener('input', updateCoursPreview);
+      }
+    });
+
+    async function saveCours() {
+      if (!coursFileContent || !coursFilePath) {
+        showToast('Charge d\'abord le contenu d\'un chapitre.', 'error');
+        return;
+      }
+
+      const newContent = document.getElementById('cours-content').value;
+      if (!newContent.trim()) {
+        showToast('Le contenu ne peut pas etre vide.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('cours-save-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Enregistrement...';
+
+      try {
+        // Re-fetch to get latest sha
+        const data = await apiGet(coursFilePath);
+        let content = data.content;
+        const sha = data.sha;
+
+        // Find and replace the prose section
+        const proseStart = content.indexOf('<div class="prose prose-sm max-w-none">');
+        if (proseStart === -1) {
+          throw new Error('Section prose introuvable dans le fichier. Impossible de mettre a jour.');
+        }
+
+        const tagEnd = content.indexOf('>', proseStart) + 1;
+        // Find closing div
+        let depth = 1;
+        let i = tagEnd;
+        let closingIdx = -1;
+        while (i < content.length && depth > 0) {
+          const nextOpen = content.indexOf('<div', i);
+          const nextClose = content.indexOf('</div>', i);
+          if (nextClose === -1) break;
+          if (nextOpen !== -1 && nextOpen < nextClose) {
+            depth++;
+            i = nextOpen + 4;
+          } else {
+            depth--;
+            if (depth === 0) closingIdx = nextClose;
+            i = nextClose + 6;
+          }
+        }
+
+        if (closingIdx === -1) {
+          throw new Error('Impossible de trouver la fin de la section prose.');
+        }
+
+        // Replace content between tags
+        content = content.substring(0, tagEnd) + '\n' + newContent + '\n' + content.substring(closingIdx);
+
+        const slug = document.getElementById('cours-chapter').value;
+        const result = await apiPost(
+          coursFilePath,
+          content,
+          sha,
+          'MAJ fiche de cours: ' + slug
+        );
+
+        if (result.success) {
+          showToast('Fiche de cours enregistree ! Le site sera mis a jour automatiquement.', 'success');
+          coursFileSha = null; // Force re-fetch on next load
+        } else {
+          throw new Error(result.error || 'Erreur inconnue');
+        }
+      } catch (e) {
+        console.error('Save cours error:', e);
+        showToast('Erreur : ' + e.message, 'error');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Enregistrer le contenu';
+    }
+
+    // =========================================================
+    //  DOCUMENTS LOGIC
+    // =========================================================
+
+    function onDocFileSelected() {
+      const fileInput = document.getElementById('doc-file');
+      const selectedDiv = document.getElementById('doc-selected');
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const sizeKB = (file.size / 1024).toFixed(1);
+        const sizeMB = (file.size / 1048576).toFixed(2);
+        const sizeStr = file.size > 1048576 ? sizeMB + ' Mo' : sizeKB + ' Ko';
+        selectedDiv.textContent = 'Fichier selectionne : ' + file.name + ' (' + sizeStr + ')';
+        selectedDiv.style.display = 'block';
+        // Auto-fill title if empty
+        if (!document.getElementById('doc-title').value) {
+          document.getElementById('doc-title').value = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+        }
+      } else {
+        selectedDiv.style.display = 'none';
+      }
+    }
+
+    function getDocIcon(filename) {
+      const ext = filename.split('.').pop().toLowerCase();
+      const icons = {
+        pdf: '📄', doc: '📝', docx: '📝', ppt: '📊', pptx: '📊',
+        xls: '📗', xlsx: '📗', jpg: '🖼️', jpeg: '🖼️', png: '🖼️', gif: '🖼️'
+      };
+      return icons[ext] || '📎';
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes > 1048576) return (bytes / 1048576).toFixed(2) + ' Mo';
+      if (bytes > 1024) return (bytes / 1024).toFixed(1) + ' Ko';
+      return bytes + ' octets';
+    }
+
+    async function uploadDocument() {
+      const fileInput = document.getElementById('doc-file');
+      const file = fileInput.files[0];
+      if (!file) {
+        showToast('Selectionne un fichier a uploader.', 'error');
+        return;
+      }
+
+      const title = document.getElementById('doc-title').value.trim() || file.name;
+      const docType = document.getElementById('doc-type').value;
+      const subjectId = document.getElementById('doc-subject').value;
+
+      // Build a safe filename
+      const ext = file.name.split('.').pop().toLowerCase();
+      let safeName = title.replace(/[^a-zA-Z0-9._\- ]/g, '').replace(/\s+/g, '-').toLowerCase();
+      if (!safeName.endsWith('.' + ext)) {
+        safeName += '.' + ext;
+      }
+
+      const btn = document.getElementById('doc-upload-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Upload en cours...';
+
+      try {
+        // Read file as base64
+        const base64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = () => reject(new Error('Erreur de lecture du fichier'));
+          reader.readAsDataURL(file);
+        });
+
+        const filePath = 'ecogestion-stmg/public/uploads/documents/' + safeName;
+        const commitMsg = 'Upload document: ' + title + ' [' + docType + ']' + (subjectId ? ' (' + subjectId + ')' : '');
+
+        // Check if file already exists to get sha
+        let existingSha = undefined;
+        try {
+          const existing = await apiGet(filePath);
+          existingSha = existing.sha;
+        } catch (e) {
+          // File doesn't exist yet, that's fine
+        }
+
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            file: filePath,
+            content: base64,
+            sha: existingSha,
+            binary: true,
+            message: commitMsg
+          })
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          showToast('Document "' + title + '" uploade avec succes !', 'success');
+          fileInput.value = '';
+          document.getElementById('doc-title').value = '';
+          document.getElementById('doc-selected').style.display = 'none';
+          loadDocuments();
+        } else {
+          throw new Error(result.error || 'Erreur inconnue');
+        }
+      } catch (e) {
+        console.error('Upload error:', e);
+        showToast('Erreur lors de l\'upload : ' + e.message, 'error');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Uploader le document';
+    }
+
+    async function loadDocuments() {
+      const listEl = document.getElementById('doc-list');
+      const countEl = document.getElementById('doc-count');
+      listEl.innerHTML = '<div style="text-align:center;padding:24px;"><div class="spinner-lg" style="display:inline-block;width:28px;height:28px;border:3px solid #e5e7eb;border-top-color:#7c3aed;border-radius:50%;animation:spin 0.6s linear infinite;"></div></div>';
+
+      try {
+        const res = await fetch('/api/content?file=ecogestion-stmg/public/uploads/documents&dir=true', {
+          headers: { 'Authorization': 'Bearer ' + authToken }
+        });
+        const data = await res.json();
+
+        if (data.error) {
+          // Directory might not exist yet
+          listEl.innerHTML = '<div class="empty-state" style="padding:24px;"><div class="empty-icon">📁</div><p>Aucun document uploade pour le moment.</p></div>';
+          countEl.textContent = '(0)';
+          return;
+        }
+
+        const files = data.files || [];
+        countEl.textContent = '(' + files.length + ' document' + (files.length > 1 ? 's' : '') + ')';
+
+        if (files.length === 0) {
+          listEl.innerHTML = '<div class="empty-state" style="padding:24px;"><div class="empty-icon">📁</div><p>Aucun document uploade pour le moment.</p></div>';
+          return;
+        }
+
+        listEl.innerHTML = files.map(f =>
+          '<div class="doc-list-item">' +
+            '<span class="doc-icon">' + getDocIcon(f.name) + '</span>' +
+            '<div class="doc-info">' +
+              '<div class="doc-name">' + escapeHtml(f.name) + '</div>' +
+              '<div class="doc-meta">' + formatFileSize(f.size) + '</div>' +
+            '</div>' +
+            '<div class="doc-actions">' +
+              (f.download_url ? '<a href="' + f.download_url + '" target="_blank">Telecharger</a>' : '') +
+              '<button onclick="deleteDocument(\'' + escapeHtml(f.path) + '\', \'' + f.sha + '\')">Supprimer</button>' +
+            '</div>' +
+          '</div>'
+        ).join('');
+      } catch (e) {
+        console.error('Load documents error:', e);
+        listEl.innerHTML = '<div class="empty-state" style="padding:24px;"><p style="color:#991b1b;">Erreur lors du chargement des documents.</p></div>';
+        countEl.textContent = '';
+      }
+    }
+
+    async function deleteDocument(filePath, sha) {
+      if (!confirm('Supprimer ce document ? Cette action est irreversible.')) return;
+
+      try {
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            file: filePath,
+            content: '',
+            sha: sha,
+            message: 'Suppression document: ' + filePath.split('/').pop(),
+            delete: true
+          })
+        });
+
+        const result = await res.json();
+        if (result.success || result.error) {
+          showToast('Document supprime.', 'success');
+          loadDocuments();
+        }
+      } catch (e) {
+        showToast('Erreur lors de la suppression.', 'error');
+      }
     }
 
     // =========================================================
