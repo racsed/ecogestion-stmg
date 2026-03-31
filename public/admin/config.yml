@@ -1,12 +1,6 @@
 backend:
-  name: github
-  repo: racsed/ecogestion-stmg
+  name: git-gateway
   branch: main
-  base_url: https://ecogestion-stmg.netlify.app
-  auth_endpoint: /api/auth
-
-# For local development
-local_backend: true
 
 # Media files
 media_folder: "public/uploads"
