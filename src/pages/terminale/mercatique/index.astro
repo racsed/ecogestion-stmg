@@ -51,41 +51,48 @@ const themes = subject.chapters.reduce((acc, ch) => {
   </section>
 
   <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    {!subject.available ? (
-      <div class="text-center py-20">
-        <span class="text-6xl mb-6 block">🚧</span>
-        <h2 class="font-display font-bold text-2xl mb-2">Bientôt disponible</h2>
-        <p class="text-gray-500 max-w-md mx-auto">Cette matière est en cours de préparation. Revenez bientôt pour découvrir les cours et QCM !</p>
-      </div>
-    ) : (
-      <div class="space-y-12">
-        {Object.entries(themes).map(([num, theme]) => (
-          <div>
-            <div class="flex items-center gap-3 mb-5">
-              <span class="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-sm font-bold text-white"
-                    style={`background: ${subject.colorHex};`}>
-                {num}
-              </span>
-              <h2 class="font-display font-bold text-xl text-gray-800">{theme.title}</h2>
-            </div>
-            <div class="grid gap-4">
-              {theme.chapters.map((ch, i) => (
-                <div class="chapter-card flex items-center gap-4 opacity-60 cursor-default">
-                  <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold"
-                       style={`background: ${subject.colorHex}10; color: ${subject.colorHex};`}>
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h3 class="font-display font-semibold text-base">{ch.title}</h3>
-                    <p class="text-xs text-gray-400 mt-0.5 truncate">{ch.notions.join(' · ')}</p>
-                  </div>
-                  <span class="badge bg-gray-100 text-gray-500 text-[10px]">Bientôt</span>
-                </div>
-              ))}
-            </div>
+    <div class="space-y-12">
+      {Object.entries(themes).map(([num, theme]) => (
+        <div>
+          <div class="flex items-center gap-3 mb-5">
+            <span class="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-sm font-bold text-white"
+                  style={`background: ${subject.colorHex};`}>
+              {num}
+            </span>
+            <h2 class="font-display font-bold text-xl text-gray-800">{theme.title}</h2>
           </div>
-        ))}
-      </div>
-    )}
+
+          <div class="grid gap-4">
+            {theme.chapters.map((ch, i) => (
+              <a href={`/terminale/mercatique/${ch.slug}`}
+                 class="chapter-card group flex items-center gap-4"
+                 style={`--hover-color: ${subject.colorHex}20;`}>
+                <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold"
+                     style={`background: ${subject.colorHex}10; color: ${subject.colorHex};`}>
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-display font-semibold text-base group-hover:text-opacity-100 transition-colors"
+                      style={`color: inherit;`}>
+                    {ch.title}
+                  </h3>
+                  <p class="text-xs text-gray-400 mt-0.5 truncate">
+                    {ch.notions.join(' · ')}
+                  </p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  {ch.hasFiche && <span class="badge bg-gray-100 text-gray-500 text-[10px]">📝 Fiche</span>}
+                  {ch.hasQCM && <span class="badge text-[10px]" style={`background: ${subject.colorHex}10; color: ${subject.colorHex};`}>🎯 QCM</span>}
+                  {ch.hasSujet && <span class="badge bg-amber-50 text-amber-600 text-[10px]">📄 Bac</span>}
+                </div>
+                <svg class="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
   </section>
 </Layout>
