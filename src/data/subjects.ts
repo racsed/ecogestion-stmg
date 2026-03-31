@@ -75,7 +75,7 @@ export const subjects: Subject[] = [
         theme: 'Comment le droit permet-il de régler un litige ?',
         themeNumber: 2,
         notions: ['Litige', 'Juridictions civiles', 'Juridictions pénales', 'Modes alternatifs'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'lorganisation-judiciaire',
@@ -331,7 +331,7 @@ export const subjects: Subject[] = [
         theme: 'Comment le droit encadre-t-il les échanges économiques ?',
         themeNumber: 5,
         notions: ['Contrat', 'Formation du contrat', 'Conditions de validité', 'Clauses'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'la-responsabilite',
@@ -339,7 +339,7 @@ export const subjects: Subject[] = [
         theme: 'Comment le droit encadre-t-il les échanges économiques ?',
         themeNumber: 5,
         notions: ['Responsabilité civile', 'Responsabilité pénale', 'Dommage', 'Réparation'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'le-droit-du-travail',
@@ -347,7 +347,7 @@ export const subjects: Subject[] = [
         theme: 'Le droit du travail',
         themeNumber: 6,
         notions: ['CDI', 'CDD', 'Lien de subordination', 'Droits et obligations'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'la-rupture-du-contrat-de-travail',
@@ -355,7 +355,7 @@ export const subjects: Subject[] = [
         theme: 'Le droit du travail',
         themeNumber: 6,
         notions: ['Licenciement', 'Démission', 'Rupture conventionnelle', 'Procédure'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'les-libertes-individuelles-et-collectives',
@@ -394,7 +394,7 @@ export const subjects: Subject[] = [
         theme: 'Quels sont les grands enjeux économiques actuels ?',
         themeNumber: 8,
         notions: ['PIB', 'Croissance', 'Développement durable', 'Limites du PIB'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'le-commerce-international',
@@ -402,7 +402,7 @@ export const subjects: Subject[] = [
         theme: 'La mondialisation',
         themeNumber: 9,
         notions: ['Libre-échange', 'Protectionnisme', 'Avantage comparatif', 'OMC'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'le-chomage',
@@ -410,7 +410,7 @@ export const subjects: Subject[] = [
         theme: 'Les déséquilibres sociaux',
         themeNumber: 10,
         notions: ['Chômage structurel', 'Chômage conjoncturel', 'Politiques de l\'emploi', 'Taux de chômage'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'linflation',
@@ -449,7 +449,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et consommateur',
         themeNumber: 1,
         notions: ['Besoins', 'Motivations', 'Freins', 'Facteurs d\'influence', 'Processus d\'achat'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'la-politique-de-produit',
@@ -457,7 +457,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Gamme', 'Cycle de vie', 'Innovation', 'Packaging', 'Marque'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'la-politique-de-prix',
@@ -465,7 +465,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Coût de revient', 'Marge', 'Prix psychologique', 'Élasticité prix'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'la-politique-de-distribution',
@@ -473,7 +473,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Canal', 'Circuit', 'Réseau', 'Stratégie de distribution', 'E-commerce'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'la-politique-de-communication',
@@ -481,7 +481,7 @@ export const subjects: Subject[] = [
         theme: 'Mercatique et marchés',
         themeNumber: 2,
         notions: ['Communication média', 'Hors média', 'Publicité', 'Marketing digital'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'la-fidelisation',
@@ -520,7 +520,7 @@ export const subjects: Subject[] = [
         theme: 'Les organisations et la société',
         themeNumber: 1,
         notions: ['Stratégie globale', 'Spécialisation', 'Diversification', 'Intégration'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'les-ressources-humaines',
@@ -528,7 +528,7 @@ export const subjects: Subject[] = [
         theme: 'Les organisations et les acteurs',
         themeNumber: 2,
         notions: ['GPEC', 'Recrutement', 'Formation', 'Motivation', 'Rémunération'],
-        hasQCM: true, hasFiche: true, hasSujet: true,
+        hasQCM: true, hasFiche: true, hasSujet: false,
       },
       {
         slug: 'le-numerique-transforme-le-management',
