@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Administration -- EcoGestion STMG</title>
+  <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -484,9 +485,12 @@
             <button onclick="insertCoursList('ol')" title="Liste numerotee">OL</button>
             <button onclick="insertCoursBlock('notions')" title="Encart notions essentielles">Notions</button>
             <button onclick="insertCoursBlock('exemple')" title="Encart exemple">Exemple</button>
+            <span style="width:1px;height:24px;background:#e5e7eb;margin:0 4px;"></span>
+            <button onclick="document.getElementById('word-upload').click()" title="Importer un fichier Word (.docx)" style="background:#eff6ff;color:#3b82f6;border-color:#bfdbfe;">📄 Importer Word</button>
+            <input type="file" id="word-upload" accept=".docx" style="display:none;" onchange="convertWordToHTML(this)" />
           </div>
 
-          <textarea id="cours-content" class="cours-textarea" placeholder="Ecris le contenu HTML de la fiche de cours ici..."></textarea>
+          <textarea id="cours-content" class="cours-textarea" placeholder="Ecris le contenu de la fiche ici ou importe un fichier Word..."></textarea>
 
           <div style="margin-top:20px;">
             <h3 style="font-family:'Outfit';font-weight:700;font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px;">👁️ Apercu</h3>
@@ -1278,6 +1282,63 @@
         statusEl.className = 'cours-status error';
         updateCoursPreview();
       }
+    }
+
+    // ---- Word to HTML conversion ----
+    async function convertWordToHTML(input) {
+      const file = input.files[0];
+      if (!file) return;
+
+      showToast('Conversion du fichier Word en cours...', 'info');
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const result = await mammoth.convertToHtml(
+          { arrayBuffer: arrayBuffer },
+          {
+            styleMap: [
+              "p[style-name='Heading 1'] => h3:fresh",
+              "p[style-name='Heading 2'] => h3:fresh",
+              "p[style-name='Heading 3'] => h4:fresh",
+              "p[style-name='Title'] => h3:fresh",
+            ]
+          }
+        );
+
+        let html = result.value;
+
+        // Nettoyage du HTML genere
+        html = html
+          .replace(/<p>\s*<\/p>/g, '')                    // Supprimer les paragraphes vides
+          .replace(/<p><strong>([^<]+)<\/strong><\/p>/g, '<h3 class="font-display font-bold text-lg mt-6">$1</h3>') // Titres en gras -> h3
+          .replace(/style="[^"]*"/g, '')                  // Supprimer les styles inline
+          .replace(/class="[^"]*"/g, '')                  // Supprimer les classes Word
+          .replace(/<img[^>]*>/g, '')                      // Supprimer les images (non supportees)
+          .replace(/<a\s[^>]*>/g, '').replace(/<\/a>/g, '') // Supprimer les liens
+          .replace(/\n{3,}/g, '\n\n')                     // Reduire les sauts de ligne
+          .trim();
+
+        const textarea = document.getElementById('cours-content');
+        const currentContent = textarea.value.trim();
+
+        if (currentContent && !confirm('Le contenu actuel sera remplace. Continuer ?')) {
+          input.value = '';
+          return;
+        }
+
+        textarea.value = html;
+        updateCoursPreview();
+
+        const warnings = result.messages.filter(m => m.type === 'warning').length;
+        showToast(
+          'Fichier Word converti avec succes !' + (warnings > 0 ? ' (' + warnings + ' avertissement(s))' : ''),
+          'success'
+        );
+      } catch (err) {
+        showToast('Erreur lors de la conversion : ' + err.message, 'error');
+      }
+
+      input.value = ''; // Reset le file input
     }
 
     function insertCoursTag(tag) {
