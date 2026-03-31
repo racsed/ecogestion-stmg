@@ -57,40 +57,46 @@ import Layout from '../layouts/Layout.astro';
       </a>
 
       <!-- Fiches Flash -->
-      <div class="chapter-card opacity-60 cursor-default">
+      <a href="/outils/fiches-flash" class="chapter-card group hover:border-management-200">
         <div class="flex items-start gap-4">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-management-500 to-management-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-management-500 to-management-600 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow">
             <span class="text-2xl text-white">⚡</span>
           </div>
           <div>
             <div class="flex items-center gap-2">
               <h3 class="font-display font-bold text-lg">Fiches Flash</h3>
-              <span class="badge bg-gray-100 text-gray-500 text-[10px]">Bientôt</span>
+              <span class="badge bg-management-50 text-management-600 text-[10px]">Nouveau</span>
             </div>
             <p class="text-gray-500 text-sm mt-1 leading-relaxed">
               Révise les notions-clés chapitre par chapitre avec des fiches recto-verso interactives.
             </p>
+            <span class="inline-flex items-center gap-1 text-xs text-management-600 mt-3 font-semibold group-hover:gap-2 transition-all">
+              Parcourir les fiches →
+            </span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Glossaire -->
-      <div class="chapter-card opacity-60 cursor-default">
+      <a href="/outils/glossaire" class="chapter-card group hover:border-droit-200">
         <div class="flex items-start gap-4">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-droit-500 to-droit-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-droit-500 to-droit-600 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow">
             <span class="text-2xl text-white">📖</span>
           </div>
           <div>
             <div class="flex items-center gap-2">
               <h3 class="font-display font-bold text-lg">Glossaire STMG</h3>
-              <span class="badge bg-gray-100 text-gray-500 text-[10px]">Bientôt</span>
+              <span class="badge bg-droit-50 text-droit-600 text-[10px]">Nouveau</span>
             </div>
             <p class="text-gray-500 text-sm mt-1 leading-relaxed">
               Toutes les définitions du programme, classées par matière et par thème, avec barre de recherche.
             </p>
+            <span class="inline-flex items-center gap-1 text-xs text-droit-600 mt-3 font-semibold group-hover:gap-2 transition-all">
+              Ouvrir le glossaire →
+            </span>
           </div>
         </div>
-      </div>
+      </a>
 
     </div>
   </section>
