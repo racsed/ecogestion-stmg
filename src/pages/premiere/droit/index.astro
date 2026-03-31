@@ -12,6 +12,14 @@ const themes = subject.chapters.reduce((acc, ch) => {
   acc[ch.themeNumber].chapters.push(ch);
   return acc;
 }, {} as Record<number, { title: string; chapters: typeof subject.chapters }>);
+
+// Compute global chapter offsets per theme
+let offset = 0;
+const themeOffsets: Record<string, number> = {};
+for (const [num, theme] of Object.entries(themes)) {
+  themeOffsets[num] = offset;
+  offset += theme.chapters.length;
+}
 ---
 
 <Layout title={`${subject.emoji} ${subject.name} — Première STMG`}>
@@ -73,7 +81,7 @@ const themes = subject.chapters.reduce((acc, ch) => {
                  style={`--hover-color: ${subject.colorHex}20;`}>
                 <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold"
                      style={`background: ${subject.colorHex}10; color: ${subject.colorHex};`}>
-                  {String(i + 1).padStart(2, '0')}
+                  {String(themeOffsets[num] + i + 1).padStart(2, '0')}
                 </div>
                 <div class="flex-1 min-w-0">
                   <h3 class="font-display font-semibold text-base group-hover:text-opacity-100 transition-colors" 
