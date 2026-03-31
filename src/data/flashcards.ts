@@ -125,6 +125,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Force obligatoire', definition: "Le contrat 'tient lieu de loi' aux parties (art. 1103) : elles doivent respecter leurs engagements." },
       { term: 'Nullite du contrat', definition: "Aneantissement retroactif du contrat : il est cense n'avoir jamais existe." },
       { term: 'Contrat synallagmatique', definition: "Contrat ou les deux parties ont des obligations reciproques.", example: "Contrat de vente, contrat de travail" },
+      { term: 'Theorie de l\'imprevision', definition: "Mecanisme issu de la reforme 2016 (art. 1195 du Code civil) permettant de demander la renegociation du contrat lorsqu'un changement de circonstances imprevisible rend l'execution excessivement onereuse.", example: "Une flambee inattendue du prix des matieres premieres qui rend un contrat de fourniture ruineux pour le fournisseur" },
+      { term: 'Contrat nomme vs innomme', definition: "Le contrat nomme est prevu et reglemente par la loi (vente, bail, travail). Le contrat innomme est cree librement par les parties en vertu de la liberte contractuelle, sans cadre legal specifique." },
+      { term: 'Execution forcee', definition: "Droit du creancier de contraindre le debiteur a executer sa prestation par voie judiciaire (art. 1221 du Code civil), sauf impossibilite ou cout manifestement disproportionne." },
     ],
   },
 
@@ -246,6 +249,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Organisation publique', definition: "Organisation relevant de l'Etat ou des collectivites, assurant des missions de service public." },
       { term: 'Finalite', definition: "Raison d'etre d'une organisation, sa mission principale.", example: "Profit (entreprise), service public (mairie), interet collectif (association)" },
       { term: 'Ressources', definition: "Moyens mobilises par l'organisation : humaines, financieres, materielles et immaterielles." },
+      { term: 'Organisation formelle vs informelle', definition: "L'organisation formelle est la structure officielle (organigramme, procedures, regles). L'organisation informelle regroupe les relations spontanees entre membres (amities, reseaux d'entraide, leaders d'opinion non designes). Les deux coexistent toujours." },
+      { term: 'Mecanismes de coordination (Mintzberg)', definition: "Cinq mecanismes permettent la coordination du travail : ajustement mutuel (communication directe), supervision directe (ordres du superieur), standardisation des procedes, des resultats ou des qualifications.", example: "Une startup fonctionne par ajustement mutuel ; une chaine de fast-food par standardisation des procedes" },
+      { term: 'Ajustement mutuel', definition: "Mecanisme de coordination le plus simple selon Mintzberg : les individus se coordonnent par echange direct et informel, sans passer par la hierarchie. Adapte aux petites equipes et aux organisations innovantes." },
     ],
   },
   'les-criteres-de-differenciation': {
@@ -256,6 +262,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Ressources', definition: "Moyens dont dispose l'organisation pour atteindre ses objectifs : humaines, financieres, materielles et immaterielles.", example: "Salaries (humaines), capital (financieres), machines (materielles), brevets (immaterielles)" },
       { term: 'Champ d\'action', definition: "Etendue geographique de l'activite de l'organisation : local, regional, national ou international.", example: "Une boulangerie agit localement, Total agit a l'international" },
       { term: 'Finalite lucrative et non lucrative', definition: "Une entreprise a une finalite lucrative (recherche du profit). Une association ou une administration a une finalite non lucrative (interet general)." },
+      { term: 'SCOP (Societe Cooperative et Participative)', definition: "Forme juridique ou les salaries sont associes majoritaires (au moins 51 % du capital). Les decisions se prennent selon le principe 'une personne = une voix'. Les benefices privilegient les salaries et les reserves.", example: "Une imprimerie cooperative ou chaque salarie a le meme poids de vote que le dirigeant" },
+      { term: 'Responsabilite limitee vs illimitee', definition: "En responsabilite limitee (SARL, SA, SAS), les associes ne perdent que leur apport en cas de faillite. En responsabilite illimitee (SNC, ancienne EI), l'entrepreneur repond des dettes sur son patrimoine personnel." },
+      { term: 'Secteur quaternaire', definition: "Secteur d'activite emergent regroupant les activites liees a l'economie numerique, au traitement des donnees massives, a l'intelligence artificielle et a l'economie de la connaissance.", example: "Google, Meta, OpenAI operent dans le secteur quaternaire" },
     ],
   },
   'le-management-strategique-et-operationnel': {
@@ -266,6 +275,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Decision strategique', definition: "Decision prise au sommet, engageant l'organisation sur le long terme, difficilement reversible et comportant un fort degre d'incertitude.", example: "Fusionner avec un concurrent, se diversifier dans un nouveau secteur" },
       { term: 'Decision operationnelle', definition: "Decision courante, prise au niveau intermediaire ou de base, a court terme et facilement reversible.", example: "Commander des fournitures, organiser une reunion" },
       { term: 'Processus de decision', definition: "Enchainement d'etapes menant a un choix : identification du probleme, recherche d'informations, evaluation des options, choix et mise en oeuvre." },
+      { term: 'Modele IMC de Simon', definition: "Modele de processus decisionnel en 3 phases : Intelligence (identifier le probleme et collecter les informations), Modelisation (concevoir les solutions possibles), Choix (selectionner la solution satisfaisante).", example: "Un directeur constate une baisse des ventes (I), etudie plusieurs strategies de relance (M), puis choisit de lancer une promotion (C)" },
+      { term: 'Rationalite limitee (Simon)', definition: "Concept selon lequel le decideur ne peut pas etre parfaitement rationnel : il dispose d'informations incompletes, de temps limite et subit des biais cognitifs. Il recherche donc une solution satisfaisante et non optimale." },
+      { term: 'Freeman vs Friedman', definition: "Friedman (1970) : la seule responsabilite de l'entreprise est de maximiser le profit pour les actionnaires. Freeman (1984) : l'entreprise doit satisfaire l'ensemble de ses parties prenantes (salaries, clients, fournisseurs, societe). La RSE s'inscrit dans la vision de Freeman." },
     ],
   },
   'la-performance': {
@@ -276,6 +288,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Indicateurs de performance', definition: "Outils de mesure quantitatifs ou qualitatifs permettant d'evaluer la performance d'une organisation.", example: "Chiffre d'affaires, taux de satisfaction client, taux d'absenteisme, part de marche" },
       { term: 'Tableau de bord', definition: "Outil de pilotage regroupant un ensemble d'indicateurs permettant au manager de suivre la performance et de prendre des decisions.", example: "Tableau de bord commercial avec CA mensuel, nombre de ventes, panier moyen" },
       { term: 'Performance sociale', definition: "Mesure de la capacite de l'organisation a satisfaire ses parties prenantes internes : conditions de travail, bien-etre, equite.", example: "Faible turnover, bonne ambiance de travail, respect de l'egalite hommes-femmes" },
+      { term: 'Balanced scorecard (Kaplan et Norton)', definition: "Tableau de bord prospectif qui structure la performance autour de 4 axes : financier (rentabilite), client (satisfaction), processus internes (qualite, delais) et apprentissage/developpement (formation, innovation). Il relie la strategie aux operations.", example: "Axe client : taux de fidelisation de 85 %. Axe apprentissage : 30h de formation par salarie par an." },
+      { term: 'Criteres ESG', definition: "Criteres d'evaluation de la performance extra-financiere : Environnement (emissions, dechets), Social (conditions de travail, diversite), Gouvernance (transparence, ethique). Utilises par les investisseurs pour orienter leurs placements.", example: "Un fonds d'investissement exclut les entreprises ayant un mauvais score ESG" },
     ],
   },
   'les-choix-strategiques': {
@@ -286,6 +300,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Avantage concurrentiel', definition: "Element distinctif durable qui permet a une organisation de surpasser ses concurrents : cout, differenciation ou niche.", example: "Apple se differencie par le design et l'innovation. Lidl se differencie par les prix bas" },
       { term: 'Strategie de domination par les couts', definition: "Strategie visant a proposer des prix inferieurs a ceux des concurrents grace a une maitrise des couts de production.", example: "Ryanair propose des vols a bas prix en minimisant ses couts" },
       { term: 'Strategie de differenciation', definition: "Strategie visant a proposer une offre percue comme unique par les clients, justifiant un prix plus eleve.", example: "Nespresso se differencie par l'experience client et le marketing premium" },
+      { term: '5 forces de Porter', definition: "Modele d'analyse sectorielle identifiant 5 forces concurrentielles : rivalite entre concurrents, menace de nouveaux entrants, menace de produits de substitution, pouvoir de negociation des clients et des fournisseurs. Certains ajoutent une 6e force : l'Etat.", example: "Dans la grande distribution, le pouvoir des clients (centrales d'achat) est tres eleve" },
+      { term: 'Analyse PESTEL', definition: "Outil de diagnostic externe analysant le macro-environnement selon 6 dimensions : Politique, Economique, Socioculturel, Technologique, Ecologique et Legal. Alimente le volet externe du SWOT.", example: "Le RGPD (Legal) impose de nouvelles contraintes aux organisations traitant des donnees personnelles" },
+      { term: 'Strategie de focalisation (niche)', definition: "Troisieme strategie generique de Porter : se concentrer sur un segment etroit du marche pour y appliquer une domination par les couts ou une differenciation. Le segment vise est trop petit pour attirer les grands concurrents.", example: "Rolls-Royce se focalise sur le segment ultra-luxe de l'automobile" },
     ],
   },
   'les-styles-de-direction': {
@@ -296,6 +313,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Leadership', definition: "Capacite d'un individu a influencer et motiver les membres d'un groupe pour atteindre un objectif commun. Il ne se confond pas necessairement avec l'autorite hierarchique.", example: "Un chef de projet charismatique qui motive son equipe par sa vision" },
       { term: 'Style autoritaire', definition: "Le dirigeant decide seul, communique peu et controle fortement. La motivation repose sur la crainte des sanctions.", example: "Un directeur qui impose ses decisions sans consulter les salaries" },
       { term: 'Style participatif', definition: "Le dirigeant associe les salaries aux decisions, favorise le travail en equipe et la communication. La motivation repose sur l'implication.", example: "Une start-up ou les decisions sont prises collectivement en reunion" },
+      { term: 'Grille de Blake et Mouton', definition: "Grille manageriale croisant deux axes (interet pour la tache et interet pour les personnes, notes de 1 a 9). Le style 9.9 (integrateur) est considere comme ideal : forte attention aux resultats ET au bien-etre des collaborateurs.", example: "Style 1.1 = laisser-faire, style 9.1 = autoritaire, style 1.9 = social, style 9.9 = integrateur" },
+      { term: 'Leadership situationnel (Hersey et Blanchard)', definition: "Theorie selon laquelle le meilleur style de management depend du niveau de maturite du collaborateur. 4 styles : directif (peu competent, peu motive), persuasif (peu competent mais motive), participatif (competent mais peu motive), delegatif (competent et motive)." },
+      { term: 'Management agile', definition: "Mode de management ne dans le developpement logiciel, fonde sur des cycles courts (sprints), l'adaptation permanente, la collaboration et la reactivite. Le manager est un facilitateur, pas un donneur d'ordres. Se diffuse dans tous les secteurs.", example: "Une equipe travaille en sprints de 2 semaines avec un point quotidien de 15 minutes" },
     ],
   },
 
@@ -311,6 +331,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Responsabilite du fait personnel', definition: "Responsabilite engagee lorsqu'une personne cause un dommage par sa faute (art. 1240 du Code civil). Trois conditions : faute, dommage, lien de causalite." },
       { term: 'Responsabilite du fait d\'autrui', definition: "Responsabilite d'une personne pour les dommages causes par une personne dont elle repond.", example: "Les parents sont responsables des dommages causes par leurs enfants mineurs" },
       { term: 'Responsabilite du fait des choses', definition: "Responsabilite du gardien d'une chose qui cause un dommage a un tiers, sans qu'il soit necessaire de prouver une faute.", example: "Le proprietaire d'un arbre qui tombe sur la voiture du voisin" },
+      { term: 'Force majeure', definition: "Evenement imprevisible, irresistible et exterieur qui rompt le lien de causalite et exonere totalement le responsable.", example: "Un seisme d'ampleur exceptionnelle qui detruit un batiment et cause des dommages aux voisins" },
+      { term: 'Faute de la victime', definition: "Comportement de la victime qui a contribue a la realisation de son propre dommage. Elle peut reduire (exoneration partielle) ou supprimer (exoneration totale) le droit a reparation." },
+      { term: 'Assurance de responsabilite civile', definition: "Contrat par lequel un assureur s'engage a prendre en charge les dommages et interets dus par l'assure en cas de mise en cause de sa responsabilite. Certaines assurances RC sont obligatoires (automobile, professionnelle)." },
     ],
   },
   'le-droit-du-travail': {
@@ -322,6 +345,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Obligations du salarie', definition: "Le salarie doit executer le travail convenu, respecter le reglement interieur, faire preuve de loyaute et respecter les consignes de securite." },
       { term: 'Obligations de l\'employeur', definition: "L'employeur doit fournir le travail convenu, verser le salaire, assurer la securite et la sante, respecter le droit du travail." },
       { term: 'Periode d\'essai', definition: "Debut du contrat pendant laquelle chaque partie peut rompre librement la relation de travail sans procedure ni indemnite.", example: "2 mois pour un employe, 3 mois pour un agent de maitrise, 4 mois pour un cadre" },
+      { term: 'Travailleur independant vs salarie', definition: "Le travailleur independant (auto-entrepreneur, freelance) organise librement son activite sans lien de subordination. Il ne beneficie pas du Code du travail. Le juge peut requalifier la relation en contrat de travail si un lien de subordination est constate.", example: "Un livreur de plateforme qui recoit des directives precises peut etre requalifie en salarie" },
+      { term: 'Clause de non-concurrence', definition: "Clause interdisant au salarie d'exercer une activite concurrente apres la rupture du contrat. Valable uniquement si elle est limitee dans le temps, l'espace, protege un interet legitime et prevoit une contrepartie financiere." },
+      { term: 'Reglement interieur', definition: "Document obligatoire dans les entreprises de 50+ salaries fixant les regles de discipline, hygiene et securite. Il est soumis a l'avis du CSE et au controle de l'inspecteur du travail. Les sanctions pecuniaires y sont interdites." },
     ],
   },
   'la-rupture-du-contrat-de-travail': {
@@ -333,6 +359,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Indemnite de licenciement', definition: "Somme versee au salarie licencie. Son montant minimum est fixe par la loi (1/4 de mois de salaire par annee d'anciennete)." },
       { term: 'Licenciement abusif', definition: "Licenciement sans cause reelle et serieuse. Le salarie peut saisir le conseil de prud'hommes et obtenir des dommages et interets.", example: "Licenciement motive par l'orientation politique du salarie" },
       { term: 'Preavis', definition: "Delai entre la notification de la rupture et la fin effective du contrat. Sa duree depend de l'anciennete et de la convention collective." },
+      { term: 'Faute simple, grave, lourde', definition: "La faute simple ouvre droit au preavis et a l'indemnite. La faute grave (impossible de maintenir le salarie) prive du preavis et de l'indemnite. La faute lourde (intention de nuire) ajoute la possibilite de rechercher la responsabilite civile du salarie.", example: "Retards repetes = faute simple. Vol = faute grave. Sabotage = faute lourde." },
+      { term: 'Prise d\'acte', definition: "Mode de rupture par lequel le salarie met fin au contrat en reprochant des manquements graves a l'employeur. Le juge requalifie ensuite en licenciement sans cause reelle et serieuse (si les griefs sont fondes) ou en demission (sinon)." },
     ],
   },
   'les-libertes-individuelles-et-collectives': {
@@ -343,6 +371,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'CSE (Comite Social et Economique)', definition: "Instance unique de representation du personnel obligatoire dans les entreprises d'au moins 11 salaries. Il remplace les anciens DP, CE et CHSCT." },
       { term: 'Liberte syndicale', definition: "Droit pour tout salarie d'adherer ou non au syndicat de son choix. L'employeur ne peut pas discriminer un salarie en raison de son activite syndicale." },
       { term: 'Convention collective', definition: "Accord ecrit entre syndicats de salaries et organisations patronales fixant les conditions d'emploi et de travail pour un secteur ou une entreprise.", example: "La convention collective de la metallurgie fixe les grilles de salaires du secteur" },
+      { term: 'Droit de retrait', definition: "Droit du salarie de se retirer d'une situation de travail presentant un danger grave et imminent pour sa vie ou sa sante (art. L4131-1 du Code du travail). Aucune sanction ni retenue de salaire ne peut etre appliquee si l'exercice est legitime." },
+      { term: 'NAO (Negociation Annuelle Obligatoire)', definition: "Obligation pour l'employeur d'engager chaque annee une negociation avec les delegues syndicaux sur les salaires, le temps de travail, le partage de la valeur ajoutee et l'egalite professionnelle." },
+      { term: 'Hierarchie des normes sociales (3 blocs)', definition: "Depuis 2017, bloc 1 : la branche prime (salaires minima, classifications). Bloc 2 : la branche peut prevoir de primer. Bloc 3 : l'accord d'entreprise prime, meme s'il est moins favorable que la branche." },
     ],
   },
   'le-numerique-et-le-droit': {
@@ -354,6 +385,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'CNIL', definition: "Commission Nationale de l'Informatique et des Libertes. Autorite independante chargee de veiller au respect du RGPD en France. Elle peut sanctionner les contrevenants.", example: "La CNIL a inflige une amende de 150 millions d'euros a Google en 2022" },
       { term: 'Droit a la deconnexion', definition: "Droit du salarie de ne pas etre joignable par son employeur en dehors de son temps de travail, rendu necessaire par les outils numeriques." },
       { term: 'Cybercriminalite', definition: "Ensemble des infractions commises via internet ou les systemes informatiques : piratage, phishing, usurpation d'identite numerique.", example: "Piratage d'un compte bancaire en ligne, ranconlogiciel" },
+      { term: 'Cyberharcelement', definition: "Agissements repetes via des moyens numeriques ayant pour objet de degrader les conditions de vie de la victime. Puni de 2 ans de prison et 30 000 euros d'amende (3 ans et 45 000 euros si la victime a moins de 15 ans)." },
+      { term: 'Cookies et consentement', definition: "Les cookies non essentiels (publicitaires, mesure d'audience tiers) necessitent le consentement prealable, libre et eclaire de l'utilisateur avant leur depot. Le refus doit etre aussi simple que l'acceptation. Les cookies strictement necessaires au fonctionnement du site sont exemptes." },
     ],
   },
 
@@ -368,6 +401,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Limites du PIB', definition: "Le PIB ne mesure pas le bien-etre, ignore les inegalites, ne comptabilise pas le travail domestique ni le benevolat et ne tient pas compte des degats environnementaux.", example: "Un accident de voiture augmente le PIB (reparations, soins) alors qu'il reduit le bien-etre" },
       { term: 'IDH', definition: "Indice de Developpement Humain : indicateur combine mesurant la sante (esperance de vie), l'education (scolarisation) et le niveau de vie (revenu par habitant)." },
       { term: 'Facteurs de croissance', definition: "Elements qui favorisent la croissance : accumulation du capital, progres technique, amelioration de la qualification de la main-d'oeuvre, innovation.", example: "L'investissement en R&D favorise l'innovation et donc la croissance" },
+      { term: 'Residu de Solow', definition: "Part de la croissance economique non expliquee par l'augmentation des quantites de travail et de capital. Elle est attribuee au progres technique et mesure la productivite globale des facteurs (PGF).", example: "Solow a montre que le progres technique explique plus de la moitie de la croissance americaine au XXe siecle" },
+      { term: 'Capital humain (Becker)', definition: "Ensemble des connaissances, competences et qualifications acquises par les individus grace a l'education, la formation et l'experience. Investir dans le capital humain accroit la productivite et la croissance.", example: "Un salarie qui suit une formation continue augmente sa productivite" },
+      { term: 'Economie circulaire', definition: "Modele economique visant a limiter le gaspillage en optimisant l'utilisation des ressources : eco-conception, recyclage, reemploi, economie de la fonctionnalite. Elle s'oppose au modele lineaire (extraire, produire, jeter).", example: "Une entreprise qui reconditionne des telephones au lieu de les detruire" },
     ],
   },
   'le-commerce-international': {
@@ -378,6 +414,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'OMC (Organisation Mondiale du Commerce)', definition: "Organisation internationale regissant les regles du commerce entre les pays. Elle favorise le libre-echange et regle les differends commerciaux.", example: "L'OMC compte 164 membres et siege a Geneve" },
       { term: 'Balance commerciale', definition: "Difference entre la valeur des exportations et la valeur des importations d'un pays. Excedentaire si exports > imports, deficitaire sinon.", example: "L'Allemagne a une balance commerciale excedentaire, la France est souvent deficitaire" },
       { term: 'Mondialisation', definition: "Processus d'intensification des echanges de biens, services, capitaux et informations a l'echelle mondiale, favorise par la baisse des couts de transport et les NTIC." },
+      { term: 'Balance des paiements', definition: "Document comptable retraçant l'ensemble des transactions entre un pays et le reste du monde : balance commerciale (biens), balance courante (biens + services + revenus + transferts) et compte financier (mouvements de capitaux)." },
+      { term: 'Protectionnisme educateur (List)', definition: "Theorie de Friedrich List selon laquelle un pays en developpement doit temporairement proteger ses industries naissantes de la concurrence etrangere, le temps qu'elles deviennent competitives.", example: "L'Allemagne du XIXe siecle a protege ses industries avant de s'ouvrir au commerce mondial" },
+      { term: 'Chaines de valeur mondiales', definition: "Decomposition de la production d'un bien en multiples etapes realisees dans differents pays. Chaque pays se specialise dans l'etape ou il dispose d'un avantage (couts, competences).", example: "Un smartphone concu aux USA, assemble en Chine, avec des composants de Coree et du Japon" },
     ],
   },
   'le-chomage': {
@@ -388,6 +427,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Taux de chomage', definition: "Pourcentage de la population active qui est au chomage. Taux de chomage = (Nombre de chomeurs / Population active) x 100.", example: "Un taux de chomage de 7,4 % signifie que 7,4 actifs sur 100 sont au chomage" },
       { term: 'Population active', definition: "Ensemble des personnes en age de travailler qui exercent un emploi (actifs occupes) ou en recherchent un (chomeurs)." },
       { term: 'Chomeur (au sens du BIT)', definition: "Personne en age de travailler, sans emploi, disponible pour travailler et recherchant activement un emploi." },
+      { term: 'Halo du chomage', definition: "Ensemble des personnes en marge du marche du travail qui ne sont pas comptabilisees comme chomeuses au sens du BIT : personnes decouragees, en sous-emploi, ou non immediatement disponibles.", example: "Une personne qui souhaite travailler mais a cesse ses recherches par decouragement" },
+      { term: 'Analyse keynesienne du chomage', definition: "Pour Keynes, le chomage resulte d'une insuffisance de la demande globale. La solution passe par la relance budgetaire (depenses publiques, investissements) grace a l'effet multiplicateur." },
+      { term: 'Flexisecurite', definition: "Modele combinant flexibilite du marche du travail (facilite de licenciement), generosites des allocations chomage et politiques actives intensives (formation, accompagnement). Le Danemark en est l'exemple de reference.", example: "Au Danemark, les licenciements sont souples mais les chomeurs beneficient d'allocations elevees et d'un accompagnement actif" },
     ],
   },
   'linflation': {
@@ -399,6 +441,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'BCE (Banque Centrale Europeenne)', definition: "Institution responsable de la politique monetaire de la zone euro. Son objectif principal est de maintenir la stabilite des prix (inflation proche de 2 %)." },
       { term: 'Indice des prix a la consommation (IPC)', definition: "Indicateur mesure par l'INSEE qui suit l'evolution des prix d'un panier de biens et services representatif de la consommation des menages.", example: "L'IPC est utilise pour calculer le taux d'inflation officiel" },
       { term: 'Inflation par la demande', definition: "Hausse des prix causee par une demande superieure a l'offre. Trop de monnaie en circulation face a une production insuffisante.", example: "Apres le Covid, la reprise de la demande a provoque des tensions inflationnistes" },
+      { term: 'Courbe de Phillips', definition: "Relation inverse observee entre le taux d'inflation et le taux de chomage : quand le chomage baisse, l'inflation tend a augmenter, et inversement. Remise en question par la stagflation des annees 1970." },
+      { term: 'Stagflation', definition: "Situation paradoxale ou coexistent simultanement une stagnation economique (faible croissance ou recession) et une inflation persistante. Phenomene observe lors des chocs petroliers des annees 1970.", example: "En 1974, la France a connu a la fois une recession et une inflation superieure a 13 %" },
+      { term: 'Taux de refinancement (BCE)', definition: "Taux directeur principal de la BCE, auquel les banques commerciales empruntent de la monnaie centrale. En l'augmentant, la BCE rend le credit plus cher et freine l'inflation ; en le baissant, elle stimule l'activite.", example: "La BCE a porte son taux de refinancement a 4,5 % en 2023 pour lutter contre l'inflation" },
     ],
   },
 
@@ -414,6 +459,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Offre', definition: "Ensemble des biens et services proposes par les entreprises pour satisfaire un meme type de besoin." },
       { term: 'Demande', definition: "Ensemble des acheteurs actuels (clients) et potentiels (prospects) d'un produit ou service." },
       { term: 'Etude de marche', definition: "Collecte et analyse d'informations sur un marche pour aider a la prise de decision mercatique.", example: "Enquete, sondage, panel" },
+      { term: 'Approche creatrice', definition: "Approche mercatique ou l'entreprise cree un besoin nouveau en proposant un produit ou service que le consommateur ne savait pas encore vouloir. Elle s'oppose a l'approche reactive qui repond a des besoins exprimes.", example: "Le lancement du premier smartphone a cree un besoin que personne n'exprimait avant" },
+      { term: 'Benchmark concurrentiel', definition: "Demarche de comparaison des pratiques, performances et processus de l'entreprise avec ceux des concurrents ou des entreprises de reference, pour identifier les meilleures pratiques et s'en inspirer.", example: "Comparer sa politique de prix, son packaging ou sa communication avec ceux des leaders du marche" },
+      { term: 'Sources primaires vs secondaires', definition: "Les sources primaires sont des donnees collectees specifiquement pour un besoin precis (enquete, sondage). Les sources secondaires sont des donnees deja existantes reutilisees (INSEE, panels, presse). Une bonne etude combine les deux.", example: "Etude documentaire (secondaire) puis enquete terrain (primaire)" },
     ],
   },
   'le-comportement-du-consommateur': {
@@ -424,6 +472,8 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Facteurs d\'influence', definition: "Elements qui influencent le comportement d'achat : facteurs personnels (age, revenu), socioculturels (famille, groupe), psychologiques (perception, attitude).", example: "Les adolescents sont tres influences par leurs pairs et les reseaux sociaux" },
       { term: 'Processus d\'achat', definition: "Etapes suivies par le consommateur : reconnaissance du besoin, recherche d'information, evaluation des alternatives, decision d'achat, evaluation post-achat." },
       { term: 'Experience client', definition: "Ensemble des emotions et perceptions ressenties par le consommateur avant, pendant et apres l'achat d'un produit ou service." },
+      { term: 'ZMOT (Zero Moment of Truth)', definition: "Concept de Google designant le moment ou le consommateur effectue ses recherches en ligne (avis, comparaisons, videos) avant de se rendre en magasin ou de finaliser son achat. Le parcours d'achat commence desormais sur un ecran.", example: "Avant d'acheter un telephone, 90 % des consommateurs consultent les avis en ligne" },
+      { term: 'Nudge marketing', definition: "Technique issue de l'economie comportementale qui oriente les choix du consommateur sans le contraindre, en modifiant l'architecture des choix : choix par defaut, preuve sociale, effet de rarete, ancrage.", example: "Afficher 'Plus que 3 en stock' cree un sentiment d'urgence qui accelere l'achat" },
     ],
   },
   'la-politique-de-produit': {
@@ -434,6 +484,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Packaging', definition: "Ensemble des elements materiels de l'emballage d'un produit. Il remplit des fonctions techniques (protection, transport) et commerciales (attirer, informer, seduire).", example: "La bouteille de Coca-Cola reconnaissable est un element cle de son packaging" },
       { term: 'Marque', definition: "Signe distinctif (nom, logo, slogan) permettant d'identifier un produit et de le differencier de la concurrence. Elle cree de la valeur.", example: "Nike avec son swoosh et son slogan 'Just Do It'" },
       { term: 'Positionnement', definition: "Place qu'un produit occupe dans l'esprit des consommateurs par rapport aux concurrents. Il definit l'image voulue par l'entreprise.", example: "Apple se positionne sur le haut de gamme et l'innovation" },
+      { term: 'Matrice BCG', definition: "Outil d'analyse du portefeuille de produits croisant taux de croissance du marche et part de marche relative. Quatre categories : vedettes (stars), vaches a lait, dilemmes, poids morts.", example: "Les vaches a lait financent les dilemmes et les vedettes de l'entreprise" },
+      { term: 'Co-branding', definition: "Association de deux marques pour creer un produit commun, combinant leurs notorietes et expertises respectives pour toucher de nouvelles clienteles.", example: "Une marque de glace qui collabore avec une marque de biscuit pour creer un parfum inedit" },
+      { term: 'Design thinking', definition: "Methode de conception centree sur l'utilisateur en 5 etapes : empathie, definition du probleme, ideation, prototypage, test. Elle favorise l'innovation en placant le consommateur au centre de la demarche.", example: "Observer les usagers dans leur quotidien (empathie) avant de concevoir un nouveau service" },
     ],
   },
   'la-politique-de-prix': {
@@ -444,6 +497,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Elasticite-prix de la demande', definition: "Mesure de la sensibilite de la demande face a une variation du prix. Si |e| > 1, la demande est elastique (sensible au prix).", example: "Pour les produits de luxe, l'elasticite est souvent faible (demande peu sensible au prix)" },
       { term: 'Strategie d\'ecremage', definition: "Fixer un prix eleve au lancement pour toucher une clientele prete a payer plus, puis baisser progressivement.", example: "Les consoles de jeu sont cheres au lancement, puis leur prix baisse" },
       { term: 'Strategie de penetration', definition: "Fixer un prix bas au lancement pour conquerer rapidement des parts de marche, puis augmenter progressivement.", example: "Free a lance son forfait a 2 euros pour penetrer le marche de la telephonie mobile" },
+      { term: 'Yield management', definition: "Tarification dynamique qui fait varier le prix d'un meme produit ou service en fonction de la demande, du moment d'achat et du taux de remplissage. Objectif : maximiser le chiffre d'affaires.", example: "Un billet de train SNCF est moins cher reserve 3 mois a l'avance qu'achete la veille" },
+      { term: 'Modele freemium', definition: "Modele economique combinant une offre gratuite de base (free) et une offre payante enrichie (premium). L'objectif est d'attirer un maximum d'utilisateurs puis de convertir les plus engages en clients payants.", example: "Spotify gratuit avec publicite / Spotify Premium sans publicite" },
+      { term: 'Coefficient multiplicateur', definition: "Rapport entre le prix de vente TTC et le cout d'achat HT. Il permet de calculer rapidement le prix de vente a partir du cout d'achat en appliquant un facteur unique.", example: "Coefficient de 2,5 : un produit achete 20 euros HT sera vendu 50 euros TTC" },
     ],
   },
   'la-politique-de-distribution': {
@@ -454,6 +510,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Strategie de distribution intensive', definition: "Distribuer le produit dans le maximum de points de vente pour etre present partout.", example: "Coca-Cola est vendu en supermarche, au distributeur, au restaurant, en ligne..." },
       { term: 'Strategie de distribution selective', definition: "Selectionner un nombre limite de points de vente en fonction de criteres precis (image, competence).", example: "Les produits Chanel ne sont vendus que dans les parfumeries selectionnees" },
       { term: 'E-commerce', definition: "Vente de biens et services par internet. Il transforme la distribution en supprimant les intermediaires et en elargissant la zone de chalandise.", example: "Le site vente-privee.com propose des ventes flash en ligne" },
+      { term: 'Phygital', definition: "Convergence entre le commerce physique et le commerce digital. L'objectif est d'enrichir l'experience client en combinant le meilleur des deux mondes : contact humain du magasin et praticite du digital.", example: "Bornes interactives en magasin, essayage virtuel en ligne, click & collect" },
+      { term: 'Desintermediation et reintermediation', definition: "La desintermediation supprime des intermediaires grace au digital (vente directe en ligne). La reintermediation fait apparaitre de nouveaux intermediaires numeriques : les plateformes (marketplaces).", example: "Un producteur vend en direct sur son site (desintermediation). Amazon met en relation vendeurs et acheteurs (reintermediation)" },
+      { term: 'Dernier kilometre', definition: "Derniere etape de la livraison, du depot logistique au domicile du consommateur. C'est le maillon le plus couteux (jusqu'a 50 % du cout total) et le plus impactant ecologiquement.", example: "Points relais, consignes automatiques, livraison velo-cargo en centre-ville" },
     ],
   },
   'la-politique-de-communication': {
@@ -464,6 +523,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'Marketing digital', definition: "Ensemble des techniques marketing utilisant les supports numeriques : reseaux sociaux, SEO, emailing, publicite en ligne, marketing d'influence.", example: "Une campagne Instagram avec un influenceur pour promouvoir un produit" },
       { term: 'Cible de communication', definition: "Ensemble des personnes que l'entreprise souhaite toucher par sa communication. Elle peut etre plus large que la cible marketing.", example: "Cible marketing : les 18-25 ans. Cible communication : aussi les parents qui financent" },
       { term: 'Plan de communication', definition: "Document strategique qui definit les objectifs, les cibles, le message, les moyens et le budget d'une campagne de communication." },
+      { term: 'SEO vs SEA', definition: "Le SEO (Search Engine Optimization) optimise le referencement naturel (gratuit, durable). Le SEA (Search Engine Advertising) achete des publicites sur les moteurs de recherche (payant, immediat). L'ensemble forme le SEM.", example: "Optimiser le contenu d'un site pour Google (SEO) et acheter des mots-cles sur Google Ads (SEA)" },
+      { term: 'Inbound marketing', definition: "Strategie qui attire les prospects vers la marque par du contenu a valeur ajoutee (pull), plutot que d'aller les chercher par la publicite intrusive (push/outbound). Parcours : attirer, convertir, conclure, fideliser.", example: "Un blog de recettes pour attirer les visiteurs vers un site de vente d'ustensiles de cuisine" },
+      { term: 'RGPD et marketing digital', definition: "Le RGPD impose le consentement explicite (opt-in) pour les cookies de tracage et les communications commerciales. Il garantit le droit a l'effacement et impose la minimisation des donnees collectees.", example: "Un bandeau de cookies avec les options Accepter / Refuser / Personnaliser" },
     ],
   },
   'la-fidelisation': {
@@ -474,6 +536,9 @@ export const flashcards: Record<string, FlashcardSet> = {
       { term: 'NPS (Net Promoter Score)', definition: "Indicateur mesurant la propension des clients a recommander une marque. Question : 'Recommanderiez-vous notre marque ?' Note de 0 a 10.", example: "Promoteurs (9-10) - Detracteurs (0-6) = NPS. Un NPS > 50 est excellent" },
       { term: 'Fidelisation', definition: "Ensemble des actions menees par une entreprise pour maintenir et developper une relation durable avec ses clients existants. Fideliser coute moins cher que conquerir." },
       { term: 'Attrition (churn)', definition: "Taux de perte de clients sur une periode donnee. Un taux d'attrition eleve signale un probleme de satisfaction ou de competitivite.", example: "Un operateur telecom qui perd 10 % de ses abonnes par an a un taux d'attrition de 10 %" },
+      { term: 'Customer Lifetime Value (CLV)', definition: "Valeur vie client : estimation du revenu total qu'un client genere pour l'entreprise sur toute la duree de leur relation. Formule simplifiee : panier moyen x frequence d'achat x duree de la relation.", example: "Un client depense 50 euros x 6 achats/an x 5 ans = CLV de 1 500 euros" },
+      { term: 'Taux de retention', definition: "Pourcentage de clients conserves sur une periode donnee. Un taux eleve (> 90 %) indique une bonne fidelisation. C'est l'inverse du taux d'attrition.", example: "Si une entreprise a 1 000 clients en debut d'annee et en conserve 850 (hors nouveaux), son taux de retention est de 85 %" },
+      { term: 'Experience client (CX) omnicanale', definition: "Ensemble des perceptions et emotions ressenties par le client a chaque interaction avec la marque, sur tous les canaux (magasin, site, appli, SAV). L'experience doit etre coherente et fluide quel que soit le canal.", example: "Commander sur l'appli, retirer en magasin, contacter le SAV par chat : meme qualite d'experience" },
     ],
   },
 
