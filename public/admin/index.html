@@ -4,16 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Administration — ÉcoGestion STMG</title>
+  <title>Administration -- EcoGestion STMG</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FAFAF9; min-height: 100vh; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FAFAF9; min-height: 100vh; color: #111; }
     .font-display { font-family: 'Outfit', sans-serif; }
+    button { font-family: inherit; cursor: pointer; }
+    input, select, textarea { font-family: inherit; }
 
-    /* Login screen */
+    /* ---- Notification toast ---- */
+    .toast-container { position: fixed; top: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+    .toast { padding: 14px 20px; border-radius: 14px; font-size: 14px; font-weight: 600; box-shadow: 0 8px 32px rgba(0,0,0,0.12); animation: toastIn 0.3s ease; display: flex; align-items: center; gap: 10px; max-width: 400px; }
+    .toast-success { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .toast-error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+    .toast-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+    @keyframes toastIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* ---- Login screen ---- */
     .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
     .login-card { background: white; border-radius: 24px; padding: 48px 40px; max-width: 420px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.06); border: 1px solid #f3f4f6; }
     .login-logo { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
@@ -22,30 +32,66 @@
     .login-sub { text-align: center; color: #6b7280; font-size: 14px; margin-bottom: 32px; }
     .form-group { margin-bottom: 20px; }
     .form-group label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
-    .form-group input { width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 15px; font-family: inherit; outline: none; transition: border-color 0.2s; }
-    .form-group input:focus { border-color: #8b5cf6; }
-    .login-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'Outfit'; cursor: pointer; transition: opacity 0.2s; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px;
+      font-size: 15px; outline: none; transition: border-color 0.2s; background: white;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #8b5cf6; }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .login-btn {
+      width: 100%; padding: 14px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700;
+      font-family: 'Outfit'; cursor: pointer; transition: opacity 0.2s;
+    }
     .login-btn:hover { opacity: 0.9; }
+    .login-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .login-error { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 12px 16px; border-radius: 10px; font-size: 13px; margin-bottom: 20px; display: none; }
 
-    /* Admin dashboard */
-    .admin-hidden { display: none; }
-    .admin-nav { background: white; border-bottom: 1px solid #e5e7eb; padding: 0 24px; }
+    /* ---- Admin layout ---- */
+    .admin-hidden { display: none !important; }
+    .admin-nav { background: white; border-bottom: 1px solid #e5e7eb; padding: 0 24px; position: sticky; top: 0; z-index: 100; }
     .admin-nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
     .admin-nav-left { display: flex; align-items: center; gap: 12px; }
-    .admin-nav-logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); display: flex; align-items: center; justify-content: center; }
+    .admin-nav-logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .admin-nav-logo span { color: white; font-family: 'Outfit'; font-weight: 800; font-size: 16px; }
-    .admin-nav-title { font-family: 'Outfit'; font-weight: 700; font-size: 18px; }
-    .admin-nav-badge { background: #f3e8ff; color: #7c3aed; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
-    .logout-btn { padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 10px; background: white; font-size: 13px; font-weight: 600; cursor: pointer; color: #6b7280; }
+    .admin-nav-title { font-family: 'Outfit'; font-weight: 700; font-size: 18px; white-space: nowrap; }
+    .admin-nav-badge { background: #f3e8ff; color: #7c3aed; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+    .logout-btn { padding: 8px 16px; border: 2px solid #e5e7eb; border-radius: 10px; background: white; font-size: 13px; font-weight: 600; color: #6b7280; white-space: nowrap; }
     .logout-btn:hover { border-color: #d1d5db; color: #374151; }
 
+    /* ---- Tabs ---- */
+    .tabs-bar { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; gap: 4px; border-bottom: 2px solid #f3f4f6; background: white; }
+    .tab-btn {
+      padding: 14px 20px; font-size: 14px; font-weight: 600; color: #6b7280; border: none;
+      background: none; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s;
+    }
+    .tab-btn:hover { color: #374151; }
+    .tab-btn.active { color: #7c3aed; border-bottom-color: #7c3aed; }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
     .admin-content { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+    /* ---- Dashboard tab ---- */
     .admin-welcome { font-family: 'Outfit'; font-weight: 800; font-size: 28px; color: #111; margin-bottom: 8px; }
     .admin-desc { color: #6b7280; font-size: 15px; margin-bottom: 32px; }
 
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card {
+      background: white; border-radius: 18px; padding: 24px; border: 1px solid #f3f4f6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .stat-card .stat-icon { font-size: 28px; margin-bottom: 10px; }
+    .stat-card .stat-value { font-family: 'Outfit'; font-weight: 800; font-size: 32px; color: #111; }
+    .stat-card .stat-label { font-size: 13px; color: #6b7280; margin-top: 4px; }
+
     .admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-    .admin-card { background: white; border-radius: 20px; padding: 28px; border: 1px solid #f3f4f6; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.2s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+    .admin-card {
+      background: white; border-radius: 20px; padding: 28px; border: 1px solid #f3f4f6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.2s; cursor: pointer;
+      text-decoration: none; color: inherit; display: block;
+    }
     .admin-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
     .admin-card-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
     .admin-card h3 { font-family: 'Outfit'; font-weight: 700; font-size: 17px; margin-bottom: 6px; }
@@ -56,132 +102,552 @@
     .admin-section h2 { font-family: 'Outfit'; font-weight: 700; font-size: 20px; margin-bottom: 16px; color: #111; }
 
     .quick-links { display: flex; flex-wrap: wrap; gap: 10px; }
-    .quick-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; font-size: 13px; font-weight: 500; color: #374151; text-decoration: none; transition: all 0.2s; }
+    .quick-link {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: white;
+      border: 1px solid #e5e7eb; border-radius: 12px; font-size: 13px; font-weight: 500;
+      color: #374151; text-decoration: none; transition: all 0.2s;
+    }
     .quick-link:hover { border-color: #8b5cf6; color: #7c3aed; }
+
+    /* ---- QCM / Flashcard panels ---- */
+    .panel-header { margin-bottom: 28px; }
+    .panel-header h2 { font-family: 'Outfit'; font-weight: 800; font-size: 24px; margin-bottom: 6px; }
+    .panel-header p { color: #6b7280; font-size: 14px; }
+
+    .selector-row { display: flex; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+    .selector-row .form-group { flex: 1; min-width: 220px; margin-bottom: 0; }
+
+    .content-card {
+      background: white; border-radius: 20px; padding: 32px; border: 1px solid #f3f4f6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 24px;
+    }
+    .content-card h3 { font-family: 'Outfit'; font-weight: 700; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+    .existing-list { margin-bottom: 28px; }
+    .existing-item {
+      padding: 14px 18px; border: 1px solid #f3f4f6; border-radius: 12px; margin-bottom: 8px;
+      font-size: 14px; background: #fafaf9; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .existing-item .item-number {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; font-weight: 700;
+      font-size: 12px; min-width: 26px; height: 26px; border-radius: 8px; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .existing-item .item-text { flex: 1; color: #374151; line-height: 1.5; }
+
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .option-row { display: flex; align-items: center; gap: 10px; }
+    .option-row label { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #374151; cursor: pointer; white-space: nowrap; }
+    .option-row input[type="radio"] { accent-color: #7c3aed; width: 18px; height: 18px; }
+    .option-row input[type="text"] { flex: 1; }
+
+    .btn-row { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 12px 28px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
+      font-family: 'Outfit'; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-secondary {
+      padding: 12px 28px; background: white; color: #374151; border: 2px solid #e5e7eb;
+      border-radius: 12px; font-size: 15px; font-weight: 700; font-family: 'Outfit'; transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: #d1d5db; }
+
+    .empty-state {
+      text-align: center; padding: 48px 24px; color: #9ca3af;
+    }
+    .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 15px; }
+
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-overlay {
+      position: absolute; inset: 0; background: rgba(255,255,255,0.8); border-radius: 20px;
+      display: flex; align-items: center; justify-content: center; z-index: 10;
+    }
+    .loading-overlay .spinner-lg { width: 32px; height: 32px; border: 4px solid #e5e7eb; border-top-color: #7c3aed; border-radius: 50%; animation: spin 0.6s linear infinite; }
+
+    .relative { position: relative; }
+
+    /* ---- Documents tab ---- */
+    .docs-info {
+      background: linear-gradient(135deg, #eff6ff, #faf5ff); border-radius: 20px; padding: 40px;
+      border: 1px solid #e0e7ff; text-align: center;
+    }
+    .docs-info .docs-icon { font-size: 56px; margin-bottom: 16px; }
+    .docs-info h3 { font-family: 'Outfit'; font-weight: 700; font-size: 20px; margin-bottom: 8px; }
+    .docs-info p { color: #6b7280; font-size: 14px; line-height: 1.7; margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .docs-info a {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px;
+      background: #111; color: white; border-radius: 12px; font-weight: 700;
+      font-family: 'Outfit'; font-size: 15px; text-decoration: none; transition: opacity 0.2s;
+    }
+    .docs-info a:hover { opacity: 0.85; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .login-card { padding: 36px 24px; }
+      .admin-nav-badge { display: none; }
+      .admin-content { padding: 24px 16px; }
+      .tabs-bar { padding: 0 16px; overflow-x: auto; }
+      .tab-btn { padding: 12px 14px; font-size: 13px; white-space: nowrap; }
+      .options-grid { grid-template-columns: 1fr; }
+      .selector-row { flex-direction: column; }
+      .content-card { padding: 24px 18px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .admin-nav-title { font-size: 15px; }
+      .btn-row { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- LOGIN SCREEN -->
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ============== LOGIN SCREEN ============== -->
   <div id="login-screen" class="login-screen">
     <div class="login-card">
-      <div class="login-logo"><span>É</span></div>
+      <div class="login-logo"><span>E</span></div>
       <h1 class="login-title">Administration</h1>
-      <p class="login-sub">Connecte-toi pour gérer le contenu du site</p>
+      <p class="login-sub">Connecte-toi pour gerer le contenu du site</p>
 
       <div id="login-error" class="login-error">Identifiant ou mot de passe incorrect</div>
 
       <form id="login-form">
         <div class="form-group">
           <label for="username">Identifiant</label>
-          <input type="text" id="username" placeholder="Ton prénom" autocomplete="username" />
+          <input type="text" id="username" autocomplete="username" required />
         </div>
         <div class="form-group">
           <label for="password">Mot de passe</label>
-          <input type="password" id="password" placeholder="••••••" autocomplete="current-password" />
+          <input type="password" id="password" autocomplete="current-password" required />
         </div>
         <button type="submit" class="login-btn">Se connecter</button>
       </form>
     </div>
   </div>
 
-  <!-- ADMIN DASHBOARD -->
+  <!-- ============== ADMIN DASHBOARD ============== -->
   <div id="admin-dashboard" class="admin-hidden">
     <nav class="admin-nav">
       <div class="admin-nav-inner">
         <div class="admin-nav-left">
-          <div class="admin-nav-logo"><span>É</span></div>
-          <span class="admin-nav-title">ÉcoGestion Admin</span>
-          <span class="admin-nav-badge">Tableau de bord</span>
+          <div class="admin-nav-logo"><span>E</span></div>
+          <span class="admin-nav-title">EcoGestion Admin</span>
+          <span class="admin-nav-badge" id="nav-badge">Tableau de bord</span>
         </div>
-        <button class="logout-btn" onclick="logout()">Déconnexion</button>
+        <button class="logout-btn" onclick="logout()">Deconnexion</button>
       </div>
     </nav>
 
-    <div class="admin-content">
-      <h1 class="admin-welcome" id="welcome-msg">Bienvenue !</h1>
-      <p class="admin-desc">Gère le contenu du site ÉcoGestion STMG depuis ce panneau.</p>
+    <!-- Tabs -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" data-tab="dashboard">Tableau de bord</button>
+      <button class="tab-btn" data-tab="qcm">QCM</button>
+      <button class="tab-btn" data-tab="flashcards">Fiches Flash</button>
+      <button class="tab-btn" data-tab="documents">Documents</button>
+    </div>
 
-      <div class="admin-grid">
-        <a href="https://github.com/racsed/ecogestion-stmg/edit/main/src/data/allQCM.ts" target="_blank" class="admin-card">
-          <div class="admin-card-icon" style="background: #ecfdf5;">🎯</div>
-          <h3>QCM</h3>
-          <p>Ajouter ou modifier des questions QCM pour tous les chapitres.</p>
-          <div class="admin-card-arrow" style="color: #10b981;">Modifier sur GitHub →</div>
-        </a>
+    <!-- ====== TAB: DASHBOARD ====== -->
+    <div class="tab-panel active" id="tab-dashboard">
+      <div class="admin-content">
+        <h1 class="admin-welcome" id="welcome-msg">Bienvenue !</h1>
+        <p class="admin-desc">Gere le contenu du site EcoGestion STMG depuis ce panneau.</p>
 
-        <a href="https://github.com/racsed/ecogestion-stmg/edit/main/src/data/flashcards.ts" target="_blank" class="admin-card">
-          <div class="admin-card-icon" style="background: #fef3c7;">⚡</div>
-          <h3>Fiches Flash</h3>
-          <p>Créer et modifier les fiches flash (terme, définition, exemple).</p>
-          <div class="admin-card-arrow" style="color: #f59e0b;">Modifier sur GitHub →</div>
-        </a>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-value" id="stat-qcm">44</div>
+            <div class="stat-label">Chapitres avec QCM</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value" id="stat-flash">44</div>
+            <div class="stat-label">Chapitres avec Flashcards</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-value">8</div>
+            <div class="stat-label">Matieres actives</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📄</div>
+            <div class="stat-value">44</div>
+            <div class="stat-label">Chapitres au total</div>
+          </div>
+        </div>
 
-        <a href="https://github.com/racsed/ecogestion-stmg/edit/main/src/data/subjects.ts" target="_blank" class="admin-card">
-          <div class="admin-card-icon" style="background: #eff6ff;">📚</div>
-          <h3>Matières et chapitres</h3>
-          <p>Gérer la structure des matières, thèmes et chapitres.</p>
-          <div class="admin-card-arrow" style="color: #3b82f6;">Modifier sur GitHub →</div>
-        </a>
+        <div class="admin-grid">
+          <a href="https://github.com/racsed/ecogestion-stmg/edit/main/src/data/allQCM.ts" target="_blank" class="admin-card">
+            <div class="admin-card-icon" style="background: #ecfdf5;">🎯</div>
+            <h3>QCM (GitHub)</h3>
+            <p>Modifier directement le fichier allQCM.ts sur GitHub.</p>
+            <div class="admin-card-arrow" style="color: #10b981;">Ouvrir sur GitHub &rarr;</div>
+          </a>
 
-        <a href="https://github.com/racsed/ecogestion-stmg/tree/main/src/pages" target="_blank" class="admin-card">
-          <div class="admin-card-icon" style="background: #faf5ff;">📝</div>
-          <h3>Pages de cours</h3>
-          <p>Modifier le contenu des fiches de synthèse de chaque chapitre.</p>
-          <div class="admin-card-arrow" style="color: #8b5cf6;">Parcourir sur GitHub →</div>
-        </a>
+          <a href="https://github.com/racsed/ecogestion-stmg/edit/main/src/data/flashcards.ts" target="_blank" class="admin-card">
+            <div class="admin-card-icon" style="background: #fef3c7;">⚡</div>
+            <h3>Flashcards (GitHub)</h3>
+            <p>Modifier directement le fichier flashcards.ts sur GitHub.</p>
+            <div class="admin-card-arrow" style="color: #f59e0b;">Ouvrir sur GitHub &rarr;</div>
+          </a>
 
-        <a href="https://github.com/racsed/ecogestion-stmg/upload/main/public/uploads/documents" target="_blank" class="admin-card">
-          <div class="admin-card-icon" style="background: #fef2f2;">📄</div>
-          <h3>Documents PDF</h3>
-          <p>Uploader des sujets de bac, corrigés, supports de cours.</p>
-          <div class="admin-card-arrow" style="color: #ef4444;">Uploader sur GitHub →</div>
-        </a>
+          <a href="https://github.com/racsed/ecogestion-stmg/edit/main/src/data/subjects.ts" target="_blank" class="admin-card">
+            <div class="admin-card-icon" style="background: #eff6ff;">📚</div>
+            <h3>Matieres et chapitres</h3>
+            <p>Gerer la structure des matieres, themes et chapitres.</p>
+            <div class="admin-card-arrow" style="color: #3b82f6;">Ouvrir sur GitHub &rarr;</div>
+          </a>
 
-        <a href="https://app.netlify.com/projects/ecogestion-stmg/deploys" target="_blank" class="admin-card">
-          <div class="admin-card-icon" style="background: #f0fdf4;">🚀</div>
-          <h3>Déploiements</h3>
-          <p>Voir l'état des déploiements et déclencher une mise en ligne.</p>
-          <div class="admin-card-arrow" style="color: #22c55e;">Voir sur Netlify →</div>
-        </a>
+          <a href="https://github.com/racsed/ecogestion-stmg/upload/main/public/uploads/documents" target="_blank" class="admin-card">
+            <div class="admin-card-icon" style="background: #fef2f2;">📄</div>
+            <h3>Documents PDF</h3>
+            <p>Uploader des sujets de bac, corriges, supports de cours.</p>
+            <div class="admin-card-arrow" style="color: #ef4444;">Uploader sur GitHub &rarr;</div>
+          </a>
+
+          <a href="https://app.netlify.com/projects/ecogestion-stmg/deploys" target="_blank" class="admin-card">
+            <div class="admin-card-icon" style="background: #f0fdf4;">🚀</div>
+            <h3>Deploiements</h3>
+            <p>Voir l'etat des deploiements et declencher une mise en ligne.</p>
+            <div class="admin-card-arrow" style="color: #22c55e;">Voir sur Netlify &rarr;</div>
+          </a>
+
+          <a href="https://ecogestion-stmg.netlify.app" target="_blank" class="admin-card">
+            <div class="admin-card-icon" style="background: #faf5ff;">🌐</div>
+            <h3>Voir le site</h3>
+            <p>Ouvrir le site en production pour verifier les modifications.</p>
+            <div class="admin-card-arrow" style="color: #8b5cf6;">Ouvrir le site &rarr;</div>
+          </a>
+        </div>
+
+        <div class="admin-section">
+          <h2>Liens rapides</h2>
+          <div class="quick-links">
+            <a href="https://ecogestion-stmg.netlify.app" target="_blank" class="quick-link">🌐 Voir le site</a>
+            <a href="https://github.com/racsed/ecogestion-stmg" target="_blank" class="quick-link">💻 Repo GitHub</a>
+            <a href="https://app.netlify.com/projects/ecogestion-stmg" target="_blank" class="quick-link">☁️ Dashboard Netlify</a>
+            <a href="https://ecogestion-stmg.netlify.app/outils/sujets-bac/" target="_blank" class="quick-link">📋 Sujets de bac</a>
+            <a href="https://ecogestion-stmg.netlify.app/outils/glossaire/" target="_blank" class="quick-link">📖 Glossaire</a>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="admin-section">
-        <h2>Liens rapides</h2>
-        <div class="quick-links">
-          <a href="https://ecogestion-stmg.netlify.app" target="_blank" class="quick-link">🌐 Voir le site</a>
-          <a href="https://github.com/racsed/ecogestion-stmg" target="_blank" class="quick-link">💻 Repo GitHub</a>
-          <a href="https://app.netlify.com/projects/ecogestion-stmg" target="_blank" class="quick-link">☁️ Dashboard Netlify</a>
-          <a href="https://ecogestion-stmg.netlify.app/outils/sujets-bac/" target="_blank" class="quick-link">📋 Sujets de bac</a>
-          <a href="https://ecogestion-stmg.netlify.app/outils/glossaire/" target="_blank" class="quick-link">📖 Glossaire</a>
+    <!-- ====== TAB: QCM ====== -->
+    <div class="tab-panel" id="tab-qcm">
+      <div class="admin-content">
+        <div class="panel-header">
+          <h2>🎯 Gestion des QCM</h2>
+          <p>Ajouter de nouvelles questions QCM pour chaque chapitre. Les questions sont enregistrees dans le fichier allQCM.ts via l'API GitHub.</p>
+        </div>
+
+        <div class="selector-row">
+          <div class="form-group">
+            <label>Matiere</label>
+            <select id="qcm-subject" onchange="onQCMSubjectChange()">
+              <option value="">-- Choisir une matiere --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Chapitre</label>
+            <select id="qcm-chapter" onchange="onQCMChapterChange()" disabled>
+              <option value="">-- Choisir un chapitre --</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="qcm-existing" class="content-card relative" style="display:none;">
+          <h3>📋 Questions existantes <span id="qcm-count" style="font-size:14px;font-weight:500;color:#6b7280;"></span></h3>
+          <div id="qcm-existing-list" class="existing-list"></div>
+        </div>
+
+        <div id="qcm-form-card" class="content-card" style="display:none;">
+          <h3>➕ Ajouter une question</h3>
+
+          <div class="form-group">
+            <label>Question</label>
+            <textarea id="qcm-question" rows="2" placeholder="Saisir l'enonce de la question..."></textarea>
+          </div>
+
+          <label style="display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:10px;">Options de reponse (cocher la bonne reponse)</label>
+          <div class="options-grid">
+            <div class="option-row">
+              <label><input type="radio" name="qcm-correct" value="0" checked /> A</label>
+              <input type="text" id="qcm-optA" class="form-group" style="margin:0;padding:10px 14px;" placeholder="Option A" />
+            </div>
+            <div class="option-row">
+              <label><input type="radio" name="qcm-correct" value="1" /> B</label>
+              <input type="text" id="qcm-optB" class="form-group" style="margin:0;padding:10px 14px;" placeholder="Option B" />
+            </div>
+            <div class="option-row">
+              <label><input type="radio" name="qcm-correct" value="2" /> C</label>
+              <input type="text" id="qcm-optC" class="form-group" style="margin:0;padding:10px 14px;" placeholder="Option C" />
+            </div>
+            <div class="option-row">
+              <label><input type="radio" name="qcm-correct" value="3" /> D</label>
+              <input type="text" id="qcm-optD" class="form-group" style="margin:0;padding:10px 14px;" placeholder="Option D" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Explication</label>
+            <textarea id="qcm-explanation" rows="3" placeholder="Explication pedagogique de la bonne reponse..."></textarea>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-primary" id="qcm-save-btn" onclick="saveQCM()">Enregistrer la question</button>
+            <button class="btn-secondary" onclick="clearQCMForm()">Effacer</button>
+          </div>
+        </div>
+
+        <div id="qcm-empty" class="empty-state">
+          <div class="empty-icon">🎯</div>
+          <p>Selectionne une matiere et un chapitre pour commencer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== TAB: FLASHCARDS ====== -->
+    <div class="tab-panel" id="tab-flashcards">
+      <div class="admin-content">
+        <div class="panel-header">
+          <h2>⚡ Gestion des Fiches Flash</h2>
+          <p>Ajouter de nouvelles fiches flash pour chaque chapitre. Les fiches sont enregistrees dans le fichier flashcards.ts via l'API GitHub.</p>
+        </div>
+
+        <div class="selector-row">
+          <div class="form-group">
+            <label>Matiere</label>
+            <select id="flash-subject" onchange="onFlashSubjectChange()">
+              <option value="">-- Choisir une matiere --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Chapitre</label>
+            <select id="flash-chapter" onchange="onFlashChapterChange()" disabled>
+              <option value="">-- Choisir un chapitre --</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="flash-existing" class="content-card relative" style="display:none;">
+          <h3>📋 Fiches existantes <span id="flash-count" style="font-size:14px;font-weight:500;color:#6b7280;"></span></h3>
+          <div id="flash-existing-list" class="existing-list"></div>
+        </div>
+
+        <div id="flash-form-card" class="content-card" style="display:none;">
+          <h3>➕ Ajouter une fiche</h3>
+
+          <div class="form-group">
+            <label>Terme / Notion</label>
+            <input type="text" id="flash-term" placeholder="Ex: Droit objectif" />
+          </div>
+
+          <div class="form-group">
+            <label>Definition</label>
+            <textarea id="flash-definition" rows="3" placeholder="Definition claire et concise..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Exemple (optionnel)</label>
+            <input type="text" id="flash-example" placeholder="Ex: Le Code civil, le Code penal" />
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-primary" id="flash-save-btn" onclick="saveFlashcard()">Enregistrer la fiche</button>
+            <button class="btn-secondary" onclick="clearFlashForm()">Effacer</button>
+          </div>
+        </div>
+
+        <div id="flash-empty" class="empty-state">
+          <div class="empty-icon">⚡</div>
+          <p>Selectionne une matiere et un chapitre pour commencer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== TAB: DOCUMENTS ====== -->
+    <div class="tab-panel" id="tab-documents">
+      <div class="admin-content">
+        <div class="panel-header">
+          <h2>📄 Gestion des documents</h2>
+          <p>Uploader des sujets de bac, corriges, fiches de synthese et autres supports pedagogiques.</p>
+        </div>
+
+        <div class="docs-info">
+          <div class="docs-icon">📁</div>
+          <h3>Upload via GitHub</h3>
+          <p>
+            Pour ajouter des documents PDF, utilise directement l'interface GitHub.
+            Les fichiers seront places dans le dossier <code>public/uploads/documents/</code>
+            et seront automatiquement disponibles sur le site apres deploiement.
+          </p>
+          <a href="https://github.com/racsed/ecogestion-stmg/upload/main/public/uploads/documents" target="_blank">
+            📤 Uploader des documents sur GitHub
+          </a>
+        </div>
+
+        <div class="content-card" style="margin-top: 24px;">
+          <h3>💡 Conseils</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #374151;">
+            <li style="display: flex; align-items: flex-start; gap: 10px;">
+              <span style="color: #10b981; font-weight: 700;">1.</span>
+              Nomme les fichiers de maniere explicite : <code>sujet-bac-2024-mercatique.pdf</code>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 10px;">
+              <span style="color: #10b981; font-weight: 700;">2.</span>
+              Organise par matiere dans des sous-dossiers si necessaire
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 10px;">
+              <span style="color: #10b981; font-weight: 700;">3.</span>
+              Le deploiement Netlify se lance automatiquement apres chaque commit
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 10px;">
+              <span style="color: #10b981; font-weight: 700;">4.</span>
+              Les fichiers sont accessibles via <code>/uploads/documents/nom-du-fichier.pdf</code>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Simple auth - credentials
+    // =========================================================
+    //  DATA: Subjects and chapters (mirrors subjects.ts)
+    // =========================================================
+    const SUBJECTS = [
+      {
+        id: 'droit-premiere', name: 'Droit', level: 'Premiere',
+        chapters: [
+          { slug: 'quest-ce-que-le-droit', title: "Qu'est-ce que le droit ?" },
+          { slug: 'les-sources-du-droit', title: 'Les sources du droit' },
+          { slug: 'la-preuve-des-droits', title: 'La preuve des droits' },
+          { slug: 'le-litige-et-le-recours-au-juge', title: 'Le litige et le recours au juge' },
+          { slug: 'lorganisation-judiciaire', title: "L'organisation judiciaire" },
+          { slug: 'la-personne-juridique', title: 'La personne juridique' },
+          { slug: 'les-droits-extrapatrimoniaux', title: 'Les droits extrapatrimoniaux' },
+          { slug: 'les-droits-patrimoniaux', title: 'Les droits patrimoniaux' },
+        ]
+      },
+      {
+        id: 'economie-premiere', name: 'Economie', level: 'Premiere',
+        chapters: [
+          { slug: 'le-probleme-economique', title: 'Le probleme economique' },
+          { slug: 'les-agents-economiques', title: 'Les agents economiques' },
+          { slug: 'le-fonctionnement-du-marche', title: 'Le fonctionnement du marche' },
+          { slug: 'les-defaillances-du-marche', title: 'Les defaillances du marche' },
+          { slug: 'la-production-de-richesses', title: 'La production de richesses' },
+          { slug: 'le-financement-de-leconomie', title: "Le financement de l'economie" },
+          { slug: 'la-monnaie', title: 'La monnaie' },
+          { slug: 'la-redistribution', title: 'La redistribution' },
+        ]
+      },
+      {
+        id: 'management-premiere', name: 'Management', level: 'Premiere',
+        chapters: [
+          { slug: 'quest-ce-quune-organisation', title: "Qu'est-ce qu'une organisation ?" },
+          { slug: 'les-criteres-de-differenciation', title: 'Les criteres de differenciation' },
+          { slug: 'le-management-strategique-et-operationnel', title: 'Le management strategique et operationnel' },
+          { slug: 'la-performance', title: 'La performance' },
+          { slug: 'les-choix-strategiques', title: 'Les choix strategiques' },
+          { slug: 'les-styles-de-direction', title: 'Les styles de direction' },
+        ]
+      },
+      {
+        id: 'sdgn-premiere', name: 'Sciences de Gestion et Numerique', level: 'Premiere',
+        chapters: [
+          { slug: 'comment-un-individu-devient-acteur', title: "Comment un individu devient acteur" },
+          { slug: 'comment-les-individus-interagissent', title: 'Comment les individus interagissent' },
+          { slug: 'information-et-intelligence-collective', title: 'Information et intelligence collective' },
+          { slug: 'creation-de-valeur-et-performance', title: 'Creation de valeur et performance' },
+          { slug: 'temps-et-risque', title: 'Temps et risque' },
+        ]
+      },
+      {
+        id: 'droit-terminale', name: 'Droit', level: 'Terminale',
+        chapters: [
+          { slug: 'le-contrat', title: 'Le contrat' },
+          { slug: 'la-responsabilite', title: 'La responsabilite' },
+          { slug: 'le-droit-du-travail', title: 'Le droit du travail' },
+          { slug: 'la-rupture-du-contrat-de-travail', title: 'La rupture du contrat de travail' },
+          { slug: 'les-libertes-individuelles-et-collectives', title: 'Les libertes individuelles et collectives' },
+          { slug: 'le-numerique-et-le-droit', title: 'Le numerique et le droit' },
+        ]
+      },
+      {
+        id: 'economie-terminale', name: 'Economie', level: 'Terminale',
+        chapters: [
+          { slug: 'la-croissance-economique', title: 'La croissance economique' },
+          { slug: 'le-commerce-international', title: 'Le commerce international' },
+          { slug: 'le-chomage', title: 'Le chomage' },
+          { slug: 'linflation', title: "L'inflation" },
+        ]
+      },
+      {
+        id: 'mercatique-terminale', name: 'Mercatique', level: 'Terminale',
+        chapters: [
+          { slug: 'la-demarche-mercatique', title: 'La demarche mercatique' },
+          { slug: 'le-comportement-du-consommateur', title: 'Le comportement du consommateur' },
+          { slug: 'la-politique-de-produit', title: 'La politique de produit' },
+          { slug: 'la-politique-de-prix', title: 'La politique de prix' },
+          { slug: 'la-politique-de-distribution', title: 'La politique de distribution' },
+          { slug: 'la-politique-de-communication', title: 'La politique de communication' },
+          { slug: 'la-fidelisation', title: 'La fidelisation' },
+        ]
+      },
+      {
+        id: 'msdgn-terminale', name: 'MSDGN', level: 'Terminale',
+        chapters: [
+          { slug: 'comment-lentreprise-integre-les-attentes-des-acteurs', title: "Comment l'entreprise integre les attentes des acteurs" },
+          { slug: 'les-choix-strategiques-de-lorganisation', title: "Les choix strategiques de l'organisation" },
+          { slug: 'les-ressources-humaines', title: 'Les ressources humaines' },
+          { slug: 'le-numerique-transforme-le-management', title: 'Le numerique transforme le management' },
+          { slug: 'linnovation-et-la-creation-de-valeur', title: "L'innovation et la creation de valeur" },
+        ]
+      },
+    ];
+
+    // =========================================================
+    //  AUTH
+    // =========================================================
     const USERS = {
       'rachid': { password: 'Stmg26', name: 'Rachid' },
       'halim': { password: 'Stmg26', name: 'Halim' },
     };
 
-    // Check if already logged in
-    const session = localStorage.getItem('ecogestion-admin');
+    let currentUser = null;
+    let authToken = null;
+
+    // Restore session
+    const session = sessionStorage.getItem('ecogestion-admin');
     if (session) {
-      const user = JSON.parse(session);
-      showDashboard(user.name);
+      const data = JSON.parse(session);
+      currentUser = data.name;
+      authToken = data.token;
+      showDashboard(currentUser);
     }
 
-    // Login form
     document.getElementById('login-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const username = document.getElementById('username').value.toLowerCase().trim();
       const password = document.getElementById('password').value;
 
       if (USERS[username] && USERS[username].password === password) {
-        localStorage.setItem('ecogestion-admin', JSON.stringify({ name: USERS[username].name }));
-        showDashboard(USERS[username].name);
+        currentUser = USERS[username].name;
+        authToken = password;
+        sessionStorage.setItem('ecogestion-admin', JSON.stringify({ name: currentUser, token: authToken }));
+        document.getElementById('login-error').style.display = 'none';
+        showDashboard(currentUser);
       } else {
         document.getElementById('login-error').style.display = 'block';
       }
@@ -191,11 +657,482 @@
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('admin-dashboard').classList.remove('admin-hidden');
       document.getElementById('welcome-msg').textContent = 'Bienvenue ' + name + ' !';
+      populateSelectors();
     }
 
     function logout() {
-      localStorage.removeItem('ecogestion-admin');
+      sessionStorage.removeItem('ecogestion-admin');
+      currentUser = null;
+      authToken = null;
       location.reload();
+    }
+
+    // =========================================================
+    //  TABS
+    // =========================================================
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        const labels = { dashboard: 'Tableau de bord', qcm: 'QCM', flashcards: 'Fiches Flash', documents: 'Documents' };
+        document.getElementById('nav-badge').textContent = labels[btn.dataset.tab] || '';
+      });
+    });
+
+    // =========================================================
+    //  TOAST NOTIFICATIONS
+    // =========================================================
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+      toast.className = 'toast toast-' + type;
+      toast.innerHTML = '<span>' + (icons[type] || '') + '</span><span>' + message + '</span>';
+      container.appendChild(toast);
+      setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; setTimeout(() => toast.remove(), 300); }, 4000);
+    }
+
+    // =========================================================
+    //  API HELPERS
+    // =========================================================
+    async function apiGet(file) {
+      const res = await fetch('/api/content?file=' + encodeURIComponent(file), {
+        headers: { 'Authorization': 'Bearer ' + authToken }
+      });
+      if (!res.ok) throw new Error('API error ' + res.status);
+      return res.json();
+    }
+
+    async function apiPost(file, content, sha, message) {
+      const res = await fetch('/api/content', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file, content, sha, message })
+      });
+      if (!res.ok) throw new Error('API error ' + res.status);
+      return res.json();
+    }
+
+    // =========================================================
+    //  POPULATE SELECTORS
+    // =========================================================
+    function populateSelectors() {
+      ['qcm-subject', 'flash-subject'].forEach(id => {
+        const select = document.getElementById(id);
+        select.innerHTML = '<option value="">-- Choisir une matiere --</option>';
+        SUBJECTS.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.id;
+          opt.textContent = s.name + ' (' + s.level + ')';
+          select.appendChild(opt);
+        });
+      });
+    }
+
+    function populateChapters(subjectId, selectId) {
+      const select = document.getElementById(selectId);
+      const subject = SUBJECTS.find(s => s.id === subjectId);
+      select.innerHTML = '<option value="">-- Choisir un chapitre --</option>';
+      if (!subject) { select.disabled = true; return; }
+      subject.chapters.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.slug;
+        opt.textContent = c.title;
+        select.appendChild(opt);
+      });
+      select.disabled = false;
+    }
+
+    // =========================================================
+    //  QCM LOGIC
+    // =========================================================
+    let qcmFileContent = null;
+    let qcmFileSha = null;
+
+    function onQCMSubjectChange() {
+      const subjectId = document.getElementById('qcm-subject').value;
+      populateChapters(subjectId, 'qcm-chapter');
+      document.getElementById('qcm-existing').style.display = 'none';
+      document.getElementById('qcm-form-card').style.display = 'none';
+      document.getElementById('qcm-empty').style.display = subjectId ? 'none' : 'block';
+    }
+
+    async function onQCMChapterChange() {
+      const slug = document.getElementById('qcm-chapter').value;
+      if (!slug) {
+        document.getElementById('qcm-existing').style.display = 'none';
+        document.getElementById('qcm-form-card').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('qcm-empty').style.display = 'none';
+      document.getElementById('qcm-form-card').style.display = 'block';
+
+      // Try to load existing questions from GitHub
+      const existingCard = document.getElementById('qcm-existing');
+      existingCard.style.display = 'block';
+      existingCard.innerHTML = '<div class="loading-overlay"><div class="spinner-lg"></div></div>' + existingCard.innerHTML;
+
+      try {
+        const data = await apiGet('ecogestion-stmg/src/data/allQCM.ts');
+        qcmFileContent = data.content;
+        qcmFileSha = data.sha;
+
+        // Parse existing questions for this chapter
+        const questions = parseQCMForChapter(qcmFileContent, slug);
+        displayExistingQCM(questions);
+      } catch (e) {
+        console.warn('Could not fetch QCM file from API, continuing without existing data:', e.message);
+        document.getElementById('qcm-existing-list').innerHTML = '<div class="empty-state" style="padding:24px;"><p style="font-size:13px;color:#9ca3af;">Impossible de charger les questions existantes. Tu peux quand meme en ajouter.</p></div>';
+        qcmFileContent = null;
+        qcmFileSha = null;
+      }
+
+      // Remove loading overlay
+      const overlay = existingCard.querySelector('.loading-overlay');
+      if (overlay) overlay.remove();
+    }
+
+    function parseQCMForChapter(fileContent, slug) {
+      // Simple parser: find the chapter section and extract questions
+      const questions = [];
+      try {
+        // Find the start of this chapter's array
+        const markerStart = "'" + slug + "': [";
+        const altMarkerStart = '"' + slug + '": [';
+        let startIdx = fileContent.indexOf(markerStart);
+        if (startIdx === -1) startIdx = fileContent.indexOf(altMarkerStart);
+        if (startIdx === -1) return questions;
+
+        startIdx = fileContent.indexOf('[', startIdx);
+        // Find matching closing bracket
+        let depth = 0;
+        let i = startIdx;
+        let sectionContent = '';
+        for (; i < fileContent.length; i++) {
+          if (fileContent[i] === '[') depth++;
+          if (fileContent[i] === ']') depth--;
+          sectionContent += fileContent[i];
+          if (depth === 0) break;
+        }
+
+        // Extract question texts using regex
+        const qRegex = /question:\s*["'`](.*?)["'`]/g;
+        let match;
+        while ((match = qRegex.exec(sectionContent)) !== null) {
+          questions.push(match[1]);
+        }
+      } catch (e) {
+        console.warn('Parse error:', e);
+      }
+      return questions;
+    }
+
+    function displayExistingQCM(questions) {
+      const list = document.getElementById('qcm-existing-list');
+      const count = document.getElementById('qcm-count');
+      count.textContent = '(' + questions.length + ' question' + (questions.length > 1 ? 's' : '') + ')';
+
+      if (questions.length === 0) {
+        list.innerHTML = '<div class="empty-state" style="padding:24px;"><p style="font-size:13px;color:#9ca3af;">Aucune question pour ce chapitre.</p></div>';
+        return;
+      }
+
+      list.innerHTML = questions.map((q, i) =>
+        '<div class="existing-item"><span class="item-number">' + (i + 1) + '</span><span class="item-text">' + escapeHtml(q) + '</span></div>'
+      ).join('');
+    }
+
+    function clearQCMForm() {
+      document.getElementById('qcm-question').value = '';
+      document.getElementById('qcm-optA').value = '';
+      document.getElementById('qcm-optB').value = '';
+      document.getElementById('qcm-optC').value = '';
+      document.getElementById('qcm-optD').value = '';
+      document.getElementById('qcm-explanation').value = '';
+      document.querySelector('input[name="qcm-correct"][value="0"]').checked = true;
+    }
+
+    async function saveQCM() {
+      const slug = document.getElementById('qcm-chapter').value;
+      const question = document.getElementById('qcm-question').value.trim();
+      const optA = document.getElementById('qcm-optA').value.trim();
+      const optB = document.getElementById('qcm-optB').value.trim();
+      const optC = document.getElementById('qcm-optC').value.trim();
+      const optD = document.getElementById('qcm-optD').value.trim();
+      const correct = parseInt(document.querySelector('input[name="qcm-correct"]:checked').value);
+      const explanation = document.getElementById('qcm-explanation').value.trim();
+
+      if (!question || !optA || !optB || !optC || !optD || !explanation) {
+        showToast('Tous les champs sont obligatoires.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('qcm-save-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Enregistrement...';
+
+      try {
+        // Re-fetch the file to get the latest version
+        const data = await apiGet('ecogestion-stmg/src/data/allQCM.ts');
+        let content = data.content;
+        const sha = data.sha;
+
+        // Build the new entry
+        const escapedQ = question.replace(/"/g, '\\"');
+        const escapedA = optA.replace(/"/g, '\\"');
+        const escapedB = optB.replace(/"/g, '\\"');
+        const escapedC = optC.replace(/"/g, '\\"');
+        const escapedD = optD.replace(/"/g, '\\"');
+        const escapedExp = explanation.replace(/"/g, '\\"');
+
+        const newEntry = '    { question: "' + escapedQ + '", options: ["' + escapedA + '", "' + escapedB + '", "' + escapedC + '", "' + escapedD + '"], correct: ' + correct + ', explanation: "' + escapedExp + '" },\n';
+
+        // Find the chapter section and insert before the closing bracket
+        const markerStart = "'" + slug + "': [";
+        const altMarkerStart = '"' + slug + '": [';
+        let startIdx = content.indexOf(markerStart);
+        if (startIdx === -1) startIdx = content.indexOf(altMarkerStart);
+
+        if (startIdx === -1) {
+          // Chapter section doesn't exist yet, add it before the closing of the allQCM object
+          // Find the last closing brace+semicolon
+          const lastBrace = content.lastIndexOf('};');
+          if (lastBrace === -1) throw new Error('Cannot find end of allQCM object');
+
+          const newSection = "\n  '" + slug + "': [\n" + newEntry + "  ],\n";
+          content = content.substring(0, lastBrace) + newSection + content.substring(lastBrace);
+        } else {
+          // Find the closing bracket of this chapter's array
+          let bracketStart = content.indexOf('[', startIdx);
+          let depth = 0;
+          let i = bracketStart;
+          for (; i < content.length; i++) {
+            if (content[i] === '[') depth++;
+            if (content[i] === ']') { depth--; if (depth === 0) break; }
+          }
+          // Insert before the closing bracket
+          content = content.substring(0, i) + newEntry + '  ' + content.substring(i);
+        }
+
+        // Save via API
+        const result = await apiPost(
+          'ecogestion-stmg/src/data/allQCM.ts',
+          content,
+          sha,
+          'Ajout QCM: ' + slug + ' - ' + question.substring(0, 50)
+        );
+
+        if (result.success) {
+          showToast('Question ajoutee avec succes ! Le site sera mis a jour automatiquement.', 'success');
+          clearQCMForm();
+          // Refresh existing questions
+          onQCMChapterChange();
+        } else {
+          throw new Error(result.error || 'Unknown error');
+        }
+      } catch (e) {
+        console.error('Save QCM error:', e);
+        showToast('Erreur lors de l\'enregistrement : ' + e.message, 'error');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Enregistrer la question';
+    }
+
+    // =========================================================
+    //  FLASHCARDS LOGIC
+    // =========================================================
+    let flashFileContent = null;
+    let flashFileSha = null;
+
+    function onFlashSubjectChange() {
+      const subjectId = document.getElementById('flash-subject').value;
+      populateChapters(subjectId, 'flash-chapter');
+      document.getElementById('flash-existing').style.display = 'none';
+      document.getElementById('flash-form-card').style.display = 'none';
+      document.getElementById('flash-empty').style.display = subjectId ? 'none' : 'block';
+    }
+
+    async function onFlashChapterChange() {
+      const slug = document.getElementById('flash-chapter').value;
+      if (!slug) {
+        document.getElementById('flash-existing').style.display = 'none';
+        document.getElementById('flash-form-card').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('flash-empty').style.display = 'none';
+      document.getElementById('flash-form-card').style.display = 'block';
+
+      const existingCard = document.getElementById('flash-existing');
+      existingCard.style.display = 'block';
+      existingCard.innerHTML = '<div class="loading-overlay"><div class="spinner-lg"></div></div>' + existingCard.innerHTML;
+
+      try {
+        const data = await apiGet('ecogestion-stmg/src/data/flashcards.ts');
+        flashFileContent = data.content;
+        flashFileSha = data.sha;
+
+        const cards = parseFlashcardsForChapter(flashFileContent, slug);
+        displayExistingFlashcards(cards);
+      } catch (e) {
+        console.warn('Could not fetch flashcards file:', e.message);
+        document.getElementById('flash-existing-list').innerHTML = '<div class="empty-state" style="padding:24px;"><p style="font-size:13px;color:#9ca3af;">Impossible de charger les fiches existantes. Tu peux quand meme en ajouter.</p></div>';
+        flashFileContent = null;
+        flashFileSha = null;
+      }
+
+      const overlay = existingCard.querySelector('.loading-overlay');
+      if (overlay) overlay.remove();
+    }
+
+    function parseFlashcardsForChapter(fileContent, slug) {
+      const cards = [];
+      try {
+        const markerStart = "'" + slug + "': {";
+        const altMarkerStart = '"' + slug + '": {';
+        let startIdx = fileContent.indexOf(markerStart);
+        if (startIdx === -1) startIdx = fileContent.indexOf(altMarkerStart);
+        if (startIdx === -1) return cards;
+
+        // Find the cards array within this section
+        const cardsStart = fileContent.indexOf('cards:', startIdx);
+        if (cardsStart === -1) return cards;
+
+        const bracketStart = fileContent.indexOf('[', cardsStart);
+        let depth = 0;
+        let i = bracketStart;
+        let sectionContent = '';
+        for (; i < fileContent.length; i++) {
+          if (fileContent[i] === '[') depth++;
+          if (fileContent[i] === ']') depth--;
+          sectionContent += fileContent[i];
+          if (depth === 0) break;
+        }
+
+        const termRegex = /term:\s*['"]([^'"]*)['"]/g;
+        let match;
+        while ((match = termRegex.exec(sectionContent)) !== null) {
+          cards.push(match[1]);
+        }
+      } catch (e) {
+        console.warn('Parse error:', e);
+      }
+      return cards;
+    }
+
+    function displayExistingFlashcards(cards) {
+      const list = document.getElementById('flash-existing-list');
+      const count = document.getElementById('flash-count');
+      count.textContent = '(' + cards.length + ' fiche' + (cards.length > 1 ? 's' : '') + ')';
+
+      if (cards.length === 0) {
+        list.innerHTML = '<div class="empty-state" style="padding:24px;"><p style="font-size:13px;color:#9ca3af;">Aucune fiche pour ce chapitre.</p></div>';
+        return;
+      }
+
+      list.innerHTML = cards.map((c, i) =>
+        '<div class="existing-item"><span class="item-number">' + (i + 1) + '</span><span class="item-text">' + escapeHtml(c) + '</span></div>'
+      ).join('');
+    }
+
+    function clearFlashForm() {
+      document.getElementById('flash-term').value = '';
+      document.getElementById('flash-definition').value = '';
+      document.getElementById('flash-example').value = '';
+    }
+
+    async function saveFlashcard() {
+      const slug = document.getElementById('flash-chapter').value;
+      const term = document.getElementById('flash-term').value.trim();
+      const definition = document.getElementById('flash-definition').value.trim();
+      const example = document.getElementById('flash-example').value.trim();
+
+      if (!term || !definition) {
+        showToast('Le terme et la definition sont obligatoires.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('flash-save-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Enregistrement...';
+
+      try {
+        const data = await apiGet('ecogestion-stmg/src/data/flashcards.ts');
+        let content = data.content;
+        const sha = data.sha;
+
+        const escapedTerm = term.replace(/'/g, "\\'");
+        const escapedDef = definition.replace(/'/g, "\\'");
+        const escapedEx = example.replace(/'/g, "\\'");
+
+        let newEntry = "      { term: '" + escapedTerm + "', definition: '" + escapedDef + "'";
+        if (example) {
+          newEntry += ", example: '" + escapedEx + "'";
+        }
+        newEntry += " },\n";
+
+        // Find the chapter section
+        const markerStart = "'" + slug + "': {";
+        const altMarkerStart = '"' + slug + '": {';
+        let startIdx = content.indexOf(markerStart);
+        if (startIdx === -1) startIdx = content.indexOf(altMarkerStart);
+
+        if (startIdx === -1) {
+          // Chapter doesn't exist, add a new section before closing brace
+          const lastBrace = content.lastIndexOf('};');
+          if (lastBrace === -1) throw new Error('Cannot find end of flashcards object');
+
+          const newSection = "\n  '" + slug + "': {\n    cards: [\n" + newEntry + "    ],\n  },\n";
+          content = content.substring(0, lastBrace) + newSection + content.substring(lastBrace);
+        } else {
+          // Find the cards array closing bracket
+          const cardsStart = content.indexOf('cards:', startIdx);
+          if (cardsStart === -1) throw new Error('Cannot find cards array');
+
+          const bracketStart = content.indexOf('[', cardsStart);
+          let depth = 0;
+          let i = bracketStart;
+          for (; i < content.length; i++) {
+            if (content[i] === '[') depth++;
+            if (content[i] === ']') { depth--; if (depth === 0) break; }
+          }
+          content = content.substring(0, i) + newEntry + '    ' + content.substring(i);
+        }
+
+        const result = await apiPost(
+          'ecogestion-stmg/src/data/flashcards.ts',
+          content,
+          sha,
+          'Ajout flashcard: ' + slug + ' - ' + term.substring(0, 50)
+        );
+
+        if (result.success) {
+          showToast('Fiche ajoutee avec succes ! Le site sera mis a jour automatiquement.', 'success');
+          clearFlashForm();
+          onFlashChapterChange();
+        } else {
+          throw new Error(result.error || 'Unknown error');
+        }
+      } catch (e) {
+        console.error('Save flashcard error:', e);
+        showToast('Erreur lors de l\'enregistrement : ' + e.message, 'error');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Enregistrer la fiche';
+    }
+
+    // =========================================================
+    //  UTILS
+    // =========================================================
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
   </script>
 
