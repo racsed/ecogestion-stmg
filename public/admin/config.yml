@@ -1,0 +1,126 @@
+backend:
+  name: github
+  repo: racsed/ecogestion-stmg
+  branch: main
+  base_url: https://ecogestion-stmg.netlify.app
+  auth_endpoint: /api/auth
+
+# For local development
+local_backend: true
+
+# Media files
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Locale
+locale: 'fr'
+
+# Slug settings
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+# Content collections
+collections:
+  # ═══ QCM par chapitre ═══
+  - name: "qcm"
+    label: "QCM"
+    label_singular: "QCM"
+    description: "Gérer les questions QCM par chapitre"
+    folder: "src/content/qcm"
+    create: true
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Chapitre (slug)", name: "chapter", widget: "string", hint: "Ex: quest-ce-que-le-droit" }
+      - { label: "Matière", name: "subject", widget: "select", options: ["droit-premiere", "economie-premiere", "management-premiere", "droit-terminale", "economie-terminale", "mercatique-terminale", "msdgn-terminale"] }
+      - label: "Questions"
+        name: "questions"
+        widget: "list"
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - label: "Options"
+            name: "options"
+            widget: "list"
+            max: 4
+            min: 4
+            field: { label: "Option", name: "option", widget: "string" }
+          - { label: "Réponse correcte (0=A, 1=B, 2=C, 3=D)", name: "correct", widget: "number", min: 0, max: 3 }
+          - { label: "Explication", name: "explanation", widget: "text" }
+
+  # ═══ Fiches de cours ═══
+  - name: "fiches"
+    label: "Fiches de cours"
+    label_singular: "Fiche"
+    description: "Fiches de synthèse par chapitre"
+    folder: "src/content/fiches"
+    create: true
+    format: "frontmatter"
+    extension: "md"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Chapitre (slug)", name: "chapter", widget: "string" }
+      - { label: "Matière", name: "subject", widget: "select", options: ["droit-premiere", "economie-premiere", "management-premiere", "droit-terminale", "economie-terminale", "mercatique-terminale", "msdgn-terminale"] }
+      - { label: "Niveau", name: "level", widget: "select", options: ["premiere", "terminale"] }
+      - { label: "Thème", name: "theme", widget: "string" }
+      - { label: "Numéro de thème", name: "themeNumber", widget: "number", min: 1, max: 10 }
+      - { label: "Notions clés", name: "notions", widget: "list", field: { label: "Notion", name: "notion", widget: "string" } }
+      - { label: "Contenu de la fiche", name: "body", widget: "markdown" }
+
+  # ═══ Flashcards ═══
+  - name: "flashcards"
+    label: "Fiches Flash"
+    label_singular: "Set de Fiches Flash"
+    description: "Sets de fiches flash par chapitre"
+    folder: "src/content/flashcards"
+    create: true
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Chapitre (slug)", name: "chapter", widget: "string" }
+      - { label: "Matière", name: "subject", widget: "select", options: ["droit-premiere", "economie-premiere", "management-premiere", "droit-terminale", "economie-terminale", "mercatique-terminale", "msdgn-terminale"] }
+      - label: "Cartes"
+        name: "cards"
+        widget: "list"
+        fields:
+          - { label: "Terme / Notion", name: "term", widget: "string" }
+          - { label: "Définition", name: "definition", widget: "text" }
+          - { label: "Exemple (optionnel)", name: "example", widget: "string", required: false }
+
+  # ═══ Documents / Ressources ═══
+  - name: "documents"
+    label: "Documents"
+    label_singular: "Document"
+    description: "PDF, supports de cours, sujets de bac, corrigés"
+    folder: "src/content/documents"
+    create: true
+    format: "frontmatter"
+    extension: "md"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Matière", name: "subject", widget: "select", options: ["droit-premiere", "economie-premiere", "management-premiere", "droit-terminale", "economie-terminale", "mercatique-terminale", "msdgn-terminale", "general"] }
+      - { label: "Type", name: "type", widget: "select", options: ["sujet-bac", "corrige", "cours", "exercice", "methode", "autre"] }
+      - { label: "Fichier PDF", name: "file", widget: "file", media_folder: "/public/uploads/documents" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Publié", name: "published", widget: "boolean", default: true }
+      - { label: "Notes", name: "body", widget: "markdown", required: false }
+
+  # ═══ Annonces / Actualités ═══
+  - name: "annonces"
+    label: "Annonces"
+    label_singular: "Annonce"
+    description: "Actualités et annonces pour les élèves"
+    folder: "src/content/annonces"
+    create: true
+    format: "frontmatter"
+    extension: "md"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["info", "examen", "ressource", "evenement"] }
+      - { label: "Épinglé", name: "pinned", widget: "boolean", default: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
