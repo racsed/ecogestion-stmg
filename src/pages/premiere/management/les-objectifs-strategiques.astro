@@ -1,0 +1,144 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'les-objectifs-strategiques')!;
+const questions = allQCM['les-objectifs-strategiques'] || [];
+const flashcardSet = flashcards['les-objectifs-strategiques'];
+
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Fixer les objectifs a partir du diagnostic et de la finalite</h3>
+          <p>Les <strong>objectifs strategiques</strong> ne naissent pas du hasard. Ils resultent du croisement entre la <strong>finalite</strong> de l'organisation (sa raison d'etre profonde) et les conclusions du <strong>diagnostic strategique</strong> (forces, faiblesses, opportunites, menaces). Une entreprise dont le diagnostic revele une forte competence en innovation et un marche en croissance fixera naturellement des objectifs de developpement de nouveaux produits. Une association confrontee a une baisse de subventions orientera ses objectifs vers la diversification de ses sources de financement.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le role des parties prenantes</h3>
+          <p>Les <strong>parties prenantes</strong> jouent un double role dans la fixation des objectifs. D'une part, elles constituent une source d'<strong>inspiration</strong> : les attentes des clients, les revendications des salaries ou les exigences des actionnaires orientent les priorites strategiques. D'autre part, elles participent a l'<strong>appreciation</strong> des objectifs en evaluant leur pertinence et leur faisabilite.</p>
+          <p>Les interets des differentes parties prenantes ne convergent pas toujours. Des <strong>conflits d'interets</strong> surgissent lorsque les actionnaires reclament des dividendes eleves tandis que les salaries demandent des augmentations de salaire, ou lorsque la direction souhaite delocaliser alors que les elus locaux s'y opposent. Le management doit alors rechercher un <strong>consensus</strong>, c'est-a-dire un compromis acceptable par le plus grand nombre, pour garantir la mobilisation de tous autour des objectifs retenus.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les indicateurs d'evaluation</h3>
+          <p>Pour savoir si les objectifs sont atteints, il faut les assortir d'<strong>indicateurs d'evaluation</strong>. Les indicateurs <strong>quantitatifs</strong> s'expriment en chiffres : chiffre d'affaires, part de marche, taux de marge, nombre de nouveaux clients, delai de livraison. Les indicateurs <strong>qualitatifs</strong> mesurent des dimensions plus subjectives : satisfaction client, image de marque, qualite du climat social, niveau d'innovation.</p>
+          <p>Un bon indicateur est precis, mesurable, atteignable, pertinent et inscrit dans un calendrier. La combinaison d'indicateurs quantitatifs et qualitatifs donne une vision complete de la performance et evite de reduire l'evaluation a une seule dimension.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Les actions correctrices</h3>
+          <p>Lorsque les indicateurs revelent des <strong>ecarts</strong> entre les resultats obtenus et les objectifs fixes, le management met en place des <strong>actions correctrices</strong>. Ces actions peuvent porter sur les moyens (augmenter le budget marketing, recruter des competences manquantes), sur les processus (reorganiser la chaine de production, ameliorer le systeme d'information) ou, dans certains cas, sur les objectifs eux-memes s'ils se revelent irrealistes compte tenu de l'evolution de l'environnement. Le pilotage strategique est donc un processus iteratif de fixation, mesure, analyse et ajustement.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Dans un sujet de bac, on vous demandera souvent d'identifier les objectifs strategiques d'une organisation et de proposer des indicateurs pour les mesurer. Pensez a varier quantitatif et qualitatif. N'oubliez pas de montrer le lien entre diagnostic, finalite et objectifs. Enfin, la notion de conflit d'interets entre parties prenantes est frequemment evaluee.</p>
+        </div>
+      </div>
+    </section>
+
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+        <QCMEngine client:load questions={questions} subjectColor={subject.colorHex} chapterTitle={chapter.title} />
+      </section>
+    )}
+
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+        <FichesFlash client:load cards={flashcardSet.cards} subjectColor={subject.colorHex} title={chapter.title} />
+      </section>
+    )}
+
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

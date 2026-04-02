@@ -1,0 +1,149 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'le-diagnostic-strategique')!;
+const questions = allQCM['le-diagnostic-strategique'] || [];
+const flashcardSet = flashcards['le-diagnostic-strategique'];
+
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Le diagnostic interne</h3>
+          <p>Le <strong>diagnostic interne</strong> consiste a evaluer les capacites propres de l'organisation. Il repose sur l'inventaire des cinq types de ressources (materielles, immaterielles, technologiques, humaines et financieres) et sur l'identification des <strong>competences</strong> que l'organisation a su developper en combinant ces ressources.</p>
+          <p>Parmi ces competences, certaines sont qualifiees de <strong>distinctives</strong> car elles sont rares, difficiles a imiter et creent une valeur superieure pour le client. Ce sont elles qui fondent l'<strong>avantage concurrentiel</strong> de l'organisation, c'est-a-dire ce qui lui permet de surpasser durablement ses concurrents. Le diagnostic interne aboutit a la mise en evidence des <strong>forces</strong> (atouts a exploiter) et des <strong>faiblesses</strong> (lacunes a combler).</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Le diagnostic externe</h3>
+          <p>Le <strong>diagnostic externe</strong> analyse l'environnement dans lequel evolue l'organisation a deux niveaux. Le <strong>macro-environnement</strong> regroupe les grandes tendances qui s'imposent a toutes les organisations d'un secteur. L'outil <strong>PESTEL</strong> permet de les structurer en six dimensions :</p>
+          <ul>
+            <li><strong>P</strong>olitique : stabilite gouvernementale, politique fiscale, relations internationales.</li>
+            <li><strong>E</strong>conomique : croissance, taux d'interet, pouvoir d'achat, inflation.</li>
+            <li><strong>S</strong>ocioculturel : demographie, modes de vie, valeurs, attentes des consommateurs.</li>
+            <li><strong>T</strong>echnologique : innovations, transferts de technologie, obsolescence.</li>
+            <li><strong>E</strong>cologique : normes environnementales, changement climatique, rarete des ressources.</li>
+            <li><strong>L</strong>egal : lois, reglementations, normes de securite, droit du travail.</li>
+          </ul>
+          <p>Le <strong>micro-environnement</strong> concerne les acteurs avec lesquels l'organisation est en contact direct : concurrents (intensite de la rivalite), clients (pouvoir de negociation), fournisseurs (dependance) et eventuels nouveaux entrants ou produits de substitution. Le diagnostic externe fait apparaitre les <strong>opportunites</strong> a saisir et les <strong>menaces</strong> a anticiper.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La veille strategique</h3>
+          <p>La <strong>veille strategique</strong> est un processus continu de collecte, de traitement et de diffusion d'informations sur l'environnement. Elle peut etre technologique (brevets, innovations), concurrentielle (mouvements des rivaux), commerciale (attentes clients) ou reglementaire (nouvelles lois). La veille permet a l'organisation d'anticiper les evolutions plutot que de les subir, et nourrit directement le diagnostic externe. A l'ere du numerique, les outils de veille automatisee (alertes, bases de donnees, reseaux sociaux) rendent cette pratique accessible meme aux petites structures.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Le diagnostic strategique est un grand classique du bac. Vous devez savoir presenter un diagnostic interne (forces/faiblesses) et externe (opportunites/menaces) a partir d'un cas concret. Memorisez l'acronyme PESTEL et ses six dimensions. Montrez que le diagnostic debouche sur des choix strategiques et non sur une simple description.</p>
+        </div>
+      </div>
+    </section>
+
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+        <QCMEngine client:load questions={questions} subjectColor={subject.colorHex} chapterTitle={chapter.title} />
+      </section>
+    )}
+
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+        <FichesFlash client:load cards={flashcardSet.cards} subjectColor={subject.colorHex} title={chapter.title} />
+      </section>
+    )}
+
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

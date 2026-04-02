@@ -1,0 +1,144 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'domination-par-les-couts-ou-differenciation')!;
+const questions = allQCM['domination-par-les-couts-ou-differenciation'] || [];
+const flashcardSet = flashcards['domination-par-les-couts-ou-differenciation'];
+
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Strategies globales et strategies de domaine</h3>
+          <p>Il convient de distinguer les <strong>strategies globales</strong>, qui determinent le perimetre d'activite de l'organisation (specialisation, diversification, internationalisation), des <strong>strategies de domaine</strong> (ou strategies concurrentielles), qui definissent comment l'organisation se positionne face a ses concurrents sur un marche donne. Les deux principales strategies de domaine sont la domination par les couts et la differenciation.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. La domination par les couts</h3>
+          <p>La strategie de <strong>domination par les couts</strong> vise a proposer des prix inferieurs a ceux des concurrents en reduisant au maximum les couts de production et de distribution. L'organisation recherche des <strong>economies d'echelle</strong> (produire en grande quantite pour repartir les couts fixes), optimise ses processus, negocie des tarifs avantageux aupres de ses fournisseurs et limite les depenses superflues.</p>
+          <p>Les <strong>avantages</strong> sont evidents : des prix bas attirent une large clientele, les marges restent acceptables grace aux volumes et l'entreprise se protege contre la pression concurrentielle. Les <strong>limites</strong> sont neanmoins reelles : une <strong>guerre des prix</strong> peut eclater si plusieurs concurrents adoptent la meme strategie, l'image de marque peut etre associee au <strong>bas de gamme</strong>, et la course permanente a la reduction des couts peut deteriorer la qualite ou les conditions de travail.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. La differenciation</h3>
+          <p>La strategie de <strong>differenciation</strong> consiste a proposer un produit ou un service percu comme <strong>unique</strong> par les clients, justifiant un prix superieur a celui des concurrents. Cette unicite peut reposer sur l'<strong>innovation</strong> technologique, le <strong>design</strong>, la <strong>qualite</strong> exceptionnelle, le service apres-vente, l'image de marque ou l'experience client.</p>
+          <p>Les <strong>avantages</strong> sont une forte fidelisation de la clientele, des marges elevees et une moindre sensibilite aux guerres de prix. Les <strong>limites</strong> tiennent au risque d'<strong>imitation</strong> par les concurrents (qui peuvent copier les innovations), aux <strong>couts eleves de recherche et developpement</strong> necessaires pour maintenir l'avance et a la possibilite que les clients ne soient plus disposes a payer le surprix en periode de crise economique.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Choisir sa strategie de domaine</h3>
+          <p>Le choix entre domination par les couts et differenciation depend des <strong>ressources</strong> de l'organisation, de la <strong>nature du marche</strong> et des <strong>attentes des clients</strong>. Sur un marche de produits standardises ou le prix est le critere d'achat principal, la domination par les couts s'impose. Sur un marche ou les clients valorisent l'originalite et la qualite, la differenciation est plus pertinente. Certaines organisations parviennent a combiner les deux en proposant un bon rapport qualite-prix, mais cette position intermediaire est difficile a maintenir dans la duree.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Distinguez bien strategie globale et strategie de domaine. Pour chaque strategie de domaine, maitrisez la definition, les avantages et les limites. Les sujets vous donneront un cas d'entreprise et vous demanderont d'identifier la strategie adoptee puis de la justifier. Pensez a evoquer les conditions de reussite (ressources, marche, concurrence).</p>
+        </div>
+      </div>
+    </section>
+
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+        <QCMEngine client:load questions={questions} subjectColor={subject.colorHex} chapterTitle={chapter.title} />
+      </section>
+    )}
+
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+        <FichesFlash client:load cards={flashcardSet.cards} subjectColor={subject.colorHex} title={chapter.title} />
+      </section>
+    )}
+
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

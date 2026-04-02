@@ -1,0 +1,149 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'la-diversite-des-organisations')!;
+const questions = allQCM['la-diversite-des-organisations'] || [];
+const flashcardSet = flashcards['la-diversite-des-organisations'];
+
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Les trois grands types d'organisations</h3>
+          <p>On classe les organisations en trois familles selon leur finalite principale. Les <strong>entreprises privees</strong> poursuivent un but lucratif : elles produisent des biens ou des services destines a la vente et cherchent a degager un profit pour remunerer leurs proprietaires. Les <strong>organisations de la societe civile</strong> (associations, syndicats, ONG, fondations) n'ont pas de but lucratif : elles agissent dans l'interet de leurs membres ou de la collectivite, et les eventuels excedents sont reinvestis dans la mission sociale. Enfin, les <strong>organisations publiques</strong> (Etat, collectivites territoriales, etablissements publics) assurent des missions de service public financees principalement par les prelevements obligatoires.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. Les criteres de differenciation</h3>
+          <p>Plusieurs criteres permettent de distinguer les organisations entre elles :</p>
+          <ul>
+            <li><strong>Type de production</strong> : biens materiels, services marchands ou services non marchands.</li>
+            <li><strong>Secteur d'activite</strong> : primaire (agriculture, extraction), secondaire (industrie, construction) ou tertiaire (commerce, transport, services).</li>
+            <li><strong>Statut juridique</strong> : entreprise individuelle, SARL, SA, SAS, association loi 1901, etablissement public, etc.</li>
+            <li><strong>Taille</strong> : micro-entreprise (MIC, moins de 10 salaries), TPE, PME (moins de 250 salaries), ETI (250 a 4999) ou grande entreprise (GE, 5000 et plus).</li>
+            <li><strong>Nationalite</strong> : siege social determinant le rattachement juridique a un pays.</li>
+            <li><strong>Mode de financement</strong> : capitaux propres, emprunts, subventions, cotisations, dons ou prelevements obligatoires.</li>
+            <li><strong>Champ geographique</strong> : local, regional, national ou international.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les relations entre types d'organisations</h3>
+          <p>Les frontieres entre ces categories ne sont pas etanches. Des <strong>partenariats public-prive</strong> permettent a l'Etat de confier la gestion d'un service public a une entreprise privee (delegation de service public, concession). Le <strong>mecenat</strong> lie entreprises et associations : l'entreprise finance une cause d'interet general en echange d'avantages fiscaux et d'une valorisation de son image. Des <strong>cooperations croisees</strong> existent egalement lorsqu'une collectivite subventionne une association culturelle ou sportive qui, a son tour, contribue a l'attractivite du territoire.</p>
+          <p>Ces interactions montrent que la vie economique et sociale repose sur la complementarite des differentes formes d'organisation, chacune apportant ses ressources et sa logique propre au service du bien commun ou du marche.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Sachez classer n'importe quelle organisation dans l'une des trois familles et justifier ce classement par sa finalite. Maitrisez les criteres de differenciation (taille, statut, secteur, financement) et soyez capable de les appliquer a un cas concret. Les sujets demandent souvent de comparer deux organisations sur plusieurs criteres.</p>
+        </div>
+      </div>
+    </section>
+
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+        <QCMEngine client:load questions={questions} subjectColor={subject.colorHex} chapterTitle={chapter.title} />
+      </section>
+    )}
+
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+        <FichesFlash client:load cards={flashcardSet.cards} subjectColor={subject.colorHex} title={chapter.title} />
+      </section>
+    )}
+
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

@@ -1,0 +1,177 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'pourquoi-organiser-laction-collective')!;
+const questions = allQCM['pourquoi-organiser-laction-collective'] || [];
+const flashcardSet = flashcards['pourquoi-organiser-laction-collective'];
+
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <!-- Chapter header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <!-- ═══ FICHE DE SYNTHÈSE ═══ -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. Action individuelle et action collective</h3>
+          <p>Lorsqu'une personne agit seule pour atteindre un objectif, on parle d'<strong>action individuelle</strong>. Ce mode de fonctionnement convient a des taches simples, mais il trouve rapidement ses limites face a des projets de grande envergure. L'<strong>action collective</strong> consiste a reunir plusieurs personnes autour d'un objectif commun qu'aucune d'entre elles ne pourrait atteindre isolement. Fabriquer un vehicule, gerer un hopital ou organiser un festival implique la contribution coordonnee de nombreux acteurs aux competences complementaires.</p>
+          <p>L'action collective genere un <strong>effet de synergie</strong> : le resultat du groupe depasse la somme des contributions individuelles, a condition que le travail soit correctement organise. Sans organisation, les efforts risquent de se disperser et de produire des conflits ou des doublons.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. L'organisation : un cadre structurant</h3>
+          <p>Pour que l'action collective soit efficace, il faut un <strong>cadre juridique</strong> et une <strong>structure interne</strong>. Le cadre juridique comprend les statuts qui definissent l'objet social, l'immatriculation qui confere la personnalite morale et les obligations legales (fiscales, sociales, comptables) auxquelles l'entite doit se conformer. La structure interne, quant a elle, determine la maniere dont les taches sont reparties entre les membres, les mecanismes de coordination mis en place et les circuits de communication utilises.</p>
+          <p>Une <strong>organisation</strong> se definit donc comme un groupe de personnes qui interagissent dans un cadre structure pour atteindre un but partage. Elle se distingue d'un simple rassemblement par l'existence de regles, de roles definis et d'une hierarchie ou d'un mode de gouvernance clairement etabli.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Les cinq categories de ressources</h3>
+          <p>Toute organisation a besoin de <strong>ressources</strong> pour fonctionner. On distingue cinq grandes categories :</p>
+          <ul>
+            <li><strong>Ressources materielles</strong> : locaux, machines, vehicules, stocks de marchandises.</li>
+            <li><strong>Ressources immaterielles</strong> : brevets, marques, savoir-faire, reputation, bases de donnees.</li>
+            <li><strong>Ressources technologiques</strong> : logiciels, systemes d'information, equipements numeriques.</li>
+            <li><strong>Ressources humaines</strong> : competences, experience et motivation des membres de l'organisation.</li>
+            <li><strong>Ressources financieres</strong> : capitaux propres, emprunts, tresorerie, subventions.</li>
+          </ul>
+          <p>La combinaison optimale de ces ressources conditionne la capacite de l'organisation a remplir sa mission et a creer de la valeur.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">4. Les elements necessaires a l'action collective organisee</h3>
+          <p>Quatre elements sont indispensables pour que l'action collective fonctionne au sein d'une organisation :</p>
+          <ul>
+            <li><strong>Des regles de decision</strong> : qui decide, selon quels criteres et a quel niveau hierarchique. Ces regles garantissent la coherence des choix.</li>
+            <li><strong>Une repartition des taches</strong> : chaque membre doit savoir ce qu'il doit faire, ce qui evite les redondances et les oublis.</li>
+            <li><strong>Des mecanismes de coordination</strong> : reunions, procedures, outils collaboratifs permettent d'articuler les contributions de chacun.</li>
+            <li><strong>Des dispositifs de communication</strong> : l'information doit circuler de facon fluide (descendante, ascendante et transversale) pour que chacun dispose des elements necessaires a son travail.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Pensez toujours a distinguer action individuelle et action collective, puis a montrer que l'organisation est le cadre qui rend l'action collective efficace. Citez les cinq types de ressources et les quatre elements necessaires (regles, repartition, coordination, communication). C'est un schema recurrent dans les sujets de bac.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QCM ═══ -->
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+
+        <QCMEngine
+          client:load
+          questions={questions}
+          subjectColor={subject.colorHex}
+          chapterTitle={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ FICHES FLASH ═══ -->
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+
+        <FichesFlash
+          client:load
+          cards={flashcardSet.cards}
+          subjectColor={subject.colorHex}
+          title={chapter.title}
+        />
+      </section>
+    )}
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

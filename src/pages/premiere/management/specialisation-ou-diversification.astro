@@ -1,0 +1,146 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'specialisation-ou-diversification')!;
+const questions = allQCM['specialisation-ou-diversification'] || [];
+const flashcardSet = flashcards['specialisation-ou-diversification'];
+
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La specialisation</h3>
+          <p>La <strong>specialisation</strong> consiste pour une organisation a concentrer l'ensemble de ses ressources sur un seul metier ou un seul domaine d'activite. L'entreprise approfondit son expertise, developpe un savoir-faire pointu et renforce sa position sur son marche de reference.</p>
+          <p>Les <strong>avantages</strong> de la specialisation sont nombreux : maitrise technique superieure, image d'expert reconnue par les clients, economies d'echelle liees aux volumes de production, simplicite de la gestion. En revanche, cette strategie comporte des <strong>risques</strong> significatifs, notamment une forte <strong>dependance</strong> a l'egard d'un seul marche. Si ce marche se contracte ou si un concurrent disruptif apparait, l'organisation se retrouve en difficulte sans activite de repli.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. La diversification</h3>
+          <p>La <strong>diversification</strong> consiste a elargir le perimetre d'activite de l'organisation en se lancant dans de nouveaux domaines. On distingue trois formes principales :</p>
+          <ul>
+            <li><strong>Diversification horizontale</strong> : l'organisation propose de nouveaux produits ou services destines a la meme clientele. Exemple : un constructeur automobile qui lance une gamme de scooters electriques.</li>
+            <li><strong>Diversification verticale</strong> : l'organisation prend en charge des activites situees en amont (fournisseurs) ou en aval (distribution) de sa chaine de valeur. Exemple : un fabricant de meubles qui ouvre ses propres magasins.</li>
+            <li><strong>Diversification conglomeree</strong> : l'organisation investit dans des secteurs n'ayant aucun lien avec son activite d'origine. Exemple : un groupe alimentaire qui acquiert une chaine hoteliere.</li>
+          </ul>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. Avantages et limites de la diversification</h3>
+          <p>Les <strong>avantages</strong> de la diversification sont la <strong>repartition des risques</strong> sur plusieurs activites, l'acces a de <strong>nouveaux marches</strong> porteurs et la possibilite de realiser des synergies entre les differentes branches. Si un secteur traverse une crise, les autres activites peuvent compenser les pertes.</p>
+          <p>Les <strong>limites</strong> tiennent a la <strong>complexite</strong> accrue de la gestion (multiplier les metiers exige des competences variees), au <strong>cout</strong> des investissements necessaires pour penetrer un nouveau marche et au risque de disperser les ressources au detriment du metier d'origine. La diversification conglomeree, en particulier, peut conduire a une perte d'identite de l'organisation si elle n'est pas soigneusement pilotee.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Les sujets de bac opposent souvent specialisation et diversification. Sachez presenter les avantages et les limites de chacune en vous appuyant sur le cas etudie. Distinguez bien les trois formes de diversification (horizontale, verticale, conglomeree) et illustrez-les par des exemples concrets tires du sujet.</p>
+        </div>
+      </div>
+    </section>
+
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+        <QCMEngine client:load questions={questions} subjectColor={subject.colorHex} chapterTitle={chapter.title} />
+      </section>
+    )}
+
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+        <FichesFlash client:load cards={flashcardSet.cards} subjectColor={subject.colorHex} title={chapter.title} />
+      </section>
+    )}
+
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>

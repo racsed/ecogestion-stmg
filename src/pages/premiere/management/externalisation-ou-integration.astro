@@ -1,0 +1,142 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import QCMEngine from '../../../components/QCMEngine';
+import FichesFlash from '../../../components/FichesFlash';
+import { subjects } from '../../../data/subjects';
+import { allQCM } from '../../../data/allQCM';
+import { flashcards } from '../../../data/flashcards';
+
+const subject = subjects.find(s => s.id === 'management-premiere')!;
+const chapter = subject.chapters.find(c => c.slug === 'externalisation-ou-integration')!;
+const questions = allQCM['externalisation-ou-integration'] || [];
+const flashcardSet = flashcards['externalisation-ou-integration'];
+
+const chapterIndex = subject.chapters.indexOf(chapter);
+const prevChapter = chapterIndex > 0 ? subject.chapters[chapterIndex - 1] : null;
+const nextChapter = chapterIndex < subject.chapters.length - 1 ? subject.chapters[chapterIndex + 1] : null;
+---
+
+<Layout title={`${chapter.title} — ${subject.name} Première`}>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+      <a href="/" class="hover:text-gray-600 transition-colors">Accueil</a>
+      <span>/</span>
+      <a href="/" class="hover:text-gray-600 transition-colors">Première</a>
+      <span>/</span>
+      <a href="/premiere/management" class="hover:text-gray-600 transition-colors" style={`color: ${subject.colorHex};`}>{subject.name}</a>
+      <span>/</span>
+      <span class="text-gray-600">{chapter.title}</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+          Thème {chapter.themeNumber}
+        </span>
+        <span class="badge bg-gray-100 text-gray-500 text-xs">{chapter.theme}</span>
+      </div>
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">{chapter.title}</h1>
+      <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+        <span>📖 Fiche de synthèse</span>
+        <span>🎯 QCM ({questions.length} questions)</span>
+      </div>
+    </header>
+
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+          <span class="text-xl">📝</span>
+        </div>
+        <h2 class="font-display font-bold text-xl">Fiche de synthèse</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 space-y-6">
+
+        <div class="p-5 rounded-2xl" style={`background: ${subject.colorHex}08; border-left: 4px solid ${subject.colorHex};`}>
+          <h3 class="font-display font-bold text-lg mb-2" style={`color: ${subject.colorHex};`}>
+            🔑 Notions essentielles
+          </h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {chapter.notions.map(n => (
+              <span class="badge bg-white shadow-sm text-gray-700">{n}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="prose prose-sm max-w-none">
+          <h3 class="font-display font-bold text-lg">1. La chaine de valeur</h3>
+          <p>La <strong>chaine de valeur</strong>, concept developpe par Michael Porter, decompose l'activite de l'organisation en une serie d'etapes qui contribuent chacune a creer de la valeur pour le client final. On distingue les <strong>activites principales</strong> (logistique d'approvisionnement, production, logistique de distribution, marketing et vente, services apres-vente) et les <strong>activites de support</strong> (infrastructure de l'entreprise, gestion des ressources humaines, developpement technologique, achats).</p>
+          <p>Analyser la chaine de valeur permet d'identifier quelles activites creent le plus de valeur et lesquelles pourraient etre realisees a moindre cout par un partenaire exterieur. C'est cette reflexion qui fonde le choix entre externalisation et integration.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">2. L'externalisation</h3>
+          <p>L'<strong>externalisation</strong> consiste a confier a un prestataire exterieur une activite que l'organisation realisait auparavant en interne. La forme la plus courante est la <strong>sous-traitance</strong>, par laquelle une entreprise (le donneur d'ordres) charge une autre entreprise (le sous-traitant) d'executer une partie de sa production ou de ses services.</p>
+          <p>Les <strong>avantages</strong> de l'externalisation sont la <strong>flexibilite</strong> (adapter les volumes sans supporter de couts fixes), la <strong>reduction des couts</strong> (le prestataire specialise est souvent plus efficace) et la possibilite de se concentrer sur son coeur de metier. Les <strong>risques</strong> comprennent la <strong>dependance</strong> vis-a-vis du prestataire, la <strong>perte de savoir-faire</strong> sur l'activite externalisee, les problemes de qualite et la difficulte a maintenir la confidentialite des informations strategiques.</p>
+
+          <h3 class="font-display font-bold text-lg mt-6">3. L'integration</h3>
+          <p>L'<strong>integration</strong> est la demarche inverse : l'organisation decide de realiser elle-meme des activites qu'elle confiait jusque-la a des partenaires. L'integration <strong>en amont</strong> consiste a prendre le controle de ses sources d'approvisionnement (racheter un fournisseur, par exemple). L'integration <strong>en aval</strong> consiste a maitriser les etapes de distribution ou de commercialisation (ouvrir ses propres boutiques, par exemple).</p>
+          <p>Les <strong>avantages</strong> de l'integration sont la <strong>securisation de la filiere</strong> (garantie d'approvisionnement ou de debouches), l'amelioration des <strong>marges</strong> (en supprimant les intermediaires) et un meilleur controle de la qualite. Les <strong>contraintes</strong> portent sur les <strong>couts d'investissement</strong> eleves, la complexite accrue de la gestion et le besoin de developper de nouvelles competences internes pour piloter les activites integrees.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <h4 class="font-display font-bold text-sm text-amber-800 mb-2">💡 À retenir pour l'examen</h4>
+          <p class="text-sm text-amber-700">Appuyez-vous sur la chaine de valeur pour justifier une decision d'externalisation ou d'integration. Identifiez les activites concernees, puis presentez les avantages et les risques en les reliant au contexte du cas etudie. Les sujets demandent souvent de conseiller l'organisation : externaliser ou integrer ? Argumentez avec des elements concrets.</p>
+        </div>
+      </div>
+    </section>
+
+    {questions.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">🎯</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">QCM — Teste tes connaissances</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {questions.length} questions
+          </span>
+        </div>
+        <QCMEngine client:load questions={questions} subjectColor={subject.colorHex} chapterTitle={chapter.title} />
+      </section>
+    )}
+
+    {flashcardSet && (
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style={`background: ${subject.colorHex}15;`}>
+            <span class="text-xl">⚡</span>
+          </div>
+          <h2 class="font-display font-bold text-xl">Fiches Flash</h2>
+          <span class="badge text-xs" style={`background: ${subject.colorHex}15; color: ${subject.colorHex};`}>
+            {flashcardSet.cards.length} notions
+          </span>
+        </div>
+        <FichesFlash client:load cards={flashcardSet.cards} subjectColor={subject.colorHex} title={chapter.title} />
+      </section>
+    )}
+
+    <nav class="flex items-center justify-between pt-8 border-t border-gray-100">
+      {prevChapter ? (
+        <a href={`/premiere/management/${prevChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          <div>
+            <span class="text-xs text-gray-400">Précédent</span>
+            <p class="font-medium">{prevChapter.title}</p>
+          </div>
+        </a>
+      ) : <div />}
+      {nextChapter ? (
+        <a href={`/premiere/management/${nextChapter.slug}`} class="flex items-center gap-3 group text-sm text-gray-500 hover:text-gray-800 transition-colors text-right">
+          <div>
+            <span class="text-xs text-gray-400">Suivant</span>
+            <p class="font-medium">{nextChapter.title}</p>
+          </div>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </div>
+
+</Layout>
